@@ -42,7 +42,7 @@ class _MyPhoneState extends State<AutoUserRegister> {
   @override
   void initState() {
     // TODO: implement initState
-    countryController.text = "+7";
+    countryController.text = "";
     super.initState();
   }
 
@@ -82,7 +82,7 @@ class _MyPhoneState extends State<AutoUserRegister> {
                         },
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),
-                                labelText: '8 (900) 000 00 00',
+                                labelText: '+7 (900) 000 00 00',
                                 fillColor: Colors.black12,
                                 filled: true,
                                 contentPadding: EdgeInsets.only(
@@ -126,7 +126,8 @@ class _MyPhoneState extends State<AutoUserRegister> {
 
                         ElevatedButton(onPressed: () async {
                           FirebaseAuth.instance.verifyPhoneNumber(
-                            phoneNumber: '${countryController.text + phone}',
+                            phoneNumber: '${phone}',
+                              timeout: const Duration(seconds: 60),
                             verificationCompleted: (PhoneAuthCredential credential) {},
                             verificationFailed: (FirebaseAuthException e) {},
                             codeSent: (String verificationId, int? resendToken) {

@@ -4,22 +4,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="test program v5">
-      <change beforePath="$PROJECT_DIR$/.idea/Govno1_5.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Govno1_5.iml" afterDir="false" />
+    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="test program v6">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/.vs/WebApplication1/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/.vs/WebApplication1/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/.vs/WebApplication1/FileContentIndex/3d958bf1-2eda-49e1-b999-1b1b1ec142c5.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/.vs/WebApplication1/FileContentIndex/65a5cb8e-ac99-469a-9110-5eb48d672128.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/.vs/WebApplication1/FileContentIndex/d1148e88-b0c0-4bca-989b-4910d7972eb0.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/.vs/WebApplication1/v17/.futdcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/.vs/WebApplication1/v17/.futdcache.v2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/.vs/WebApplication1/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/.vs/WebApplication1/v17/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/obj/Debug/net6.0/WebApplication1.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/obj/Debug/net6.0/WebApplication1.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/obj/Debug/net6.0/WebApplication1.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/obj/Debug/net6.0/WebApplication1.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/obj/Debug/net6.0/WebApplication1.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/obj/Debug/net6.0/WebApplication1.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/obj/WebApplication1.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/obj/WebApplication1.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/obj/WebApplication1.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/obj/WebApplication1.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/auto_user_register_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/auto_user_register_page.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,11 +38,16 @@
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Dart/dart-sdk&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/DmitryDima/Desktop/Govno1_5&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;dart.settings&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\DmitryDima\Desktop\Govno1_5" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter" nameIsGenerated="true">
       <option name="filePath" value="$PROJECT_DIR$/first_app/lib/pages/main.dart" />
@@ -78,7 +70,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677572424032</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="test program v6">
+      <created>1677747842441</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1677747842441</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -94,6 +93,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test program v5" />
-    <option name="LAST_COMMIT_MESSAGE" value="test program v5" />
+    <MESSAGE value="test program v6" />
+    <option name="LAST_COMMIT_MESSAGE" value="test program v6" />
   </component>
 </project>
