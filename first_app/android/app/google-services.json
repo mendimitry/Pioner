@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "879453557900",
+    "project_id": "pionersms-bbd42",
+    "storage_bucket": "pionersms-bbd42.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879453557900:android:3df9e528ab635b878f97a9",
+        "android_client_info": {
+          "package_name": "com.example.first_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "879453557900-hitco0rcklkaujje0m9fkov9ng9if69h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzUtvxBJvrto5ifo-dW-C5YedhvFVVv44"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "879453557900-hitco0rcklkaujje0m9fkov9ng9if69h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
