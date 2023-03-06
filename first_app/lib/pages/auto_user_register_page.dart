@@ -127,7 +127,7 @@ class _MyPhoneState extends State<AutoUserRegister> {
                         ElevatedButton(onPressed: () async {
                           FirebaseAuth.instance.verifyPhoneNumber(
                             phoneNumber: '${phone}',
-                              timeout: const Duration(seconds: 60),
+                              timeout: const Duration(seconds: 120),
                             verificationCompleted: (PhoneAuthCredential credential) {},
                             verificationFailed: (FirebaseAuthException e) {},
                             codeSent: (String verificationId, int? resendToken) {
