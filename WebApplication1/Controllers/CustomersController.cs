@@ -1,10 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using WebApplication1.Data;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -17,14 +24,15 @@ namespace WebApplication1.Controllers
 
         // GET: api/Customers
         [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<IEnumerable<Customer>>> GetCustomers()
         {
             db = new MaindataContext();
             return await db.Customers.ToListAsync();
         }
 
-        // GET: api/Customers/Number/89123456210
-        [HttpGet("Number/{CustomerPhoneNumber}")]
+        // GET: api/Customers/number/89123456210
+        [HttpGet("number/{CustomerPhoneNumber}")]
         public async Task<ActionResult<Customer>> GetCustomerByPhone(string CustomerPhoneNumber)
         {
             db = new MaindataContext();
@@ -89,14 +97,40 @@ namespace WebApplication1.Controllers
         public async Task<ActionResult<Customer>> PostCustomer(Customer customer)
         {
             db = new MaindataContext();
-            //Customer customer = new Customer();
-            //customer.CustomerName = CustomerName;
-            //customer.CustomerPhoneNumber = CustomerPhoneNumber;
-            //customer.CustomerSurname = CustomerSurname;
             db.Customers.Add(customer);
             await db.SaveChangesAsync();
 
             return CreatedAtAction("GetCustomer", new { id = customer.CustomerId }, customer);
+        }
+
+        [HttpPost("login/{phoneNumber}")]
+        public async Task<ActionResult> LoginCustomer(string phoneNumber)
+        {
+            db = new MaindataContext();
+            if (CustomerExists(phoneNumber) == true)
+            {
+                Customer loggedInUser = await db.Customers.FirstOrDefaultAsync(c => c.CustomerPhoneNumber == phoneNumber);
+                var claims = new[]
+                {
+                    new Claim(ClaimTypes.NameIdentifier,loggedInUser.CustomerPhoneNumber),
+                    new Claim(ClaimTypes.Name,loggedInUser.CustomerName),
+                    new Claim(ClaimTypes.Surname,loggedInUser.CustomerSurname),
+                };
+
+                var token = new JwtSecurityToken
+                (
+                    issuer: "https://localhost:7115/",
+                    audience: "Pioneer",
+                    claims: claims,
+                    expires: DateTime.UtcNow.AddDays(60),
+                    notBefore: DateTime.UtcNow,
+                    signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("12345678912345678912345678912345678AbObA")), SecurityAlgorithms.HmacSha256)
+                );
+                var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+                return Ok(tokenString);
+            }
+
+            return NotFound("Такой пользователь не существует");
         }
         /*
         // DELETE: api/Customers/5

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DmitryDima\\Desktop\\WebApplication1\\WebApplication1.csproj": {}
+    "D:\\Govno1_6\\WebApplication1\\WebApplication1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DmitryDima\\Desktop\\WebApplication1\\WebApplication1.csproj": {
+    "D:\\Govno1_6\\WebApplication1\\WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DmitryDima\\Desktop\\WebApplication1\\WebApplication1.csproj",
+        "projectUniqueName": "D:\\Govno1_6\\WebApplication1\\WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "C:\\Users\\DmitryDima\\Desktop\\WebApplication1\\WebApplication1.csproj",
+        "projectPath": "D:\\Govno1_6\\WebApplication1\\WebApplication1.csproj",
         "packagesPath": "C:\\Users\\DmitryDima\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DmitryDima\\Desktop\\WebApplication1\\obj\\",
+        "outputPath": "D:\\Govno1_6\\WebApplication1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -44,6 +44,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.14, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[6.0.14, )"
@@ -58,6 +62,10 @@
               "target": "Package",
               "version": "[7.0.3, )"
             },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[6.27.0, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.12, )"
@@ -65,6 +73,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.27.0, )"
             }
           },
           "imports": [
