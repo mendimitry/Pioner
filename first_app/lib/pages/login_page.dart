@@ -1,3 +1,4 @@
+import 'package:first_app/pages/TestAdminka.dart';
 import 'package:first_app/pages/auto_user_register_page.dart';
 import 'package:first_app/pages/post_list_page.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class LoginPage extends StatelessWidget {
                 child: Text('Организациям - партнёрам', style: TextStyle(fontSize: 18, color: Colors.white), textAlign: TextAlign.center)),
 
             Padding(padding: EdgeInsets.only(top: 50)),
-            ElevatedButton(onPressed: (){Navigator.popUntil(context, (route) => route.settings.name == Main());},style: ElevatedButton.styleFrom(backgroundColor: Colors.black26, fixedSize: Size(300,50)),
+            ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => TestAdminka()));},style: ElevatedButton.styleFrom(backgroundColor: Colors.black26, fixedSize: Size(300,50)),
                 child: Text('Администрирование', style: TextStyle(fontSize: 18, color: Colors.white), textAlign: TextAlign.center))
           ]
         )
