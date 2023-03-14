@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Govno1_6\\WebApplication1\\WebApplication1.csproj": {}
+    "C:\\Users\\DmitryDima\\Desktop\\Govno1_5\\WebApplication1\\WebApplication1.csproj": {}
   },
   "projects": {
-    "D:\\Govno1_6\\WebApplication1\\WebApplication1.csproj": {
+    "C:\\Users\\DmitryDima\\Desktop\\Govno1_5\\WebApplication1\\WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Govno1_6\\WebApplication1\\WebApplication1.csproj",
+        "projectUniqueName": "C:\\Users\\DmitryDima\\Desktop\\Govno1_5\\WebApplication1\\WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "D:\\Govno1_6\\WebApplication1\\WebApplication1.csproj",
+        "projectPath": "C:\\Users\\DmitryDima\\Desktop\\Govno1_5\\WebApplication1\\WebApplication1.csproj",
         "packagesPath": "C:\\Users\\DmitryDima\\.nuget\\packages\\",
-        "outputPath": "D:\\Govno1_6\\WebApplication1\\obj\\",
+        "outputPath": "C:\\Users\\DmitryDima\\Desktop\\Govno1_5\\WebApplication1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -69,6 +69,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.12, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[7.0.2, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

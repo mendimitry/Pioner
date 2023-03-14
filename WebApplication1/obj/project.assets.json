@@ -1831,6 +1831,23 @@
           }
         }
       },
+      "Npgsql/7.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Npgsql.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Npgsql.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "NuGet.Common/6.3.1": {
         "type": "package",
         "dependencies": {
@@ -6424,6 +6441,31 @@
         "packageIcon.png"
       ]
     },
+    "Npgsql/7.0.2": {
+      "sha512": "/k12hfmg4PI0IU2UTLN6n0s/FKUfox8+RdWtzgADYZoyks7GH82WLyXm27eeqatsi/nmiK9lO3HyULlTD87szg==",
+      "type": "package",
+      "path": "npgsql/7.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net5.0/Npgsql.dll",
+        "lib/net5.0/Npgsql.xml",
+        "lib/net6.0/Npgsql.dll",
+        "lib/net6.0/Npgsql.xml",
+        "lib/net7.0/Npgsql.dll",
+        "lib/net7.0/Npgsql.xml",
+        "lib/netcoreapp3.1/Npgsql.dll",
+        "lib/netcoreapp3.1/Npgsql.xml",
+        "lib/netstandard2.0/Npgsql.dll",
+        "lib/netstandard2.0/Npgsql.xml",
+        "lib/netstandard2.1/Npgsql.dll",
+        "lib/netstandard2.1/Npgsql.xml",
+        "npgsql.7.0.2.nupkg.sha512",
+        "npgsql.nuspec",
+        "postgresql.png"
+      ]
+    },
     "NuGet.Common/6.3.1": {
       "sha512": "/WgxNyc9dXl+ZrQJDf5BXaqtMbl0CcDC5GEQITecbHZBQHApTMuxeTMMEqa0Y+PD1CIxTtbRY4jmotKS5dsLuA==",
       "type": "package",
@@ -10849,6 +10891,7 @@
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.3",
       "Microsoft.IdentityModel.Tokens >= 6.27.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.12",
+      "Npgsql >= 7.0.2",
       "Swashbuckle.AspNetCore >= 6.2.3",
       "System.IdentityModel.Tokens.Jwt >= 6.27.0"
     ]
@@ -10860,11 +10903,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Govno1_6\\WebApplication1\\WebApplication1.csproj",
+      "projectUniqueName": "C:\\Users\\DmitryDima\\Desktop\\Govno1_5\\WebApplication1\\WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "D:\\Govno1_6\\WebApplication1\\WebApplication1.csproj",
+      "projectPath": "C:\\Users\\DmitryDima\\Desktop\\Govno1_5\\WebApplication1\\WebApplication1.csproj",
       "packagesPath": "C:\\Users\\DmitryDima\\.nuget\\packages\\",
-      "outputPath": "D:\\Govno1_6\\WebApplication1\\obj\\",
+      "outputPath": "C:\\Users\\DmitryDima\\Desktop\\Govno1_5\\WebApplication1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -10922,6 +10965,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[6.0.12, )"
+          },
+          "Npgsql": {
+            "target": "Package",
+            "version": "[7.0.2, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
