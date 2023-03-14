@@ -9,21 +9,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="test program v6.4">
+    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="add mysql">
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/.vs/ProjectEvaluation/webapplication1.metadata.v6.1" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/.vs/ProjectEvaluation/webapplication1.metadata.v6.1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/.vs/ProjectEvaluation/webapplication1.projects.v6.1" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/.vs/ProjectEvaluation/webapplication1.projects.v6.1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/.vs/WebApplication1/FileContentIndex/d8960046-2478-4674-94de-cbe75fe5e44e.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/.vs/WebApplication1/v17/.futdcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/.vs/WebApplication1/v17/.futdcache.v2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/.vs/WebApplication1/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/.vs/WebApplication1/v17/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/WebApplication1.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/WebApplication1.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/obj/Debug/net6.0/WebApplication1.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/obj/Debug/net6.0/WebApplication1.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/obj/Debug/net6.0/WebApplication1.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/obj/Debug/net6.0/WebApplication1.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/obj/Debug/net6.0/WebApplication1.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/obj/Debug/net6.0/WebApplication1.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/obj/WebApplication1.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/obj/WebApplication1.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/login_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/login_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/pubspec.yaml" afterDir="false" />
     </list>
@@ -55,22 +44,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/DmitryDima/Desktop/Govno1_5&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;dart.settings&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "io.flutter.reload.alreadyRun": "true",
+    "last_opened_file_path": "C:/Users/DmitryDima/Desktop/Govno1_5/first_app/lib/cert",
+    "settings.editor.selected.configurable": "application.passwordSafe",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\DmitryDima\Desktop\Govno1_5\first_app\lib\cert" />
       <recent name="C:\Users\DmitryDima\Desktop\Govno1_5" />
       <recent name="C:\Users\DmitryDima\Desktop\Govno1_5\first_app\lib\data" />
       <recent name="C:\Users\DmitryDima\Desktop\Govno1_5\first_app\lib\models" />
@@ -175,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678175052242</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="add mysql">
+      <created>1678782866150</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1678782866150</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -196,6 +193,7 @@
     <MESSAGE value="test program v6.2" />
     <MESSAGE value="test program v6.3" />
     <MESSAGE value="test program v6.4" />
-    <option name="LAST_COMMIT_MESSAGE" value="test program v6.4" />
+    <MESSAGE value="add mysql" />
+    <option name="LAST_COMMIT_MESSAGE" value="add mysql" />
   </component>
 </project>
