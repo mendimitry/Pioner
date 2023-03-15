@@ -86,17 +86,9 @@ class _PostListPageState extends StateMVC {
                 color: Theme.of(context).primaryColor,
               ),
               padding: EdgeInsets.all(10),
-              child: Text(
-                post.phoneNumber,
-                textAlign: TextAlign.left
-              ),
+
             ),
-            Container(
-              child: Text(
-                post.dateTime,
-              ),
-              padding: EdgeInsets.all(10),
-            ),
+
           ],
         )
     );

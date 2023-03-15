@@ -15,5 +15,5 @@ class Repository{
     else{
       throw Exception("failed request");
     }
-    }
   }
+}

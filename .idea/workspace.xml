@@ -10,9 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="add postgres + test request">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/controller/connectdb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/controller/connectdb.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/login_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/login_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/controller/post_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/controller/post_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/data/repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/data/repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/TestAdminka.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/TestAdminka.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/post_list_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/post_list_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,20 +47,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "cidr.known.project.marker": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "io.flutter.reload.alreadyRun": "true",
-    "last_opened_file_path": "C:/Users/DmitryDima/Desktop/Govno1_5/first_app/lib/cert",
-    "settings.editor.selected.configurable": "application.passwordSafe",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/DmitryDima/Downloads/postgresql-dart-master/postgresql-dart-master&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;application.passwordSafe&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\DmitryDima\Desktop\Govno1_5\first_app\lib\cert" />
@@ -177,7 +182,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678796747406</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add postgres + test request">
+      <created>1678801825690</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1678801825690</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
