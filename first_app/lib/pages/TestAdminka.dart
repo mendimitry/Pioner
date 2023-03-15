@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:html/parser.dart';
+import 'package:postgres/postgres.dart';
 import 'package:requests/requests.dart';
 import 'package:http/http.dart' as http;
 void main() {
@@ -24,7 +25,16 @@ class TestAdminka extends StatefulWidget {
 }
 class _TestAdminkaState extends State {
   String _data = "no data";
+  String _data2 = "no data";
   getData() async {
+
+    //String proxy = "c9qrdr73am2rvah0kq5q";
+   // String proxyEndpoint ="c9qrdr73am2rvah0kq5q";
+   // String user = "user";
+    //String conString = "postgres://" + user + ":" + token + "@" + proxyEndpoint + "/" + proxy + "?ssl-true";
+
+    final conn = PostgreSQLConnection('rc1b-tzf902fgo6tak7op.mdb.yandexcloud.net', 6432, 'pionerdb',username: 'user', password: '12345678',useSSL: true);
+    await conn.open();
 
    //присваиваем полученный код страницы, переменной _data
 
@@ -49,8 +59,10 @@ class _TestAdminkaState extends State {
     print('Status code: ${res.statusCode}');
     print('Headers: ${res.headers}');
     print('Body: ${res.body}');
+    var results1 = await conn.query('SELECT * from address');
     final results = [jsonDecode(res.body)];
     _data = res.body;
+    _data2 = results1.toString();
 
     setState(() {});
   }
@@ -74,6 +86,7 @@ class _TestAdminkaState extends State {
                       ),
                     ),
                     Text("$_data"),
+                    Text("$_data2"),
                 Padding(padding: EdgeInsets.only(top: 300)),
 
               ]),

@@ -9,15 +9,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="add postgres + test request">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="add postgres + get yandex">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/controller/post_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/controller/post_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/data/repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/data/repository.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/lib/pages/TestAdminka.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/TestAdminka.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/post_list_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/post_list_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +183,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678801825690</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="add postgres + get yandex">
+      <created>1678906816347</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1678906816347</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -212,6 +213,7 @@
     <MESSAGE value="test program v6.4" />
     <MESSAGE value="add mysql" />
     <MESSAGE value="add postgres + test request" />
-    <option name="LAST_COMMIT_MESSAGE" value="add postgres + test request" />
+    <MESSAGE value="add postgres + get yandex" />
+    <option name="LAST_COMMIT_MESSAGE" value="add postgres + get yandex" />
   </component>
 </project>
