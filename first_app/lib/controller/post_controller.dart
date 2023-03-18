@@ -11,6 +11,7 @@ class PostController extends ControllerMVC{
     try{
       final postList = await repo.fetchPosts();
       setState(() => currentState =PostResultSuccess(postList));
+
     }
     catch(error){
       setState(() => currentState =PostResultFailure("Отсутствует соединение с сервером"));
