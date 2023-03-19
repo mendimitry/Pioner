@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:first_app/models/Customer.dart';
 import 'package:flutter/material.dart';
+import 'package:first_app/data/PionerDBContext.dart';
 
 import 'login_page.dart';
 
@@ -10,7 +11,42 @@ class Button extends StatefulWidget {
   State<Button> createState() => _Button();
 }
 
+
 class _Button extends State<Button> {
+  PionerDB pionerDB = PionerDB();
+  late Future<List<Customer>> customers;
+
+  int ID = 2;
+  String phoneNumber = "89140213561";
+  String name = "Боба";
+  String surname = "Абобав";
+  String phoneNumber2 = "89123456789";
+
+  @override
+  initState() {
+    super.initState();
+  }
+
+  getAllCustomers() {
+    pionerDB.getAllCustomers();
+  }
+
+  getCustomerByID(int ID){
+    pionerDB.getCustomerByID(ID);
+  }
+
+  getCustomerByPhoneNumber(String phoneNumber){
+    pionerDB.getCustomerByPhoneNumber(phoneNumber);
+  }
+
+  postCustomer(String? name, String? surname, String phoneNumber2){
+    pionerDB.postCustomer(phoneNumber2, name, surname);
+  }
+
+  deleteCustomer(String phoneNumber2){
+    pionerDB.deleteCustomer(phoneNumber2);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +56,8 @@ class _Button extends State<Button> {
             transition(context),
             Padding(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                child: Column(
+                child:
+                Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -28,29 +65,29 @@ class _Button extends State<Button> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {getAllCustomers();},
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.black26,
                                   fixedSize: Size(120, 50)),
-                              child: Text('button1',
+                              child: Text('Получить пользователей',
                                   style: TextStyle(
                                       fontSize: 18, color: Colors.white),
                                   textAlign: TextAlign.center)),
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {getCustomerByID(ID);},
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.black26,
                                   fixedSize: Size(120, 50)),
-                              child: Text('button2',
+                              child: Text('Получить пользователя с ID 2',
                                   style: TextStyle(
                                       fontSize: 18, color: Colors.white),
                                   textAlign: TextAlign.center)),
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {getCustomerByPhoneNumber(phoneNumber);},
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.black26,
                                   fixedSize: Size(120, 50)),
-                              child: Text('button3',
+                              child: Text('Получить пользователя по номеру телефона',
                                   style: TextStyle(
                                       fontSize: 18, color: Colors.white),
                                   textAlign: TextAlign.center)),
@@ -62,20 +99,20 @@ class _Button extends State<Button> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {postCustomer(name, surname, phoneNumber2);},
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.black26,
                                   fixedSize: Size(120, 50)),
-                              child: Text('button4',
+                              child: Text('Добавить пользователя',
                                   style: TextStyle(
                                       fontSize: 18, color: Colors.white),
                                   textAlign: TextAlign.center)),
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {deleteCustomer(phoneNumber2);},
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.black26,
                                   fixedSize: Size(120, 50)),
-                              child: Text('button5',
+                              child: Text('Удалить пользователя',
                                   style: TextStyle(
                                       fontSize: 18, color: Colors.white),
                                   textAlign: TextAlign.center)),

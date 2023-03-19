@@ -9,10 +9,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="add form organization + registration">
+    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="add instruction for backend developer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/controller/post_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/controller/post_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/controller/connectdb.dart" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,29 +41,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/DmitryDima/Desktop/Govno1_5/first_app/lib/pages&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;application.passwordSafe&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "io.flutter.reload.alreadyRun": "true",
+    "last_opened_file_path": "C:/Users/DmitryDima/Desktop/Govno1_5/first_app/lib/models",
+    "settings.editor.selected.configurable": "application.passwordSafe",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\DmitryDima\Desktop\Govno1_5\first_app\lib\models" />
+      <recent name="C:\Users\DmitryDima\Desktop\Govno1_5\first_app\lib\data" />
       <recent name="C:\Users\DmitryDima\Desktop\Govno1_5\first_app\lib\pages" />
       <recent name="C:\Users\DmitryDima\Desktop\Govno1_5\first_app\lib\cert" />
       <recent name="C:\Users\DmitryDima\Desktop\Govno1_5" />
-      <recent name="C:\Users\DmitryDima\Desktop\Govno1_5\first_app\lib\data" />
-      <recent name="C:\Users\DmitryDima\Desktop\Govno1_5\first_app\lib\models" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\DmitryDima\Desktop\Govno1_5\first_app\lib\data" />
       <recent name="C:\Users\DmitryDima\Desktop\Govno1_5\first_app\android\app" />
     </key>
   </component>
@@ -205,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679148295599</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="add instruction for backend developer">
+      <created>1679149489254</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1679149489254</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -231,6 +238,7 @@
     <MESSAGE value="add postgres + get yandex" />
     <MESSAGE value="add postgres + get yandex(x2)" />
     <MESSAGE value="add form organization + registration" />
-    <option name="LAST_COMMIT_MESSAGE" value="add form organization + registration" />
+    <MESSAGE value="add instruction for backend developer" />
+    <option name="LAST_COMMIT_MESSAGE" value="add instruction for backend developer" />
   </component>
 </project>
