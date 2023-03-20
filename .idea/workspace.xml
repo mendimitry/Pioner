@@ -9,9 +9,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="add policy">
+    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="add policy(x2)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/auto_user_register_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/auto_user_register_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_organization/privacy_policy.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_organization/privacy_policy.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -240,7 +240,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679331842479</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="add policy(x2)">
+      <created>1679332846850</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1679332846850</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -270,6 +277,7 @@
     <MESSAGE value="adding and removing a user" />
     <MESSAGE value="add connect organization" />
     <MESSAGE value="add policy" />
-    <option name="LAST_COMMIT_MESSAGE" value="add policy" />
+    <MESSAGE value="add policy(x2)" />
+    <option name="LAST_COMMIT_MESSAGE" value="add policy(x2)" />
   </component>
 </project>
