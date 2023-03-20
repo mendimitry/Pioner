@@ -1,4 +1,5 @@
 import 'package:first_app/models/Customer.dart';
+import 'package:first_app/models/Organization.dart';
 import 'package:flutter/material.dart';
 import 'package:first_app/data/PionerDBContext.dart';
 
@@ -12,10 +13,11 @@ class Button extends StatefulWidget {
 }
 
 
+
 class _Button extends State<Button> {
   PionerDB pionerDB = PionerDB();
   late Future<List<Customer>> customers;
-
+  String data = "null";
   int ID = 2;
   String phoneNumber = "89140213561";
   String name = "Боба";
@@ -29,6 +31,7 @@ class _Button extends State<Button> {
 
   getAllCustomers() {
     pionerDB.getAllCustomers();
+
   }
 
   getCustomerByID(int ID){
@@ -47,6 +50,13 @@ class _Button extends State<Button> {
     pionerDB.deleteCustomer(phoneNumber2);
   }
 
+  getAllOrganizations() {
+    pionerDB.getAllOrganization();
+  }
+
+  getOrganizationByID(ID){
+    pionerDB.getOrganizationByID(ID);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +75,9 @@ class _Button extends State<Button> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           ElevatedButton(
-                              onPressed: () {getAllCustomers();},
+                              onPressed: () {getAllCustomers();
+
+                                },
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.black26,
                                   fixedSize: Size(120, 50)),
@@ -117,11 +129,11 @@ class _Button extends State<Button> {
                                       fontSize: 18, color: Colors.white),
                                   textAlign: TextAlign.center)),
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {getAllOrganizations();},
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.black26,
                                   fixedSize: Size(120, 50)),
-                              child: Text('button6',
+                              child: Text('Получить все организации',
                                   style: TextStyle(
                                       fontSize: 18, color: Colors.white),
                                   textAlign: TextAlign.center)),
@@ -133,11 +145,11 @@ class _Button extends State<Button> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {getOrganizationByID(ID);},
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.black26,
                                   fixedSize: Size(120, 50)),
-                              child: Text('button7',
+                              child: Text('Получить организацию по ID',
                                   style: TextStyle(
                                       fontSize: 18, color: Colors.white),
                                   textAlign: TextAlign.center)),
@@ -194,7 +206,9 @@ class _Button extends State<Button> {
                                       fontSize: 18, color: Colors.white),
                                   textAlign: TextAlign.center)),
                         ]),
+                    Text("$data"),
                   ],
+
                 ))
           ])),
       backgroundColor: Colors.grey,

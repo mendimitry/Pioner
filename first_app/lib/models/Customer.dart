@@ -14,11 +14,10 @@ class Customer
 
   //Обрабатываем ответ из БД, формируем объект
   factory Customer.fromReqBody(Map<String, dynamic> json){
-
       return Customer(
           customer_id:json['customer_id'] as int,
-          customer_surname:json['customer_surname'] as String,
-          customer_name:json['customer_name'] as String,
+          customer_surname:json['customer_surname'] as String?,
+          customer_name:json['customer_name'] as String?,
           customer_phone_number:json['customer_phone_number'] as String
       );
   }

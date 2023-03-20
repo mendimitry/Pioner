@@ -1,9 +1,11 @@
+import 'package:first_app/models/ConnectionRequest.dart';
 import 'package:first_app/pages/form_organization/connecting_organization.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 import 'package:first_app/pages/form_organization/privacy_policy.dart';
 import 'package:flutter/gestures.dart';
+import '../../data/PionerDBContext.dart';
 import '../login_page.dart';
 class UserOrganization extends StatefulWidget{
   const UserOrganization({super.key});
@@ -13,6 +15,26 @@ class UserOrganization extends StatefulWidget{
 }
 
 class _UserOrganization extends State<UserOrganization>{
+  PionerDB pionerDB = PionerDB();
+  late ConnectionRequest connectionRequest;
+  final TextEditingController connection_request_id = TextEditingController();
+  final TextEditingController organization_id = TextEditingController();
+  final TextEditingController reg_number = TextEditingController();
+  final TextEditingController date_begin = TextEditingController();
+  final TextEditingController date_end = TextEditingController();
+  final TextEditingController status = TextEditingController();
+  final TextEditingController add_info = TextEditingController();
+
+  int o_id = 1;
+
+  getStatusOrganizationByID(int id){
+    connectionRequest = pionerDB.getStatusOrganizationByID(id) as ConnectionRequest;
+  }
+  //postOrganization() {
+  //  pionerDB.postStatusOrganization(organization_id.text, reg_number.text, date_begin.text as DateTime, date_end.text as DateTime,
+  //      status.text, add_info.text);
+  //}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +54,7 @@ class _UserOrganization extends State<UserOrganization>{
                           children: [
                             Text("Текущий статус: ", style: TextStyle(fontSize: 16, color: Colors.black54)),
                           ],
+
                         ),
                         SizedBox(height: 12),
                         Row(

@@ -4,6 +4,11 @@ import 'package:first_app/pages/form_organization/privacy_policy.dart';
 import 'package:first_app/pages/form_organization/user_organization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:postgres/postgres.dart';
+import 'package:first_app/models/Organization.dart';
+import 'package:first_app/models/ConnectionRequest.dart';
+import 'package:first_app/data/PionerDBContext.dart';
+
 import '../login_page.dart';
 
 class ConnectingOrganization extends StatefulWidget {
@@ -13,9 +18,31 @@ class ConnectingOrganization extends StatefulWidget {
   State<ConnectingOrganization> createState() => _ConnectingOrganization();
 }
 
+
 class _ConnectingOrganization extends State<ConnectingOrganization> {
   bool value = false;
+  PionerDB pionerDB = PionerDB();
 
+  final TextEditingController polnoeTextController = TextEditingController();
+  final TextEditingController kratkoeTextController = TextEditingController();
+  final TextEditingController innTextController = TextEditingController();
+  final TextEditingController kppTextController = TextEditingController();
+  final TextEditingController ogrnTextController = TextEditingController();
+  final TextEditingController surnameTextController = TextEditingController();
+  final TextEditingController nameTextController = TextEditingController();
+  final TextEditingController patronymicTextController = TextEditingController();
+  final TextEditingController emailTextController = TextEditingController();
+  final TextEditingController phoneNumberTextController = TextEditingController();
+  final TextEditingController additionalInfoTextController = TextEditingController();
+  late int post_id;
+
+  postOrganization() async {
+    int o_id = await pionerDB.postOrganization(polnoeTextController.text, kratkoeTextController.text, innTextController.text, kppTextController.text,
+        ogrnTextController.text, surnameTextController.text, nameTextController.text, patronymicTextController.text, emailTextController.text,
+        phoneNumberTextController.text, additionalInfoTextController.text);
+
+    post_id = await pionerDB.postStatusOrganization(o_id, (o_id + 1).toString(), DateTime.now(), "Новый");
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,7 +105,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
 
   ElevatedButton button() {
     return ElevatedButton(
-                          onPressed: () {
+                          onPressed: () {postOrganization();
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) => UserOrganization()));
                           },
@@ -128,7 +155,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
   Row textField_addInformation() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
+      children: [
         Text(
           "доп.\nинформация",
           style: TextStyle(fontSize: 16),
@@ -141,6 +168,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
+            controller: additionalInfoTextController,
           ),
         ),
       ],
@@ -150,7 +178,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
   Row textField_phoneNumber() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
+      children: [
         Text(
           "номер\nтелефона",
           style: TextStyle(fontSize: 16),
@@ -163,6 +191,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
+            controller: phoneNumberTextController,
           ),
         ),
       ],
@@ -172,7 +201,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
   Row textField_email() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
+      children: [
         Text(
           "email",
           style: TextStyle(fontSize: 16),
@@ -185,6 +214,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
+            controller: emailTextController,
           ),
         ),
       ],
@@ -194,7 +224,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
   Row textField_Otch() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
+      children: [
         Text(
           "отчество",
           style: TextStyle(fontSize: 16),
@@ -207,6 +237,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
+            controller: patronymicTextController,
           ),
         ),
       ],
@@ -216,7 +247,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
   Row textField_name() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
+      children: [
         Text(
           "имя",
           style: TextStyle(fontSize: 16),
@@ -229,6 +260,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
+            controller: nameTextController,
           ),
         ),
       ],
@@ -238,7 +270,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
   Row textField_famil() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
+      children: [
         Text(
           "фамилия",
           style: TextStyle(fontSize: 16),
@@ -251,6 +283,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
+            controller: surnameTextController,
           ),
         ),
       ],
@@ -260,7 +293,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
   Row textFiled_OGRN() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
+      children: [
         Text(
           "ОГРН",
           style: TextStyle(fontSize: 16),
@@ -273,6 +306,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
+            controller: ogrnTextController,
           ),
         ),
       ],
@@ -282,7 +316,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
   Row textField_KPP() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
+      children: [
         Text(
           "КПП",
           style: TextStyle(fontSize: 16),
@@ -295,6 +329,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
+            controller: kppTextController,
           ),
         ),
       ],
@@ -304,7 +339,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
   Row texField_INN() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
+      children: [
         Text(
           "ИНН",
           style: TextStyle(fontSize: 16),
@@ -317,6 +352,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
+            controller: innTextController,
           ),
         ),
       ],
@@ -326,7 +362,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
   Row textField_kratkoe() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
+      children: [
         Text(
           "краткое",
           style: TextStyle(fontSize: 16),
@@ -334,11 +370,13 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
         SizedBox(
           width: 250,
           child: TextField(
+
             decoration: InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
+            controller: kratkoeTextController,
           ),
         ),
       ],
@@ -348,7 +386,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
   Row text_polnoe() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
+      children: [
         Text(
           "полное",
           style: TextStyle(fontSize: 16),
@@ -356,11 +394,13 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
         SizedBox(
           width: 250,
           child: TextField(
+
             decoration: InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
+            controller: polnoeTextController,
           ),
         ),
       ],
@@ -369,11 +409,12 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
 
   Row text_named_organization() {
     return Row(
-      children: const [
+      children: const[
         Text(
           "Наименование организации:",
           style: TextStyle(fontSize: 18),
         ),
+
       ],
     );
   }
