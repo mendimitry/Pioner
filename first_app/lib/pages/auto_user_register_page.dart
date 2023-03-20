@@ -2,12 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_app/pages/choosing_service.dart';
 import 'package:first_app/pages/post_list_page.dart';
 import 'package:first_app/pages/login_page.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:math' as math;
 
 import 'package:get/get_core/src/get_main.dart';
 
+import 'form_organization/privacy_policy.dart';
 import 'main.dart';
 import 'otp.dart';
 
@@ -37,7 +39,7 @@ class _MyPhoneState extends State<AutoUserRegister> {
   var firebaseVerificationId = "";
   var statusMessage = "".obs;
   var statusMessageColor = Colors.black.obs;
-
+  bool value = false;
   var timer;
   @override
   void initState() {
@@ -103,23 +105,34 @@ class _MyPhoneState extends State<AutoUserRegister> {
                                 top: 5, right: 20, left: 20))),
                         Padding(padding: EdgeInsets.only(top: 50)),
 
+
                         Row(
                           children: [
-                            Checkbox(value: rememberMe,
-                                onChanged: (bool? newValue) {}),
+                            Checkbox(value: value,
+                            onChanged: (bool? newValue) {
+                              setState(() {
+                                value = newValue!;
+                              });
+                            }),
+
                             Flexible(child: RichText(text: TextSpan(
-                                text: 'Принимаю условия ', style: TextStyle(
-                                fontSize: 20, color: Colors.black),
-                                children: <TextSpan>[
-                                  TextSpan(text: 'политики конфиденциальности',
-                                    style: const TextStyle(
-                                        color: Colors.blueAccent,
-                                        decoration: TextDecoration.underline),
-                                  )
-                                ]
-                            ),
-                            )
-                            ),
+                                text: 'Принимаю условия ',
+                                style: TextStyle(fontSize: 20, color: Colors.black),
+                                children: <TextSpan>[TextSpan(
+
+                                text: 'политики конфиденциальности',
+                                style: const TextStyle(
+                                    color: Colors.blueAccent,
+                                    decoration: TextDecoration.underline),
+                                recognizer: new TapGestureRecognizer()
+                                  ..onTap = () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => PrivacyPolicy()));
+                                  })
+                                ]),
+                            )),
                           ],
                         ),
                         Padding(padding: EdgeInsets.only(top: 75)),
@@ -173,6 +186,8 @@ class _MyPhoneState extends State<AutoUserRegister> {
       backgroundColor: Colors.grey,
     );
   }
+
+
 
 
 }
