@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="add policy(x2)">
+    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="add policy(x3)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_organization/privacy_policy.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_organization/privacy_policy.dart" afterDir="false" />
     </list>
@@ -247,7 +247,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679332846850</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="add policy(x3)">
+      <created>1679335221965</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1679335221965</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -278,6 +285,7 @@
     <MESSAGE value="add connect organization" />
     <MESSAGE value="add policy" />
     <MESSAGE value="add policy(x2)" />
-    <option name="LAST_COMMIT_MESSAGE" value="add policy(x2)" />
+    <MESSAGE value="add policy(x3)" />
+    <option name="LAST_COMMIT_MESSAGE" value="add policy(x3)" />
   </component>
 </project>
