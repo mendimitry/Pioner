@@ -9,13 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="add policy(x5)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/button.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_organization/connecting_organization.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_organization/connecting_organization.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_organization/user_organization.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_organization/user_organization.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/main.dart" afterDir="false" />
-    </list>
+    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="add connection request (x1)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -266,7 +260,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679335773290</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="add connection request (x1)">
+      <created>1679375633779</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1679375633779</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -300,6 +301,7 @@
     <MESSAGE value="add policy(x3)" />
     <MESSAGE value="add policy(x4)" />
     <MESSAGE value="add policy(x5)" />
-    <option name="LAST_COMMIT_MESSAGE" value="add policy(x5)" />
+    <MESSAGE value="add connection request (x1)" />
+    <option name="LAST_COMMIT_MESSAGE" value="add connection request (x1)" />
   </component>
 </project>

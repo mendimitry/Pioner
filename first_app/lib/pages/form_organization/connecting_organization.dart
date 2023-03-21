@@ -35,21 +35,19 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
   final TextEditingController phoneNumberTextController = TextEditingController();
   final TextEditingController additionalInfoTextController = TextEditingController();
 
+  /*
+  postOrganization() async {
+    organization_id = await pionerDB.postOrganization(polnoeTextController.text, kratkoeTextController.text, innTextController.text, kppTextController.text,
+        ogrnTextController.text, surnameTextController.text, nameTextController.text, patronymicTextController.text, emailTextController.text,
+        phoneNumberTextController.text, additionalInfoTextController.text);
 
 
-  //postOrganization() async {
-  //  organization_id = await pionerDB.postOrganization(polnoeTextController.text, kratkoeTextController.text, innTextController.text, kppTextController.text,
-  //      ogrnTextController.text, surnameTextController.text, nameTextController.text, patronymicTextController.text, emailTextController.text,
-   //     phoneNumberTextController.text, additionalInfoTextController.text);
-
-//
-  //  post_id = await pionerDB.postStatusOrganization(organization_id, (organization_id + 1).toString(), DateTime.now(), "Новый");
-//
- // }
-
+    post_id = await pionerDB.postStatusOrganization(organization_id, (organization_id + 1).toString(), DateTime.now(), "Новый");
+  }
+*/
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(resizeToAvoidBottomInset: false,
       body: Padding(
           padding: EdgeInsets.only(top: 15),
           child: Column(children: <Widget>[
@@ -109,24 +107,21 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
 
   ElevatedButton button() {
     return ElevatedButton(onPressed: () async {
-
-
-
       organization_id = await pionerDB.postOrganization(polnoeTextController.text, kratkoeTextController.text, innTextController.text, kppTextController.text,
           ogrnTextController.text, surnameTextController.text, nameTextController.text, patronymicTextController.text, emailTextController.text,
           phoneNumberTextController.text, additionalInfoTextController.text);
 
-
       post_id = await pionerDB.postStatusOrganization(organization_id, (organization_id + 1).toString(), DateTime.now(), "Новый");
-                            Navigator.pushReplacementNamed(context, 'user_organization', arguments: [await pionerDB.getStatusOrganizationByID(post_id), await pionerDB.getOrganizationByID(organization_id)]);
-                            },
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.black26,
-                              fixedSize: Size(320, 50)),
-                          child: Text('Отправить',
-                              style: TextStyle(
-                                  fontSize: 12, color: Colors.white),
-                              textAlign: TextAlign.center));
+
+      await Navigator.pushReplacementNamed(context, 'user_organization', arguments: [await pionerDB.getStatusOrganizationByID(post_id), await pionerDB.getOrganizationByID(organization_id)]);
+    },
+        style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.black26,
+            fixedSize:  Size(320, 50)),
+        child: const Text('Отправить',
+            style: TextStyle(
+                fontSize: 12, color: Colors.white),
+            textAlign: TextAlign.center));
   }
 
   Row check_privacyPolicy(BuildContext context) {

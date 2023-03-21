@@ -21,14 +21,6 @@ class _UserOrganization extends State<UserOrganization>{
   late ConnectionRequest connectionRequest;
   late Organization organization;
 
-  final TextEditingController connection_request_id = TextEditingController();
-  final TextEditingController organization_id = TextEditingController();
-  final TextEditingController reg_number = TextEditingController();
-  final TextEditingController date_begin = TextEditingController();
-  final TextEditingController date_end = TextEditingController();
-  final TextEditingController status = TextEditingController();
-  final TextEditingController add_info = TextEditingController();
-
   @override
   void initState() {
     super.initState();
@@ -39,7 +31,6 @@ class _UserOrganization extends State<UserOrganization>{
     organization = await pionerDB.getOrganizationByID(organization_id);
   }
 
-
   @override
   Widget build(BuildContext context) {
 
@@ -47,7 +38,10 @@ class _UserOrganization extends State<UserOrganization>{
     connectionRequest = arg[0] as ConnectionRequest;
     organization = arg[1] as Organization;
 
-    return Scaffold(
+    connectionRequest.printAttributes();
+    organization.printAttributes();
+
+    return Scaffold(resizeToAvoidBottomInset: false,
       body: Padding(
           padding: const EdgeInsets.only(top: 15),
           child: Column(children: <Widget>[
