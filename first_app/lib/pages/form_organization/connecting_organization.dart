@@ -47,60 +47,62 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
 */
   @override
   Widget build(BuildContext context) {
-    return Scaffold(resizeToAvoidBottomInset: false,
-      body: Padding(
-          padding: EdgeInsets.only(top: 15),
-          child: Column(children: <Widget>[
-            transition(context),
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: Container(
-                  color: Colors.white38,
-                  child: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Column(
-                      children: [
-                        text_named_organization(),
-                        SizedBox(height: 8),
-                        text_polnoe(),
-                        SizedBox(height: 8),
-                        textField_kratkoe(),
-                        SizedBox(height: 8),
-                        texField_INN(),
-                        SizedBox(height: 8),
-                        textField_KPP(),
-                        SizedBox(height: 8),
-                        textFiled_OGRN(),
-                        SizedBox(height: 8),
-                        Row(
-                          children: const [
-                            Text(
-                              "Контактное лицо:",
-                              style: TextStyle(fontSize: 18),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 8),
-                        textField_famil(),
-                        SizedBox(height: 8),
-                        textField_name(),
-                        SizedBox(height: 8),
-                        textField_Otch(),
-                        SizedBox(height: 8),
-                        textField_email(),
-                        SizedBox(height: 8),
-                        textField_phoneNumber(),
-                        SizedBox(height: 8),
-                        textField_addInformation(),
-                        SizedBox(height: 8),
-                        check_privacyPolicy(context),
-                        SizedBox(height: 8),
-                        button()
-                      ],
-                    ),
-                  )),
-            ),
-          ])),
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
+            padding: EdgeInsets.only(top: 15),
+            child: Column(children: <Widget>[
+              transition(context),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: Container(
+                    color: Colors.white38,
+                    child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Column(
+                        children: [
+                          text_named_organization(),
+                          SizedBox(height: 8),
+                          text_polnoe(),
+                          SizedBox(height: 8),
+                          textField_kratkoe(),
+                          SizedBox(height: 8),
+                          texField_INN(),
+                          SizedBox(height: 8),
+                          textField_KPP(),
+                          SizedBox(height: 8),
+                          textFiled_OGRN(),
+                          SizedBox(height: 8),
+                          Row(
+                            children: const [
+                              Text(
+                                "Контактное лицо:",
+                                style: TextStyle(fontSize: 18),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 8),
+                          textField_famil(),
+                          SizedBox(height: 8),
+                          textField_name(),
+                          SizedBox(height: 8),
+                          textField_Otch(),
+                          SizedBox(height: 8),
+                          textField_email(),
+                          SizedBox(height: 8),
+                          textField_phoneNumber(),
+                          SizedBox(height: 8),
+                          textField_addInformation(),
+                          SizedBox(height: 8),
+                          check_privacyPolicy(context),
+                          SizedBox(height: 8),
+                          button(),
+                        ],
+                      ),
+                    )),
+              ),
+            ])),
+      ),
       backgroundColor: Colors.grey,
     );
   }
