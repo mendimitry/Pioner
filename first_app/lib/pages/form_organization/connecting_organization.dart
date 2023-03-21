@@ -10,7 +10,8 @@ import 'package:first_app/models/ConnectionRequest.dart';
 import 'package:first_app/data/PionerDBContext.dart';
 
 import '../login_page.dart';
-
+late int organization_id;
+late int post_id;
 class ConnectingOrganization extends StatefulWidget {
   const ConnectingOrganization({super.key});
 
@@ -22,7 +23,6 @@ class ConnectingOrganization extends StatefulWidget {
 class _ConnectingOrganization extends State<ConnectingOrganization> {
   bool value = false;
   PionerDB pionerDB = PionerDB();
-
   final TextEditingController polnoeTextController = TextEditingController();
   final TextEditingController kratkoeTextController = TextEditingController();
   final TextEditingController innTextController = TextEditingController();
@@ -34,15 +34,19 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
   final TextEditingController emailTextController = TextEditingController();
   final TextEditingController phoneNumberTextController = TextEditingController();
   final TextEditingController additionalInfoTextController = TextEditingController();
-  late int post_id;
 
-  postOrganization() async {
-    int o_id = await pionerDB.postOrganization(polnoeTextController.text, kratkoeTextController.text, innTextController.text, kppTextController.text,
-        ogrnTextController.text, surnameTextController.text, nameTextController.text, patronymicTextController.text, emailTextController.text,
-        phoneNumberTextController.text, additionalInfoTextController.text);
 
-    post_id = await pionerDB.postStatusOrganization(o_id, (o_id + 1).toString(), DateTime.now(), "Новый");
-  }
+
+  //postOrganization() async {
+  //  organization_id = await pionerDB.postOrganization(polnoeTextController.text, kratkoeTextController.text, innTextController.text, kppTextController.text,
+  //      ogrnTextController.text, surnameTextController.text, nameTextController.text, patronymicTextController.text, emailTextController.text,
+   //     phoneNumberTextController.text, additionalInfoTextController.text);
+
+//
+  //  post_id = await pionerDB.postStatusOrganization(organization_id, (organization_id + 1).toString(), DateTime.now(), "Новый");
+//
+ // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,11 +108,18 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
   }
 
   ElevatedButton button() {
-    return ElevatedButton(
-                          onPressed: () {postOrganization();
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => UserOrganization()));
-                          },
+    return ElevatedButton(onPressed: () async {
+
+
+
+      organization_id = await pionerDB.postOrganization(polnoeTextController.text, kratkoeTextController.text, innTextController.text, kppTextController.text,
+          ogrnTextController.text, surnameTextController.text, nameTextController.text, patronymicTextController.text, emailTextController.text,
+          phoneNumberTextController.text, additionalInfoTextController.text);
+
+
+      post_id = await pionerDB.postStatusOrganization(organization_id, (organization_id + 1).toString(), DateTime.now(), "Новый");
+                            Navigator.pushReplacementNamed(context, 'user_organization', arguments: [await pionerDB.getStatusOrganizationByID(post_id), await pionerDB.getOrganizationByID(organization_id)]);
+                            },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.black26,
                               fixedSize: Size(320, 50)),

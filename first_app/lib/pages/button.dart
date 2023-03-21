@@ -1,5 +1,6 @@
 import 'package:first_app/models/Customer.dart';
 import 'package:first_app/models/Organization.dart';
+import 'package:first_app/pages/form_organization/user_organization.dart';
 import 'package:flutter/material.dart';
 import 'package:first_app/data/PionerDBContext.dart';
 
@@ -77,7 +78,7 @@ class _Button extends State<Button> {
                           ElevatedButton(
                               onPressed: () {getAllCustomers();
 
-                                },
+                              },
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.black26,
                                   fixedSize: Size(120, 50)),
@@ -154,11 +155,11 @@ class _Button extends State<Button> {
                                       fontSize: 18, color: Colors.white),
                                   textAlign: TextAlign.center)),
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () async {Navigator.pushReplacementNamed(context,'user_organization',arguments: [await pionerDB.getStatusOrganizationByID(ID),await pionerDB.getOrganizationByID(ID)]);},
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.black26,
                                   fixedSize: Size(120, 50)),
-                              child: Text('button8',
+                              child: Text('Хачу туда',
                                   style: TextStyle(
                                       fontSize: 18, color: Colors.white),
                                   textAlign: TextAlign.center)),

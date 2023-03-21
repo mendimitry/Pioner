@@ -1,4 +1,5 @@
 import 'package:first_app/models/ConnectionRequest.dart';
+import 'package:first_app/models/Organization.dart';
 import 'package:first_app/pages/form_organization/connecting_organization.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
@@ -16,7 +17,10 @@ class UserOrganization extends StatefulWidget{
 
 class _UserOrganization extends State<UserOrganization>{
   PionerDB pionerDB = PionerDB();
+
   late ConnectionRequest connectionRequest;
+  late Organization organization;
+
   final TextEditingController connection_request_id = TextEditingController();
   final TextEditingController organization_id = TextEditingController();
   final TextEditingController reg_number = TextEditingController();
@@ -25,62 +29,68 @@ class _UserOrganization extends State<UserOrganization>{
   final TextEditingController status = TextEditingController();
   final TextEditingController add_info = TextEditingController();
 
-  int o_id = 1;
-
-  getStatusOrganizationByID(int id){
-    connectionRequest = pionerDB.getStatusOrganizationByID(id) as ConnectionRequest;
+  @override
+  void initState() {
+    super.initState();
   }
-  //postOrganization() {
-  //  pionerDB.postStatusOrganization(organization_id.text, reg_number.text, date_begin.text as DateTime, date_end.text as DateTime,
-  //      status.text, add_info.text);
-  //}
+
+  getFullInfoAboutStatusOfOrganization(int post_id,int organization_id) async{
+    connectionRequest = await pionerDB.getStatusOrganizationByID(post_id);
+    organization = await pionerDB.getOrganizationByID(organization_id);
+  }
+
 
   @override
   Widget build(BuildContext context) {
+
+    List<Object?> arg = ModalRoute.of(context)!.settings.arguments as List<Object>;
+    connectionRequest = arg[0] as ConnectionRequest;
+    organization = arg[1] as Organization;
+
     return Scaffold(
       body: Padding(
-          padding: EdgeInsets.only(top: 15),
+          padding: const EdgeInsets.only(top: 15),
           child: Column(children: <Widget>[
             transition(context),
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Container(
                   color: Colors.white38,
                   child: Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     child: Column(
                       children: [
                         Row(
                           children: [
-                            Text("Текущий статус: ", style: TextStyle(fontSize: 16, color: Colors.black54)),
+                            Text("Текущий статус: ${connectionRequest.status}", style: const TextStyle(fontSize: 16, color: Colors.black54)),
                           ],
 
                         ),
-                        SizedBox(height: 12),
+                        const SizedBox(height: 12),
                         Row(
                           children: [
-                            Text("Дата создания: ", style: TextStyle(fontSize: 16, color: Colors.black54)),
+                            Text("Дата создания: ${connectionRequest.date_begin}", style: const TextStyle(fontSize: 16, color: Colors.black54)),
                           ],
                         ),
-                        SizedBox(height: 12),
+                        const SizedBox(height: 12),
                         Row(
                           children: [
-                            Text("Дата испольнения/отклонения: ", style: TextStyle(fontSize: 16, color: Colors.black54)),
+                            Text("Дата испольнения/отклонения: ${connectionRequest.date_end}", style: const TextStyle(fontSize: 16, color: Colors.black54)),
                           ],
                         ),
-                        SizedBox(height: 12),
+                        const SizedBox(height: 12),
                         text_named_organization(),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         text_polnoe(),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         textField_kratkoe(),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         texField_INN(),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         textField_KPP(),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         textFiled_OGRN(),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         Row(
                           children: const [
                             Text(
@@ -89,17 +99,17 @@ class _UserOrganization extends State<UserOrganization>{
                             ),
                           ],
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         textField_famil(),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         textField_name(),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         textField_Otch(),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         textField_email(),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         textField_phoneNumber(),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         textField_addInformation(),
                       ],
                     ),
@@ -119,30 +129,31 @@ class _UserOrganization extends State<UserOrganization>{
               child: IconButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ConnectingOrganization()));
+                        MaterialPageRoute(builder: (context) => const ConnectingOrganization()));
                   },
-                  icon: Icon(Icons.logout))),
+                  icon: const Icon(Icons.logout))),
           IconButton(
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => LoginPage()));
               },
-              icon: Icon(Icons.logout))
+              icon: const Icon(Icons.logout))
         ]);
   }
 
   Row textField_addInformation() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
-        Text(
+      children: [
+        const Text(
           "доп.\nинформация",
           style: TextStyle(fontSize: 16),
         ),
         SizedBox(
           width: 250,
-          child: TextField(
-            decoration: InputDecoration(
+          child: TextFormField(
+            initialValue: organization.add_info,
+            decoration: const InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
@@ -156,15 +167,16 @@ class _UserOrganization extends State<UserOrganization>{
   Row textField_phoneNumber() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
-        Text(
+      children: [
+        const Text(
           "номер\nтелефона",
           style: TextStyle(fontSize: 16),
         ),
         SizedBox(
           width: 250,
-          child: TextField(
-            decoration: InputDecoration(
+          child: TextFormField(
+            initialValue: organization.responsible_person_phone_number,
+            decoration: const InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
@@ -178,15 +190,16 @@ class _UserOrganization extends State<UserOrganization>{
   Row textField_email() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
-        Text(
+      children: [
+        const Text(
           "email",
           style: TextStyle(fontSize: 16),
         ),
         SizedBox(
           width: 250,
-          child: TextField(
-            decoration: InputDecoration(
+          child: TextFormField(
+            initialValue: organization.responsible_person_email,
+            decoration: const InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
@@ -200,15 +213,16 @@ class _UserOrganization extends State<UserOrganization>{
   Row textField_Otch() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
-        Text(
+      children: [
+        const Text(
           "отчество",
           style: TextStyle(fontSize: 16),
         ),
         SizedBox(
           width: 250,
-          child: TextField(
-            decoration: InputDecoration(
+          child: TextFormField(
+            initialValue: organization.responsible_person_patronymic,
+            decoration: const InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
@@ -222,15 +236,16 @@ class _UserOrganization extends State<UserOrganization>{
   Row textField_name() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
-        Text(
+      children: [
+        const Text(
           "имя",
           style: TextStyle(fontSize: 16),
         ),
         SizedBox(
           width: 250,
-          child: TextField(
-            decoration: InputDecoration(
+          child: TextFormField(
+            initialValue: organization.responsible_person_name,
+            decoration: const InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
@@ -244,15 +259,16 @@ class _UserOrganization extends State<UserOrganization>{
   Row textField_famil() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
-        Text(
+      children: [
+        const Text(
           "фамилия",
           style: TextStyle(fontSize: 16),
         ),
         SizedBox(
           width: 250,
-          child: TextField(
-            decoration: InputDecoration(
+          child: TextFormField(
+            initialValue: organization.responsible_person_surname,
+            decoration: const InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
@@ -266,15 +282,16 @@ class _UserOrganization extends State<UserOrganization>{
   Row textFiled_OGRN() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
-        Text(
+      children: [
+        const Text(
           "ОГРН",
           style: TextStyle(fontSize: 16),
         ),
         SizedBox(
           width: 250,
-          child: TextField(
-            decoration: InputDecoration(
+          child: TextFormField(
+            initialValue: organization.ogrn,
+            decoration: const InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
@@ -288,15 +305,16 @@ class _UserOrganization extends State<UserOrganization>{
   Row textField_KPP() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
-        Text(
+      children: [
+        const Text(
           "КПП",
           style: TextStyle(fontSize: 16),
         ),
         SizedBox(
           width: 250,
-          child: TextField(
-            decoration: InputDecoration(
+          child: TextFormField(
+            initialValue: organization.kpp,
+            decoration: const InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
@@ -310,15 +328,16 @@ class _UserOrganization extends State<UserOrganization>{
   Row texField_INN() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
-        Text(
+      children: [
+        const Text(
           "ИНН",
           style: TextStyle(fontSize: 16),
         ),
         SizedBox(
           width: 250,
-          child: TextField(
-            decoration: InputDecoration(
+          child: TextFormField(
+            initialValue: organization.inn,
+            decoration: const InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
@@ -332,15 +351,16 @@ class _UserOrganization extends State<UserOrganization>{
   Row textField_kratkoe() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
-        Text(
+      children: [
+        const Text(
           "краткое",
           style: TextStyle(fontSize: 16),
         ),
         SizedBox(
           width: 250,
-          child: TextField(
-            decoration: InputDecoration(
+          child: TextFormField(
+            initialValue: organization.organization_short_name,
+            decoration: const InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
@@ -354,15 +374,16 @@ class _UserOrganization extends State<UserOrganization>{
   Row text_polnoe() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
-        Text(
+      children: [
+        const Text(
           "полное",
           style: TextStyle(fontSize: 16),
         ),
         SizedBox(
           width: 250,
-          child: TextField(
-            decoration: InputDecoration(
+          child: TextFormField(
+            initialValue: organization.organization_full_name,
+            decoration: const InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
