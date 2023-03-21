@@ -43,57 +43,62 @@ class _ChoosingOrganizationCarWash extends State<ChoosingOrganizationCarWash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-          padding: const EdgeInsets.only(top: 15),
-          child: Column(children: <Widget>[
-            transition(context),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    // crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: 300,
-                        child: const TextField(
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: 'Введите город',
+      body:
+      SingleChildScrollView(
+        child:
+        Padding(
+            padding: const EdgeInsets.only(top: 15),
+            child: Column(children: <Widget>[
+              transition(context),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      // crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: 300,
+                          child: const TextField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'Введите город',
+                            ),
                           ),
                         ),
-                      ),
-                      IconButton(onPressed: () {}, icon: Icon(Icons.search)),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        width: 300,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: 'Введите адрес',
+                        IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: 300,
+                          child: TextField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'Введите адрес',
+                            ),
                           ),
                         ),
-                      ),
-                      IconButton(onPressed: () {}, icon: Icon(Icons.search))
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  ListCity(),
-                  ListAdress()
-                ],
+                        IconButton(onPressed: () {}, icon: Icon(Icons.search))
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    ListCity(),
+                    ListAdress()
+                  ],
+                ),
               ),
-            ),
-          ])),
+            ])),
+      ),
+
       backgroundColor: Colors.grey,
     );
   }

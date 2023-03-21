@@ -50,43 +50,48 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey,
-        body: Padding(
-            padding: const EdgeInsets.only(top: 15),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  transition(context),
-                  Padding(
-                      padding: const EdgeInsets.only(left: 15, right: 15),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          location(),
-                          SizedBox(height: 5),
-                          TextInformation(),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          ButtonDays(),
-                          Center(
-                              child: Text(
-                                "Время записи",
-                                style: TextStyle(fontSize: 18),
-                              )),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            children: [ListTimsToday(), ListTimsToomorrow()],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          ButtonNext(context),
-                        ],
-                      ))
-                ])));
+      backgroundColor: Colors.grey,
+      body:
+      SingleChildScrollView(
+          child:
+          Padding(
+              padding: const EdgeInsets.only(top: 15),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    transition(context),
+                    Padding(
+                        padding: const EdgeInsets.only(left: 15, right: 15),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            location(),
+                            SizedBox(height: 12),
+                            TextInformation(),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            ButtonDays(),
+                            Center(
+                                child: Text(
+                                  "Время записи",
+                                  style: TextStyle(fontSize: 18),
+                                )),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [ListTimsToday(), ListTimsToomorrow()],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            ButtonNext(context),
+                          ],
+                        ))
+                  ]))
+      ),
+    );
   }
 
   Center ButtonNext(BuildContext context) {
@@ -116,7 +121,7 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
         "Походный проезд д.10",
         style: TextStyle(fontSize: 18),
       ),
-      SizedBox(height: 5),
+      SizedBox(height: 12),
       Text(
         "Услуги:",
         style: TextStyle(fontSize: 18),
@@ -176,14 +181,21 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
               "Мойка днища",
               style: TextStyle(fontSize: 18),
             ),
-            Text(
-              "200 RUB",
-              style: TextStyle(fontSize: 18),
-            ),
-            Text(
-              "20 мин",
-              style: TextStyle(fontSize: 18),
-            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  "200 RUB",
+                  style: TextStyle(fontSize: 18),
+                ),
+                SizedBox(width: 10,),
+                Text(
+                  "20 мин",
+                  style: TextStyle(fontSize: 18),
+                ),
+              ],
+            )
+
           ],
         ),
         SizedBox(height: 5),
@@ -194,14 +206,21 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
               "Мойка двигателя",
               style: TextStyle(fontSize: 18),
             ),
-            Text(
-              "250 RUB",
-              style: TextStyle(fontSize: 18),
-            ),
-            Text(
-              "15 мин",
-              style: TextStyle(fontSize: 18),
-            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  "250 RUB",
+                  style: TextStyle(fontSize: 18),
+                ),
+                SizedBox(width: 10,),
+                Text(
+                  "15 мин",
+                  style: TextStyle(fontSize: 18),
+                ),
+              ],
+            )
+
           ],
         ),
         Divider(
@@ -214,14 +233,21 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
               "Итого",
               style: TextStyle(fontSize: 18),
             ),
-            Text(
-              "450 RUB",
-              style: TextStyle(fontSize: 18),
-            ),
-            Text(
-              "35 мин",
-              style: TextStyle(fontSize: 18),
-            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  "450 RUB",
+                  style: TextStyle(fontSize: 18),
+                ),
+                SizedBox(width: 10,),
+                Text(
+                  "35 мин",
+                  style: TextStyle(fontSize: 18),
+                ),
+              ],
+            )
+
           ],
         ),
       ],

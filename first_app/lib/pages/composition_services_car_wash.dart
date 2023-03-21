@@ -28,7 +28,7 @@ class _CompositionServicesCarWash extends State<CompositionServicesCarWash> {
     return await Future.delayed(const Duration(seconds: 0), () {
       List<dynamic> data = jsonDecode(jsonString);
       List<Service> services =
-          data.map((dynamic data) => Service.fromJSON(data)).toList();
+      data.map((dynamic data) => Service.fromJSON(data)).toList();
       return services;
     });
   }
@@ -37,62 +37,70 @@ class _CompositionServicesCarWash extends State<CompositionServicesCarWash> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey,
-      body: Padding(
-        padding: const EdgeInsets.only(top: 15),
-        child: Column(
-          children: <Widget>[
-            transition(context),
-            const Padding(
-              padding: EdgeInsets.only(top: 0, bottom: 15, left: 0, right: 0),
-              child: Center(
-                child: Text(
-                  "МОЙКА: Авангард",
-                  style: TextStyle(fontSize: 18),
+      body:
+      SingleChildScrollView(
+        child:
+        Padding(
+          padding: const EdgeInsets.only(top: 15),
+          child: Column(
+            children: <Widget>[
+              transition(context),
+              const Padding(
+                padding: EdgeInsets.only(top: 0, bottom: 15, left: 0, right: 0),
+                child: Center(
+                  child: Text(
+                    "МОЙКА: Авангард",
+                    style: TextStyle(fontSize: 18),
+                  ),
                 ),
               ),
-            ),
-            const Align(
-              alignment: Alignment.bottomLeft,
-              child: Padding(
-                padding:
-                    EdgeInsets.only(top: 0, bottom: 10, left: 20, right: 20),
-                child: Text(
-                  "Итого:",
-                  style: TextStyle(fontSize: 18),
+              const Align(
+                alignment: Alignment.bottomLeft,
+                child: Padding(
+                  padding:
+                  EdgeInsets.only(top: 0, bottom: 10, left: 20, right: 20),
+                  child: Text(
+                    "Итого:",
+                    style: TextStyle(fontSize: 18),
+                  ),
                 ),
               ),
-            ),
-            ListChoosing(),
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 15, bottom: 0, left: 20, right: 20),
-              child: Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ChoosingTimeService()));
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black26,
-                      fixedSize: const Size(300, 50)),
-                  child: const Text('Выбрать',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
-                      textAlign: TextAlign.center),
+              SizedBox(
+                height: 10,
+              ),
+              ListChoosing(),
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 15, bottom: 0, left: 20, right: 20),
+                child: Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ChoosingTimeService()));
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black26,
+                        fixedSize: const Size(300, 50)),
+                    child: const Text('Выбрать',
+                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        textAlign: TextAlign.center),
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
+
     );
   }
 
   Container ListChoosing() {
     return Container(
       width: 500,
-      height: 550,
+      height: 570,
       child: FutureBuilder<List<Service>>(
         future: getServicesFromJSON(),
         builder: (context, dynamic data) {
@@ -124,7 +132,7 @@ class _CompositionServicesCarWash extends State<CompositionServicesCarWash> {
                               CheckboxListTile(
                                   title: Text("${index + 1}. ${check.name}"),
                                   controlAffinity:
-                                      ListTileControlAffinity.leading,
+                                  ListTileControlAffinity.leading,
                                   subtitle: Text(
                                       "${serviceData.value} RUB, ${serviceData.time} мин"),
                                   value: check.isChecked,
@@ -159,7 +167,7 @@ class _CompositionServicesCarWash extends State<CompositionServicesCarWash> {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                const ChoosingOrganizationCarWash()));
+                            const ChoosingOrganizationCarWash()));
                   },
                   icon: const Icon(Icons.logout))),
           IconButton(
@@ -187,7 +195,7 @@ class CheckBoxState {
 
   CheckBoxState(
       {required this.name,
-      required this.time,
-      this.isChecked = false,
-      required this.value});
+        required this.time,
+        this.isChecked = false,
+        required this.value});
 }

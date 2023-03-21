@@ -26,27 +26,29 @@ class _ChoosingSerice extends State<ChoosingSerice> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-          padding: EdgeInsets.only(top: 15),
-          child: Column(children: <Widget>[
-            transition(context),
-            Padding(padding: EdgeInsets.only(top: 25)),
-            Container(
-              constraints: BoxConstraints.tightFor(width: 325, height: 600),
-              color: const Color.fromRGBO(255, 228, 225, 0.6),
-              child: Column(children: [
-                Padding(padding: EdgeInsets.only(top: 15)),
-                Text('Услуги',
-                    style: TextStyle(fontSize: 20),
-                    textAlign: TextAlign.center),
-                Padding(padding: EdgeInsets.only(top: 20)),
-                RadioCarWash(),
-                RadioTireService(),
-                Padding(padding: EdgeInsets.only(top: 300)),
-                ButtonChoosingService(context),
-              ]),
-            ),
-          ])),
+      body: SingleChildScrollView(
+        child: Padding(
+            padding: EdgeInsets.only(top: 15),
+            child: Column(children: <Widget>[
+              transition(context),
+              Padding(padding: EdgeInsets.only(top: 25)),
+              Container(
+                constraints: BoxConstraints.tightFor(width: 325, height: 600),
+                color: const Color.fromRGBO(255, 228, 225, 0.6),
+                child: Column(children: [
+                  Padding(padding: EdgeInsets.only(top: 15)),
+                  Text('Услуги',
+                      style: TextStyle(fontSize: 20),
+                      textAlign: TextAlign.center),
+                  Padding(padding: EdgeInsets.only(top: 20)),
+                  RadioCarWash(),
+                  RadioTireService(),
+                  Padding(padding: EdgeInsets.only(top: 300)),
+                  ButtonChoosingService(context),
+                ]),
+              ),
+            ])),
+      ),
       backgroundColor: Colors.grey,
     );
   }
