@@ -172,6 +172,8 @@ class _MyPhoneState extends State<AutoUserRegister> {
                             // Sign the user in (or link) with the credential
                             await auth.signInWithCredential(credential);
                             //TODO Сделать переход
+                            // Ваня, переход норм?
+                            Navigator.pushNamed(context, 'choosing_service', arguments: firebaseVerificationId);
 
                           },
                               style: ElevatedButton.styleFrom(
