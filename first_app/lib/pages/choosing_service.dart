@@ -1,7 +1,6 @@
 // Выбор услуги
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_app/pages/post_list_page.dart';
 import 'package:first_app/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

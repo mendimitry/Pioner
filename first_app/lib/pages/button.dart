@@ -58,6 +58,15 @@ class _Button extends State<Button> {
   getOrganizationByID(ID){
     pionerDB.getOrganizationByID(ID);
   }
+
+  getAllAggregatorSpecialists(){
+    pionerDB.getAllAggregatorSpecialists();
+  }
+
+  getAllAggregatorSpecialistConnectorRequest(){
+    pionerDB.getAllAggregatorSpecialistConnectorRequest();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -164,11 +173,11 @@ class _Button extends State<Button> {
                                       fontSize: 18, color: Colors.white),
                                   textAlign: TextAlign.center)),
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {getAllAggregatorSpecialists();},
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.black26,
                                   fixedSize: Size(120, 50)),
-                              child: Text('button9',
+                              child: Text('Получить всех специалистов',
                                   style: TextStyle(
                                       fontSize: 18, color: Colors.white),
                                   textAlign: TextAlign.center)),
@@ -180,29 +189,29 @@ class _Button extends State<Button> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {getAllAggregatorSpecialistConnectorRequest();},
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.black26,
                                   fixedSize: Size(120, 50)),
-                              child: Text('button10',
+                              child: Text('Получить все соединения',
                                   style: TextStyle(
                                       fontSize: 18, color: Colors.white),
                                   textAlign: TextAlign.center)),
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {pionerDB.getAllServiceRequest();},
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.black26,
                                   fixedSize: Size(120, 50)),
-                              child: Text('button11',
+                              child: Text('Получить все запросы для сервиса',
                                   style: TextStyle(
                                       fontSize: 18, color: Colors.white),
                                   textAlign: TextAlign.center)),
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {pionerDB.getAllServiceRequestDetail();},
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.black26,
                                   fixedSize: Size(120, 50)),
-                              child: Text('button12',
+                              child: Text('Получить все детали запроса для сервиса',
                                   style: TextStyle(
                                       fontSize: 18, color: Colors.white),
                                   textAlign: TextAlign.center)),

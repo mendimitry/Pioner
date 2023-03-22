@@ -1,7 +1,11 @@
 
+import 'package:first_app/models/AggregatorSpecialist.dart';
+import 'package:first_app/models/AggregatorSpecialistConnectorRequest.dart';
 import 'package:first_app/models/ConnectionRequest.dart';
 import 'package:first_app/models/Customer.dart';
 import 'package:first_app/models/Organization.dart';
+import 'package:first_app/models/ServiceRequest.dart';
+import 'package:first_app/models/ServiceRequestDetail.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:postgres/postgres.dart';
@@ -23,6 +27,7 @@ class PionerDB {
     });
   }
 
+  //Запросы Customer
   Future<List<Customer>> getAllCustomers() async{
     //Подключаемся к БД
     await initDatabaseConnection();
@@ -144,6 +149,7 @@ class PionerDB {
     return id;
   }
 
+  //Запросы Organisation
   Future<int> postOrganization(String organization_full_name,String organization_short_name,String inn,String kpp,String ogrn,String responsible_person_surname,String responsible_person_name,String responsible_person_patronymic, String responsible_person_email,String responsible_person_phone_number,String add_info)
   async {
     await initDatabaseConnection();
@@ -211,6 +217,7 @@ class PionerDB {
     return _organization;
   }
 
+  //Запросы ConnectionRequest
   Future<int> postStatusOrganization(int organization_id,String reg_number,DateTime date_begin,String status) async {
     await initDatabaseConnection();
 
@@ -250,29 +257,381 @@ class PionerDB {
     //Возвращаем всех полученных пользователей
     return _connectionRequest;
   }
-/* Пока так
-  await conn.open();
-  print(conn);
-  //await conn.query('''
-  //INSERT INTO address (address_id, organization_id,address_type_id,subject_name,city_name,street_name,house_number,add_info) VALUES ('1','1','10','Samarskaya','Samara','Moskovskoe', '22','Мойка на тесте')
 
-  //''');
+  //Запросы AggregatorSpecialist
+  Future<List<AggregatorSpecialist>> getAllAggregatorSpecialists() async{
+    //Подключаемся к БД
+    await initDatabaseConnection();
 
-  // await conn.query('''
-  // INSERT INTO address_type (address_type_id,address_type_name) VALUES ('10','test')
-  // ''');
+    //Получаем список всех пользователей
+    List<Map<String, dynamic>> query = await dbConnection.mappedResultsQuery('SELECT * from aggregator_specialist');
+    print(query);
+    AggregatorSpecialist _aggregatorSpecialist;
+    List<AggregatorSpecialist> _aggregatorSpecialists = [];
+    for (var element in query) {
+      for (var subElement in element.values) {
+        _aggregatorSpecialist=AggregatorSpecialist.fromReqBody(subElement);
+        _aggregatorSpecialist.printAttributes();
 
-  // await conn.query('''
-  //INSERT INTO organization (organization_id,organization_full_name,organization_short_name,inn,kpp,ogrn,responsible_person_surname,responsible_person_name,responsible_person_email,responsible_person_phone_number,add_info) VALUES ('1','test','test','111','111','111', 'АНДРЕЕВ','МИХАИЛ','88005553535','TEST')
+        _aggregatorSpecialists.add(_aggregatorSpecialist);
+      }
+    }
+    //Закрываем соединение с БД
+    await closeDatabaseConnection();
 
-  //''');
-  var results = await conn.query('SELECT * from address');
-  var results1 = await conn.query('SELECT * from address_type');
-  var results2 = await conn.query('SELECT * from organization');
-  print (results);
-  print (results1);
-  print (results2);
-  //await conn.close();
-  //print(conn.close);
-  */
+    //Возвращаем всех полученных пользователей
+    return _aggregatorSpecialists;
+  }
+
+  Future<AggregatorSpecialist> getAggregatorSpecialistByID(int ID) async{
+    //Подключаемся к БД
+    await initDatabaseConnection();
+
+    //Получаем список всех пользователей
+    var query = await dbConnection.mappedResultsQuery('SELECT * from aggregator_specialist where aggregator_specialists_id = $ID');
+    print(query);
+    //Нулевой объект
+    AggregatorSpecialist _aggregatorSpecialist = AggregatorSpecialist(aggregator_specialists_id: 0, aggregator_specialist_surname: '', aggregator_specialist_name: '',
+        aggregator_specialists_department: '', aggregator_specialists_position: '', aggregator_specialists_phone_number: '');
+    for (var element in query) {
+      for (var subElement in element.values) {
+        _aggregatorSpecialist = AggregatorSpecialist.fromReqBody(subElement);
+        _aggregatorSpecialist.printAttributes();
+      }
+    }
+    //Закрываем соединение с БД
+    await closeDatabaseConnection();
+
+    //Возвращаем всех полученных пользователей
+    return _aggregatorSpecialist;
+  }
+
+  Future<AggregatorSpecialist> getAggregatorSpecialistByPhoneNumber(String phoneNumber) async{
+    //Подключаемся к БД
+    await initDatabaseConnection();
+
+    //Получаем список всех пользователей
+    var query = await dbConnection.mappedResultsQuery("SELECT * from aggregator_specialist where aggregator_specialist_phone_number = '$phoneNumber'");
+    print(query);
+    //Нулевой объект
+    AggregatorSpecialist _aggregatorSpecialist = AggregatorSpecialist(aggregator_specialists_id: 0, aggregator_specialist_surname: '', aggregator_specialist_name: '',
+        aggregator_specialists_department: '', aggregator_specialists_position: '', aggregator_specialists_phone_number: '');
+
+    for (var element in query) {
+      for (var subElement in element.values) {
+        _aggregatorSpecialist = AggregatorSpecialist.fromReqBody(subElement);
+        _aggregatorSpecialist.printAttributes();
+      }
+    }
+    //Закрываем соединение с БД
+    await closeDatabaseConnection();
+
+    //Возвращаем всех полученных пользователей
+    return _aggregatorSpecialist;
+  }
+
+  Future<int> postAggregatorSpecialist(String aggregator_specialist_surname,String aggregator_specialist_name,
+      String aggregator_specialist_department,String aggregator_specialist_position,String aggregator_specialist_phone_number, String? add_info) async{
+    //Подключаемся к БД
+    await initDatabaseConnection();
+
+    var query = await dbConnection.mappedResultsQuery("INSERT INTO aggregator_specialist (aggregator_specialist_surname, aggregator_specialist_name, aggregator_specialists_department, aggregator_specialists_position, aggregator_specialists_phone_number, add_info) "
+        "VALUES ('$aggregator_specialist_surname', '$aggregator_specialist_name', '$aggregator_specialist_department','$aggregator_specialist_position', '$aggregator_specialist_phone_number','$add_info') RETURNING aggregator_specialists_id;");
+    print(query);
+
+    int id = -1;
+
+    for (var element in query) {
+      for (var subElement in element.values) {
+        id = subElement['aggregator_specialists_id'];
+        print(id);
+      }
+    }
+
+    //Закрываем соединение с БД
+    await closeDatabaseConnection();
+
+    //Возвращаем всех полученных агрегаторов
+    return id;
+  }
+
+  //Запросы AggregatorSpecialistConnectorRequest
+  Future<List<AggregatorSpecialistConnectorRequest>> getAllAggregatorSpecialistConnectorRequest() async{
+    //Подключаемся к БД
+    await initDatabaseConnection();
+
+    //Получаем список всех пользователей
+    List<Map<String, dynamic>> query = await dbConnection.mappedResultsQuery('SELECT * from aggregator_specialist_connector_request');
+    print(query);
+    AggregatorSpecialistConnectorRequest _aggregatorSpecialistConnectorRequest;
+    List<AggregatorSpecialistConnectorRequest> _aggregatorSpecialistConnectorRequests = [];
+    for (var element in query) {
+      for (var subElement in element.values) {
+        _aggregatorSpecialistConnectorRequest=AggregatorSpecialistConnectorRequest.fromReqBody(subElement);
+        _aggregatorSpecialistConnectorRequest.printAttributes();
+
+        _aggregatorSpecialistConnectorRequests.add(_aggregatorSpecialistConnectorRequest);
+      }
+    }
+    //Закрываем соединение с БД
+    await closeDatabaseConnection();
+
+    //Возвращаем всех полученных пользователей
+    return _aggregatorSpecialistConnectorRequests;
+  }
+
+  Future<AggregatorSpecialistConnectorRequest> getAggregatorSpecialistConnectorRequestByID(int ID) async{
+    //Подключаемся к БД
+    await initDatabaseConnection();
+
+    //Получаем список всех пользователей
+    var query = await dbConnection.mappedResultsQuery('SELECT * from aggregator_specialist_connector_request where aggregator_specialist_connector_request_id = $ID');
+    print(query);
+    //Нулевой объект
+    AggregatorSpecialistConnectorRequest _aggregatorSpecialistConnectorRequest = AggregatorSpecialistConnectorRequest(aggregator_specialist_connector_request_id: 0, aggregator_specialists_id: 0, connection_request_id: 0);
+    for (var element in query) {
+      for (var subElement in element.values) {
+        _aggregatorSpecialistConnectorRequest = AggregatorSpecialistConnectorRequest.fromReqBody(subElement);
+        _aggregatorSpecialistConnectorRequest.printAttributes();
+      }
+    }
+    //Закрываем соединение с БД
+    await closeDatabaseConnection();
+
+    //Возвращаем всех полученных пользователей
+    return _aggregatorSpecialistConnectorRequest;
+  }
+
+  Future<AggregatorSpecialistConnectorRequest> getAggregatorSpecialistConnectorRequestByRequestID(int ID) async{
+    //Подключаемся к БД
+    await initDatabaseConnection();
+
+    //Получаем список всех пользователей
+    var query = await dbConnection.mappedResultsQuery("SELECT * from aggregator_specialist_connector_request where connection_request_id = '$ID'");
+    print(query);
+    //Нулевой объект
+    AggregatorSpecialistConnectorRequest _aggregatorSpecialistConnectorRequest = AggregatorSpecialistConnectorRequest(aggregator_specialist_connector_request_id: 0, aggregator_specialists_id: 0, connection_request_id: 0);
+
+    for (var element in query) {
+      for (var subElement in element.values) {
+        _aggregatorSpecialistConnectorRequest = AggregatorSpecialistConnectorRequest.fromReqBody(subElement);
+        _aggregatorSpecialistConnectorRequest.printAttributes();
+      }
+    }
+    //Закрываем соединение с БД
+    await closeDatabaseConnection();
+
+    //Возвращаем всех полученных пользователей
+    return _aggregatorSpecialistConnectorRequest;
+  }
+
+  Future<int> postAggregatorSpecialistConnectorRequest(int aggregator_specialists_id, int connection_request_id) async{
+    //Подключаемся к БД
+    await initDatabaseConnection();
+
+    var query = await dbConnection.mappedResultsQuery("INSERT INTO aggregator_specialist_connector_request (aggregator_specialists_id, connection_request_id) VALUES ('$aggregator_specialists_id', '$connection_request_id') RETURNING aggregator_specialist_connector_request_id;");
+    print(query);
+
+    int id = -1;
+
+    for (var element in query) {
+      for (var subElement in element.values) {
+        id = subElement['aggregator_specialist_connector_request_id'];
+        print(id);
+      }
+    }
+
+    //Закрываем соединение с БД
+    await closeDatabaseConnection();
+
+    //Возвращаем всех полученных агрегаторов
+    return id;
+  }
+
+  //Запросы ServiceRequest
+  Future<List<ServiceRequest>> getAllServiceRequest() async{
+    //Подключаемся к БД
+    await initDatabaseConnection();
+
+    //Получаем список всех пользователей
+    List<Map<String, dynamic>> query = await dbConnection.mappedResultsQuery('SELECT * from service_request');
+    print(query);
+    ServiceRequest _serviceRequest;
+    List<ServiceRequest> _serviceRequests = [];
+    for (var element in query) {
+      for (var subElement in element.values) {
+        _serviceRequest=ServiceRequest.fromReqBody(subElement);
+        _serviceRequest.printAttributes();
+
+        _serviceRequests.add(_serviceRequest);
+      }
+    }
+    //Закрываем соединение с БД
+    await closeDatabaseConnection();
+
+    //Возвращаем всех полученных пользователей
+    return _serviceRequests;
+  }
+
+  Future<ServiceRequest> getServiceRequestByID(int ID) async{
+    //Подключаемся к БД
+    await initDatabaseConnection();
+
+    //Получаем список всех пользователей
+    var query = await dbConnection.mappedResultsQuery('SELECT * from service_request where service_request_id = $ID');
+    print(query);
+    //Нулевой объект
+    ServiceRequest _serviceRequest = ServiceRequest(service_request_id: 0, customer_id: 0, organization_id: 0, date_service: DateTime(0));
+    for (var element in query) {
+      for (var subElement in element.values) {
+        _serviceRequest = ServiceRequest.fromReqBody(subElement);
+        _serviceRequest.printAttributes();
+      }
+    }
+    //Закрываем соединение с БД
+    await closeDatabaseConnection();
+
+    //Возвращаем всех полученных пользователей
+    return _serviceRequest;
+  }
+
+  Future<ServiceRequest> getServiceRequestByCustomerID(int ID) async{
+    //Подключаемся к БД
+    await initDatabaseConnection();
+
+    //Получаем список всех пользователей
+    var query = await dbConnection.mappedResultsQuery("SELECT * from service_request where customer_id = '$ID'");
+    print(query);
+    //Нулевой объект
+    ServiceRequest _serviceRequest = ServiceRequest(service_request_id: 0, customer_id: 0, organization_id: 0, date_service: DateTime(0));
+
+    for (var element in query) {
+      for (var subElement in element.values) {
+        _serviceRequest = ServiceRequest.fromReqBody(subElement);
+        _serviceRequest.printAttributes();
+      }
+    }
+    //Закрываем соединение с БД
+    await closeDatabaseConnection();
+
+    //Возвращаем всех полученных пользователей
+    return _serviceRequest;
+  }
+
+  Future<int> postServiceRequest(int customer_id, int organization_id, DateTime date_service, add_info) async{
+    //Подключаемся к БД
+    await initDatabaseConnection();
+
+    var query = await dbConnection.mappedResultsQuery("INSERT INTO service_request (customer_id,  organization_id,  date_service, add_info) VALUES ('$customer_id', '$organization_id', '$date_service','$add_info') RETURNING service_request_id;");
+    print(query);
+
+    int id = -1;
+
+    for (var element in query) {
+      for (var subElement in element.values) {
+        id = subElement['service_request_id'];
+        print(id);
+      }
+    }
+
+    //Закрываем соединение с БД
+    await closeDatabaseConnection();
+
+    //Возвращаем всех полученных агрегаторов
+    return id;
+  }
+
+  //Запросы ServiceRequestDetail
+  Future<List<ServiceRequestDetail>> getAllServiceRequestDetail() async{
+    //Подключаемся к БД
+    await initDatabaseConnection();
+
+    //Получаем список всех пользователей
+    List<Map<String, dynamic>> query = await dbConnection.mappedResultsQuery('SELECT * from service_request_detai');
+    print(query);
+    ServiceRequestDetail _serviceRequestDetail;
+    List<ServiceRequestDetail> _serviceRequestDetails = [];
+    for (var element in query) {
+      for (var subElement in element.values) {
+        _serviceRequestDetail=ServiceRequestDetail.fromReqBody(subElement);
+        _serviceRequestDetail.printAttributes();
+
+        _serviceRequestDetails.add(_serviceRequestDetail);
+      }
+    }
+    //Закрываем соединение с БД
+    await closeDatabaseConnection();
+
+    //Возвращаем всех полученных пользователей
+    return _serviceRequestDetails;
+  }
+
+  Future<ServiceRequestDetail> getServiceRequestDetailByID(int ID) async{
+    //Подключаемся к БД
+    await initDatabaseConnection();
+
+    //Получаем список всех пользователей
+    var query = await dbConnection.mappedResultsQuery('SELECT * from service_request_detai where service_request_detail_id = $ID');
+    print(query);
+    //Нулевой объект
+    ServiceRequestDetail _serviceRequestDetail = ServiceRequestDetail(service_request_detail_id: 0, service_request_id: 0, service_detail_id: 0);
+    for (var element in query) {
+      for (var subElement in element.values) {
+        _serviceRequestDetail = ServiceRequestDetail.fromReqBody(subElement);
+        _serviceRequestDetail.printAttributes();
+      }
+    }
+    //Закрываем соединение с БД
+    await closeDatabaseConnection();
+
+    //Возвращаем всех полученных пользователей
+    return _serviceRequestDetail;
+  }
+
+  Future<ServiceRequestDetail> getServiceRequestDetailByRequestID(int ID) async{
+    //Подключаемся к БД
+    await initDatabaseConnection();
+
+    //Получаем список всех пользователей
+    var query = await dbConnection.mappedResultsQuery("SELECT * from service_request_detai where service_request_id = '$ID'");
+    print(query);
+    //Нулевой объект
+    ServiceRequestDetail _serviceRequestDetail = ServiceRequestDetail(service_request_detail_id: 0, service_request_id: 0, service_detail_id: 0);
+
+    for (var element in query) {
+      for (var subElement in element.values) {
+        _serviceRequestDetail = ServiceRequestDetail.fromReqBody(subElement);
+        _serviceRequestDetail.printAttributes();
+      }
+    }
+    //Закрываем соединение с БД
+    await closeDatabaseConnection();
+
+    //Возвращаем всех полученных пользователей
+    return _serviceRequestDetail;
+  }
+
+  Future<int> postServiceRequestDetail(int service_request_detail_id, int service_request_id, int service_detail_id) async{
+    //Подключаемся к БД
+    await initDatabaseConnection();
+
+    var query = await dbConnection.mappedResultsQuery("INSERT INTO service_request_detai (service_request_detail_id,  service_request_id,  service_detail_id) VALUES ('$service_request_detail_id', '$service_request_id', '$service_detail_id') RETURNING service_request_detail_id;");
+    print(query);
+
+    int id = -1;
+
+    for (var element in query) {
+      for (var subElement in element.values) {
+        id = subElement['service_request_detail_id'];
+        print(id);
+      }
+    }
+
+    //Закрываем соединение с БД
+    await closeDatabaseConnection();
+
+    //Возвращаем всех полученных агрегаторов
+    return id;
+  }
+
 }

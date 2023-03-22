@@ -49,12 +49,12 @@ class _UserAdministrator extends State<UserAdministrator> {
                                   color: Colors.deepPurpleAccent,
                                 ),
                                 items: listStatus.map<DropdownMenuItem<String>>(
-                                    (String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(value),
-                                  );
-                                }).toList(),
+                                        (String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(value),
+                                      );
+                                    }).toList(),
                                 onChanged: (String? value) {
                                   // This is called when the user selects an item.
                                   setState(() {

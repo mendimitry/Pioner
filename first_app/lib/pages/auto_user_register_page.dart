@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_app/pages/choosing_service.dart';
-import 'package:first_app/pages/post_list_page.dart';
 import 'package:first_app/pages/login_page.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,7 @@ import 'otp.dart';
 
 
 class AutoUserRegister extends StatefulWidget {
-  const AutoUserRegister({Key? key, required Object value}) : super(key: key) ;
+  const AutoUserRegister({Key? key}) : super(key: key) ;
 
   @override
   State<AutoUserRegister> createState() => _MyPhoneState();
@@ -172,7 +171,7 @@ class _MyPhoneState extends State<AutoUserRegister> {
                                 verificationId: firebaseVerificationId, smsCode: code);
                             // Sign the user in (or link) with the credential
                             await auth.signInWithCredential(credential);
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => PostListPage()));
+                            //TODO Сделать переход
 
                           },
                               style: ElevatedButton.styleFrom(

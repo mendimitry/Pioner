@@ -2,9 +2,8 @@ import 'package:first_app/pages/auto_user_register_page.dart';
 import 'package:first_app/pages/button.dart';
 import 'package:first_app/pages/form_administrator/list_applications.dart';
 import 'package:first_app/pages/form_organization/connecting_organization.dart';
-import 'package:first_app/pages/post_list_page.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_exit_app/flutter_exit_app.dart';
 import 'form_organization/organization_register.dart';
 
 class LoginPage extends StatelessWidget {
@@ -17,7 +16,7 @@ class LoginPage extends StatelessWidget {
         Center(
             child: Column(children: [
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {FlutterExitApp.exitApp();},
                   icon: Icon(Icons.logout),
                   alignment: Alignment(40, 5)),
               Padding(padding: EdgeInsets.only(top: 150)),
@@ -34,7 +33,7 @@ class LoginPage extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AutoUserRegister(value: 2)));
+                            builder: (context) => AutoUserRegister()));
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black26, fixedSize: Size(300, 50)),
