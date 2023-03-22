@@ -33,7 +33,7 @@ class LoginPage extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AutoUserRegister()));
+                            builder: (context) => AutoUserRegister(value: "")));
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black26, fixedSize: Size(300, 50)),

@@ -22,6 +22,7 @@ class ConnectingOrganization extends StatefulWidget {
 
 class _ConnectingOrganization extends State<ConnectingOrganization> {
   bool value = false;
+  bool buttonCheck = false;
   PionerDB pionerDB = PionerDB();
   final TextEditingController polnoeTextController = TextEditingController();
   final TextEditingController kratkoeTextController = TextEditingController();
@@ -108,7 +109,9 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
   }
 
   ElevatedButton button() {
-    return ElevatedButton(onPressed: () async {
+    return ElevatedButton(onPressed:
+    buttonCheck?
+        () async {
       organization_id = await pionerDB.postOrganization(polnoeTextController.text, kratkoeTextController.text, innTextController.text, kppTextController.text,
           ogrnTextController.text, surnameTextController.text, nameTextController.text, patronymicTextController.text, emailTextController.text,
           phoneNumberTextController.text, additionalInfoTextController.text);
@@ -116,13 +119,13 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
       post_id = await pionerDB.postStatusOrganization(organization_id, (organization_id + 1).toString(), DateTime.now(), "Новый");
 
       await Navigator.pushReplacementNamed(context, 'user_organization', arguments: [await pionerDB.getStatusOrganizationByID(post_id), await pionerDB.getOrganizationByID(organization_id)]);
-    },
+    }:null,
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.black26,
             fixedSize:  Size(320, 50)),
         child: const Text('Отправить',
             style: TextStyle(
-                fontSize: 12, color: Colors.white),
+                fontSize: 16, color: Colors.white),
             textAlign: TextAlign.center));
   }
 
@@ -134,28 +137,30 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
             onChanged: (bool? newValue) {
               setState(() {
                 value = newValue!;
+                buttonCheck = value;
               });
             }),
         Flexible(
             child: RichText(
-          text: TextSpan(
-              text: 'Принимаю условия ',
-              style: TextStyle(fontSize: 20, color: Colors.black),
-              children: <TextSpan>[
-                TextSpan(
-                    text: 'политики конфиденциальности',
-                    style: const TextStyle(
-                        color: Colors.blueAccent,
-                        decoration: TextDecoration.underline),
-                    recognizer: new TapGestureRecognizer()
-                      ..onTap = () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => PrivacyPolicy()));
-                      })
-              ]),
-        )),
+              text: TextSpan(
+                  text: 'Принимаю условия ',
+                  style: TextStyle(fontSize: 18, color: Colors.black),
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: 'политики конфиденциальности',
+                        style: const TextStyle(
+                            color: Colors.blueAccent,
+                            fontSize: 18,
+                            decoration: TextDecoration.underline),
+                        recognizer: new TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PrivacyPolicy()));
+                          })
+                  ]),
+            )),
       ],
     );
   }
@@ -435,8 +440,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
               angle: 180 * math.pi / 180,
               child: IconButton(
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginPage()));
+                    Navigator.pop(context);
                   },
                   icon: Icon(Icons.logout))),
           IconButton(

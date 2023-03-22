@@ -19,22 +19,28 @@ var status = [
 ];
 
 var organization1 = [
+  "1",
   "08.03.2023",
   "Белый лед",
 ];
 var organization2 = [
+  "2",
   "18.01.2023",
   "Ласточка",
 ];
+var organization3 = [
+  "3",
+  "26.04.2023",
+  "Каприз",
+];
+var mass = [organization1, organization2, organization3];
 
 class _ListApplication extends State<ListApplication> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-      SingleChildScrollView(
-        child:
-        Padding(
+      body: SingleChildScrollView(
+        child: Padding(
             padding: EdgeInsets.only(top: 15),
             child: Column(children: <Widget>[
               transition(context),
@@ -44,7 +50,7 @@ class _ListApplication extends State<ListApplication> {
                   child: Column(
                     children: [
                       Container(
-                          width: MediaQuery.of(context).size.width,
+                          width: 340,
                           height: 50,
                           color: Colors.white24,
                           child: const Center(
@@ -54,11 +60,13 @@ class _ListApplication extends State<ListApplication> {
                             ),
                           )),
                       Container(
-                          height: 225,
+                          width: 340,
+                          height: 200,
                           padding:
                           EdgeInsets.symmetric(horizontal: 20, vertical: 2),
                           color: Colors.white38,
                           child: ListView.builder(
+                              padding: EdgeInsets.zero,
                               itemCount: status.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return TextButton(
@@ -70,8 +78,9 @@ class _ListApplication extends State<ListApplication> {
                                         child: Text(
                                           status[index],
                                           style: const TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.black87,
+                                              fontSize: 16,
+                                              color: Colors.black87,
+                                              fontStyle: FontStyle.italic
                                           ),
                                           textAlign: TextAlign.right,
                                         )));
@@ -80,10 +89,11 @@ class _ListApplication extends State<ListApplication> {
                         height: 20,
                       ),
                       Container(
+                        width: 340,
                         child: Column(
                           children: [
                             Container(
-                                width: MediaQuery.of(context).size.width,
+                                width: 340,
                                 height: 50,
                                 color: Colors.white24,
                                 child: const Center(
@@ -92,52 +102,55 @@ class _ListApplication extends State<ListApplication> {
                                     style: TextStyle(fontSize: 16),
                                   ),
                                 )),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  color: Colors.white,
-                                  width: 120,
-                                  height: 50,
-                                  child: Text("data"),
-                                ),
-                                Container(
-                                  color: Colors.white,
-                                  width: 120,
-                                  height: 50,
-                                  child: Text("data"),
-                                ),
-                                Container(
-                                  color: Colors.white,
-                                  width: 120,
-                                  height: 50,
-                                  child: Text("data"),
-                                ),
-                              ],
-                            ),
-                            // ListView.builder(
-                            //     itemCount: city.length,
-                            //     itemBuilder: (BuildContext context, int index) {
-                            //       return Container(
-                            //         // height: 50,
-                            //           child: TextButton(
-                            //               onPressed: () {
-                            //                 setState(() {
-                            //                   _visibleCity = false;
-                            //                   _visibleAdress = true;
-                            //                 });
-                            //               },
-                            //               child: Align(
-                            //                   alignment: Alignment.bottomLeft,
-                            //                   child: Text(
-                            //                     city[index],
-                            //                     style: TextStyle(
-                            //                       fontSize: 16,
-                            //                       color: Colors.black87,
-                            //                     ),
-                            //                     textAlign: TextAlign.right,
-                            //                   ))));
-                            //     })
+                            Container(
+                                child: Table(
+                                  border: TableBorder.symmetric(
+                                      inside: BorderSide(
+                                          width: 1, color: Colors.black)),
+                                  columnWidths: const <int, TableColumnWidth>{
+                                    0: FixedColumnWidth(70),
+                                    1: FixedColumnWidth(100),
+                                  },
+                                  children: [
+                                    TableRow(
+                                        decoration:
+                                        BoxDecoration(color: Colors.black12),
+                                        children: [
+                                          Container(
+                                            // color: Colors.white,
+                                            height: 60,
+                                            child: Text(
+                                              "Рег. №",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                          ),
+                                          Container(
+                                            //  color: Colors.white,
+                                            height: 60,
+                                            child: Text("Дата создания",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.white)),
+                                          ),
+                                          Container(
+                                            // color: Colors.white,
+                                            height: 60,
+                                            child: Text(
+                                                "Краткое\n"
+                                                    "наим. -е\nорганизации",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.white)),
+                                          ),
+                                        ])
+                                  ],
+                                )),
+                            list_organization()
                           ],
                         ),
                       )
@@ -145,9 +158,72 @@ class _ListApplication extends State<ListApplication> {
                   ))
             ])),
       ),
-
       backgroundColor: Colors.grey,
     );
+  }
+
+  Container list_organization() {
+    return Container(
+        child: ListView.builder(
+            padding: EdgeInsets.zero,
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            itemCount: mass.length,
+            itemBuilder: (context, index) {
+              var vector = mass[index];
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Table(
+                    border: TableBorder(
+                        top: BorderSide(width: 1, color: Colors.black)),
+                    columnWidths: const <int, TableColumnWidth>{
+                      0: FixedColumnWidth(70),
+                      1: FixedColumnWidth(100),
+                    },
+                    children: [
+                      TableRow(
+                          decoration: BoxDecoration(color: Colors.white),
+                          children: [
+                            Container(
+                              // color: Colors.white,b
+                                height: 40,
+                                child: TextButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    vector[0],
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+                                  ),
+                                )),
+                            Container(
+                              // color: Colors.white,
+                                height: 40,
+                                child: TextButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    vector[1],
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+                                  ),
+                                )),
+                            Container(
+                              // color: Colors.white,
+                                height: 40,
+                                child: TextButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    vector[2],
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+                                  ),
+                                )),
+                          ])
+                    ],
+                  ),
+                ],
+              );
+            }));
   }
 
   Row transition(BuildContext context) {
@@ -164,8 +240,10 @@ class _ListApplication extends State<ListApplication> {
                   icon: Icon(Icons.logout))),
           IconButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => UserAdministrator()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => UserAdministrator()));
               },
               icon: Icon(Icons.logout))
         ]);

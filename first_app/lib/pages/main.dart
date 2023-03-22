@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         'list_applications':(context) => const ListApplication(),
         'connecting_organization':(context) => const ConnectingOrganization(),
         'privacy_policy':(context) => const PrivacyPolicy(),
-        'auto_user_register_page':(context) => const AutoUserRegister(),
+        'auto_user_register_page':(context) => const AutoUserRegister(value: "",),
         'choosing_organization_car_wash':(context) => const ChoosingOrganizationCarWash(),
         'choosing_organization_tire_service':(context) => const ChoosingOrganizationTireService(),
         'choosing_service':(context) => const ChoosingSerice(),

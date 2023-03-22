@@ -9,9 +9,16 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="Added navigation to the main page, removing old tails, adding parts of models from the database, and get/post queries for them">
+    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="add redirect to choice services">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/lib/pages/auto_user_register_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/auto_user_register_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/list_applications.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/list_applications.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_organization/connecting_organization.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_organization/connecting_organization.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/login_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/login_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -285,7 +292,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679465255755</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="add redirect to choice services">
+      <created>1679469145344</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1679469145344</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -322,6 +336,7 @@
     <MESSAGE value="add connection request (x1)" />
     <MESSAGE value="put connecting organization (x2)" />
     <MESSAGE value="Added navigation to the main page, removing old tails, adding parts of models from the database, and get/post queries for them" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added navigation to the main page, removing old tails, adding parts of models from the database, and get/post queries for them" />
+    <MESSAGE value="add redirect to choice services" />
+    <option name="LAST_COMMIT_MESSAGE" value="add redirect to choice services" />
   </component>
 </project>
