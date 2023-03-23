@@ -230,20 +230,84 @@ class _Button extends State<Button> {
                                     fontSize: 18, color: Colors.white),
                                 textAlign: TextAlign.center)),
                         ElevatedButton(
-                            onPressed: () {pionerDB.getAllServiceRequest();},
+                            onPressed: () {pionerDB.getAllAddresses();},
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.black26,
                                 fixedSize: Size(120, 50)),
-                            child: Text('Получить все запросы для сервиса',
+                            child: Text('Получить все адреса',
                                 style: TextStyle(
                                     fontSize: 18, color: Colors.white),
                                 textAlign: TextAlign.center)),
                         ElevatedButton(
-                            onPressed: () {pionerDB.getAllServiceRequestDetail();},
+                            onPressed: () {pionerDB.getAllAddressesByOrganizationID(1);},
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.black26,
                                 fixedSize: Size(120, 50)),
-                            child: Text('Получить все детали запроса для сервиса',
+                            child: Text('Получить все адреса по id организации',
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.white),
+                                textAlign: TextAlign.center)),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ElevatedButton(
+                            onPressed: () {pionerDB.getAllCityFromAddresses();},
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.black26,
+                                fixedSize: Size(120, 50)),
+                            child: Text('Получить все города',
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.white),
+                                textAlign: TextAlign.center)),
+                        ElevatedButton(
+                            onPressed: () {pionerDB.getAllAddresses();},
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.black26,
+                                fixedSize: Size(120, 50)),
+                            child: Text('Получить все адреса',
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.white),
+                                textAlign: TextAlign.center)),
+                        ElevatedButton(
+                            onPressed: () {pionerDB.getAllAddressesByOrganizationID(1);},
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.black26,
+                                fixedSize: Size(120, 50)),
+                            child: Text('Получить все адреса по id организации',
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.white),
+                                textAlign: TextAlign.center)),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ElevatedButton(
+                            onPressed: () {pionerDB.getAggregatorSpecialistByID(ID);},
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.black26,
+                                fixedSize: Size(120, 50)),
+                            child: Text('Получить специалиста агрегатора',
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.white),
+                                textAlign: TextAlign.center)),
+                        ElevatedButton(
+                            onPressed: () {pionerDB.getAllAggregatorSpecialists();},
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.black26,
+                                fixedSize: Size(120, 50)),
+                            child: Text('Получить всех специалистов агрегатора',
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.white),
+                                textAlign: TextAlign.center)),
+                        ElevatedButton(
+                            onPressed: () {pionerDB.getAggregatorSpecialistByPhoneNumber("89677653554");},
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.black26,
+                                fixedSize: Size(120, 50)),
+                            child: Text('Получить специалистов по номеру телефона',
                                 style: TextStyle(
                                     fontSize: 18, color: Colors.white),
                                 textAlign: TextAlign.center)),

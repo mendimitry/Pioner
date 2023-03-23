@@ -2,6 +2,8 @@ import 'package:first_app/pages/form_administrator/user_administrator.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import '../../data/PionerDBContext.dart';
+import '../form_organization/connecting_organization.dart';
 import '../login_page.dart';
 
 class ListApplication extends StatefulWidget {
@@ -10,6 +12,12 @@ class ListApplication extends StatefulWidget {
   @override
   State<ListApplication> createState() => _ListApplication();
 }
+
+  PionerDB pionerDB = PionerDB();
+  final TextEditingController regNumberTextController = TextEditingController();
+  final TextEditingController DateCreateTextController = TextEditingController();
+  final TextEditingController kratkoeTextController = TextEditingController();
+
 
 var status = [
   "НОВАЯ",
@@ -35,6 +43,7 @@ var organization3 = [
 ];
 var mass = [organization1, organization2, organization3];
 
+
 class _ListApplication extends State<ListApplication> {
   @override
   Widget build(BuildContext context) {
@@ -46,7 +55,7 @@ class _ListApplication extends State<ListApplication> {
               transition(context),
               Padding(
                   padding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                   child: Column(
                     children: [
                       Container(
@@ -63,7 +72,7 @@ class _ListApplication extends State<ListApplication> {
                           width: 340,
                           height: 200,
                           padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 2),
+                              EdgeInsets.symmetric(horizontal: 20, vertical: 2),
                           color: Colors.white38,
                           child: ListView.builder(
                               padding: EdgeInsets.zero,
@@ -80,8 +89,7 @@ class _ListApplication extends State<ListApplication> {
                                           style: const TextStyle(
                                               fontSize: 16,
                                               color: Colors.black87,
-                                              fontStyle: FontStyle.italic
-                                          ),
+                                              fontStyle: FontStyle.italic),
                                           textAlign: TextAlign.right,
                                         )));
                               })),
@@ -104,52 +112,52 @@ class _ListApplication extends State<ListApplication> {
                                 )),
                             Container(
                                 child: Table(
-                                  border: TableBorder.symmetric(
-                                      inside: BorderSide(
-                                          width: 1, color: Colors.black)),
-                                  columnWidths: const <int, TableColumnWidth>{
-                                    0: FixedColumnWidth(70),
-                                    1: FixedColumnWidth(100),
-                                  },
-                                  children: [
-                                    TableRow(
-                                        decoration:
+                              border: TableBorder.symmetric(
+                                  inside: BorderSide(
+                                      width: 1, color: Colors.black)),
+                              columnWidths: const <int, TableColumnWidth>{
+                                0: FixedColumnWidth(70),
+                                1: FixedColumnWidth(100),
+                              },
+                              children: [
+                                TableRow(
+                                    decoration:
                                         BoxDecoration(color: Colors.black12),
-                                        children: [
-                                          Container(
-                                            // color: Colors.white,
-                                            height: 60,
-                                            child: Text(
-                                              "Рег. №",
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  color: Colors.white),
-                                            ),
-                                          ),
-                                          Container(
-                                            //  color: Colors.white,
-                                            height: 60,
-                                            child: Text("Дата создания",
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    color: Colors.white)),
-                                          ),
-                                          Container(
-                                            // color: Colors.white,
-                                            height: 60,
-                                            child: Text(
-                                                "Краткое\n"
-                                                    "наим. -е\nорганизации",
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    color: Colors.white)),
-                                          ),
-                                        ])
-                                  ],
-                                )),
+                                    children: [
+                                      Container(
+                                        // color: Colors.white,
+                                        height: 60,
+                                        child: Text(
+                                          "Рег. №",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                      ),
+                                      Container(
+                                        //  color: Colors.white,
+                                        height: 60,
+                                        child: Text("Дата создания",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.white)),
+                                      ),
+                                      Container(
+                                        // color: Colors.white,
+                                        height: 60,
+                                        child: Text(
+                                            "Краткое\n"
+                                            "наим. -е\nорганизации",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.white)),
+                                      ),
+                                    ])
+                              ],
+                            )),
                             list_organization()
                           ],
                         ),
@@ -186,36 +194,42 @@ class _ListApplication extends State<ListApplication> {
                           decoration: BoxDecoration(color: Colors.white),
                           children: [
                             Container(
-                              // color: Colors.white,b
+                                // color: Colors.white,b
                                 height: 40,
                                 child: TextButton(
                                   onPressed: () {},
                                   child: Text(
                                     vector[0],
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontStyle: FontStyle.italic),
                                   ),
                                 )),
                             Container(
-                              // color: Colors.white,
+                                // color: Colors.white,
                                 height: 40,
                                 child: TextButton(
                                   onPressed: () {},
                                   child: Text(
                                     vector[1],
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontStyle: FontStyle.italic),
                                   ),
                                 )),
                             Container(
-                              // color: Colors.white,
+                                // color: Colors.white,
                                 height: 40,
                                 child: TextButton(
                                   onPressed: () {},
                                   child: Text(
                                     vector[2],
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontStyle: FontStyle.italic),
                                   ),
                                 )),
                           ])

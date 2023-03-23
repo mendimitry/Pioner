@@ -9,17 +9,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="добавлена проверка для checkbox'a">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="добавлена страница с проверкой инн и огрн, добавлен вход для организации">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/android/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/lib/data/PionerDBContext.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/data/PionerDBContext.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/lib/pages/auto_user_register_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/auto_user_register_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/lib/pages/button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/button.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_organization/organization_register.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_organization/organization_register.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/list_applications.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/list_applications.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,20 +45,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/DmitryDima/Downloads/readotp-master/readotp-master&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "io.flutter.reload.alreadyRun": "true",
+    "last_opened_file_path": "C:/Users/DmitryDima/Downloads/readotp-master/readotp-master",
+    "settings.editor.selected.configurable": "editor.preferences.tabs",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\DmitryDima\Desktop\androidbuild\first_app\lib\pages\form_organization" />
@@ -307,7 +302,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679494569917</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="добавлена страница с проверкой инн и огрн, добавлен вход для организации">
+      <created>1679555713158</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1679555713158</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -346,6 +348,7 @@
     <MESSAGE value="Added navigation to the main page, removing old tails, adding parts of models from the database, and get/post queries for them" />
     <MESSAGE value="add redirect to choice services" />
     <MESSAGE value="добавлена проверка для checkbox'a" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавлена проверка для checkbox'a" />
+    <MESSAGE value="добавлена страница с проверкой инн и огрн, добавлен вход для организации" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавлена страница с проверкой инн и огрн, добавлен вход для организации" />
   </component>
 </project>

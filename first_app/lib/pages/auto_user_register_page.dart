@@ -157,7 +157,7 @@ class _MyPhoneState extends State<AutoUserRegister> {
                                 text: 'Принимаю условия ',
                                 style: TextStyle(
                                     fontSize: 20, color: Colors.black),
-                                children: <TextSpan>[
+                                 children: <TextSpan>[
                                   TextSpan(
                                       text: 'политики конфиденциальности',
                                       style: const TextStyle(
