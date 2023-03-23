@@ -4,7 +4,7 @@ import 'dart:math' as math;
 
 import '../../data/PionerDBContext.dart';
 import '../form_organization/connecting_organization.dart';
-import '../login_page.dart';
+import '../form_login_page/login_page.dart';
 
 class ListApplication extends StatefulWidget {
   const ListApplication({super.key});
@@ -13,11 +13,10 @@ class ListApplication extends StatefulWidget {
   State<ListApplication> createState() => _ListApplication();
 }
 
-  PionerDB pionerDB = PionerDB();
-  final TextEditingController regNumberTextController = TextEditingController();
-  final TextEditingController DateCreateTextController = TextEditingController();
-  final TextEditingController kratkoeTextController = TextEditingController();
-
+PionerDB pionerDB = PionerDB();
+final TextEditingController regNumberTextController = TextEditingController();
+final TextEditingController DateCreateTextController = TextEditingController();
+final TextEditingController kratkoeTextController = TextEditingController();
 
 var status = [
   "НОВАЯ",
@@ -42,7 +41,6 @@ var organization3 = [
   "Каприз",
 ];
 var mass = [organization1, organization2, organization3];
-
 
 class _ListApplication extends State<ListApplication> {
   @override

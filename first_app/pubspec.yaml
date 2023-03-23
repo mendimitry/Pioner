@@ -40,7 +40,6 @@ dependencies:
   requests: ^4.4.1
   html: ^0.15.2
   flutter_exit_app: ^1.1.2
-  sms_otp_auto_verify: ^2.1.0
 
 
   # The following adds the Cupertino Icons font to your application.

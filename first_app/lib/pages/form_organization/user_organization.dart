@@ -7,7 +7,7 @@ import 'dart:math' as math;
 import 'package:first_app/pages/form_organization/privacy_policy.dart';
 import 'package:flutter/gestures.dart';
 import '../../data/PionerDBContext.dart';
-import '../login_page.dart';
+import '../form_login_page/login_page.dart';
 class UserOrganization extends StatefulWidget{
   const UserOrganization({super.key});
 

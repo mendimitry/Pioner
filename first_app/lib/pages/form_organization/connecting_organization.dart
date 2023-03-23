@@ -9,16 +9,17 @@ import 'package:first_app/models/Organization.dart';
 import 'package:first_app/models/ConnectionRequest.dart';
 import 'package:first_app/data/PionerDBContext.dart';
 
-import '../login_page.dart';
+import '../form_login_page/login_page.dart';
+
 late int organization_id;
 late int post_id;
+
 class ConnectingOrganization extends StatefulWidget {
   const ConnectingOrganization({super.key});
 
   @override
   State<ConnectingOrganization> createState() => _ConnectingOrganization();
 }
-
 
 class _ConnectingOrganization extends State<ConnectingOrganization> {
   bool value = false;
@@ -31,10 +32,13 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
   final TextEditingController ogrnTextController = TextEditingController();
   final TextEditingController surnameTextController = TextEditingController();
   final TextEditingController nameTextController = TextEditingController();
-  final TextEditingController patronymicTextController = TextEditingController();
+  final TextEditingController patronymicTextController =
+      TextEditingController();
   final TextEditingController emailTextController = TextEditingController();
-  final TextEditingController phoneNumberTextController = TextEditingController();
-  final TextEditingController additionalInfoTextController = TextEditingController();
+  final TextEditingController phoneNumberTextController =
+      TextEditingController();
+  final TextEditingController additionalInfoTextController =
+      TextEditingController();
 
   /*
   postOrganization() async {
@@ -109,23 +113,37 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
   }
 
   ElevatedButton button() {
-    return ElevatedButton(onPressed:
-    buttonCheck?
-        () async {
-      organization_id = await pionerDB.postOrganization(polnoeTextController.text, kratkoeTextController.text, innTextController.text, kppTextController.text,
-          ogrnTextController.text, surnameTextController.text, nameTextController.text, patronymicTextController.text, emailTextController.text,
-          phoneNumberTextController.text, additionalInfoTextController.text);
+    return ElevatedButton(
+        onPressed: buttonCheck
+            ? () async {
+                organization_id = await pionerDB.postOrganization(
+                    polnoeTextController.text,
+                    kratkoeTextController.text,
+                    innTextController.text,
+                    kppTextController.text,
+                    ogrnTextController.text,
+                    surnameTextController.text,
+                    nameTextController.text,
+                    patronymicTextController.text,
+                    emailTextController.text,
+                    phoneNumberTextController.text,
+                    additionalInfoTextController.text);
 
-      post_id = await pionerDB.postStatusOrganization(organization_id, (organization_id + 1).toString(), DateTime.now(), "Новый");
+                post_id = await pionerDB.postStatusOrganization(organization_id,
+                    (organization_id + 1).toString(), DateTime.now(), "Новый");
 
-      await Navigator.pushReplacementNamed(context, 'user_organization', arguments: [await pionerDB.getStatusOrganizationByID(post_id), await pionerDB.getOrganizationByID(organization_id)]);
-    }:null,
+                await Navigator.pushReplacementNamed(
+                    context, 'user_organization',
+                    arguments: [
+                      await pionerDB.getStatusOrganizationByID(post_id),
+                      await pionerDB.getOrganizationByID(organization_id)
+                    ]);
+              }
+            : null,
         style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.black26,
-            fixedSize:  Size(320, 50)),
+            backgroundColor: Colors.black26, fixedSize: Size(320, 50)),
         child: const Text('Отправить',
-            style: TextStyle(
-                fontSize: 16, color: Colors.white),
+            style: TextStyle(fontSize: 16, color: Colors.white),
             textAlign: TextAlign.center));
   }
 
@@ -142,25 +160,25 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
             }),
         Flexible(
             child: RichText(
-              text: TextSpan(
-                  text: 'Принимаю условия ',
-                  style: TextStyle(fontSize: 18, color: Colors.black),
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: 'политики конфиденциальности',
-                        style: const TextStyle(
-                            color: Colors.blueAccent,
-                            fontSize: 18,
-                            decoration: TextDecoration.underline),
-                        recognizer: new TapGestureRecognizer()
-                          ..onTap = () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => PrivacyPolicy()));
-                          })
-                  ]),
-            )),
+          text: TextSpan(
+              text: 'Принимаю условия ',
+              style: TextStyle(fontSize: 18, color: Colors.black),
+              children: <TextSpan>[
+                TextSpan(
+                    text: 'политики конфиденциальности',
+                    style: const TextStyle(
+                        color: Colors.blueAccent,
+                        fontSize: 18,
+                        decoration: TextDecoration.underline),
+                    recognizer: new TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PrivacyPolicy()));
+                      })
+              ]),
+        )),
       ],
     );
   }
@@ -383,7 +401,6 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
         SizedBox(
           width: 250,
           child: TextField(
-
             decoration: InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
@@ -407,7 +424,6 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
         SizedBox(
           width: 250,
           child: TextField(
-
             decoration: InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
@@ -422,12 +438,11 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
 
   Row text_named_organization() {
     return Row(
-      children: const[
+      children: const [
         Text(
           "Наименование организации:",
           style: TextStyle(fontSize: 18),
         ),
-
       ],
     );
   }

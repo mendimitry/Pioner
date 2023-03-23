@@ -1,7 +1,7 @@
 import 'package:first_app/pages/form_organization/connecting_organization.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import '../login_page.dart';
+import '../form_login_page/login_page.dart';
 
 class PrivacyPolicy extends StatefulWidget {
   const PrivacyPolicy({super.key});

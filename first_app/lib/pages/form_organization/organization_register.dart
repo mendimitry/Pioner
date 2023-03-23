@@ -2,7 +2,7 @@ import 'package:first_app/data/PionerDBContext.dart';
 import 'package:first_app/models/ConnectionRequest.dart';
 import 'package:first_app/models/Organization.dart';
 import 'package:first_app/pages/form_organization/connecting_organization.dart';
-import 'package:first_app/pages/login_page.dart';
+import 'package:first_app/pages/form_login_page/login_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 

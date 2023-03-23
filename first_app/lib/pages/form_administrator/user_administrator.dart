@@ -2,7 +2,7 @@ import 'package:first_app/pages/form_administrator/list_applications.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-import '../login_page.dart';
+import '../form_login_page/login_page.dart';
 
 const List<String> listStatus = <String>[
   "НОВАЯ",
@@ -49,12 +49,12 @@ class _UserAdministrator extends State<UserAdministrator> {
                                   color: Colors.deepPurpleAccent,
                                 ),
                                 items: listStatus.map<DropdownMenuItem<String>>(
-                                        (String value) {
-                                      return DropdownMenuItem<String>(
-                                        value: value,
-                                        child: Text(value),
-                                      );
-                                    }).toList(),
+                                    (String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList(),
                                 onChanged: (String? value) {
                                   // This is called when the user selects an item.
                                   setState(() {
