@@ -1,3 +1,6 @@
+import 'package:first_app/data/PionerDBContext.dart';
+import 'package:first_app/models/ConnectionRequest.dart';
+import 'package:first_app/models/Organization.dart';
 import 'package:first_app/pages/form_organization/connecting_organization.dart';
 import 'package:first_app/pages/login_page.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +12,12 @@ class OrganizationRegister extends StatefulWidget {
   @override
   State<OrganizationRegister> createState() => _OrganizationRegister();
 }
+PionerDB pionerDB=PionerDB();
+late Organization organization;
+late ConnectionRequest connectionRequest;
 
+TextEditingController innController =   TextEditingController();
+TextEditingController ogrnController =   TextEditingController();
 class _OrganizationRegister extends State<OrganizationRegister> {
   @override
   Widget build(BuildContext context) {
@@ -47,6 +55,7 @@ class _OrganizationRegister extends State<OrganizationRegister> {
                                     border: OutlineInputBorder(),
                                     hintText: 'ИНН',
                                   ),
+                                  controller: innController,
                                 ),
                                 SizedBox(
                                   height: 20,
@@ -55,7 +64,7 @@ class _OrganizationRegister extends State<OrganizationRegister> {
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
                                     hintText: 'ОГРН',
-                                  ),
+                                  ),controller: ogrnController,
                                 ),
                                 SizedBox(
                                   height: 20,
@@ -65,7 +74,36 @@ class _OrganizationRegister extends State<OrganizationRegister> {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     ElevatedButton(
-                                        onPressed: () {},
+                                        onPressed: () async {
+                                          organization = await pionerDB.getOrganizationByINNandOGRN(int.parse(innController.text), int.parse(ogrnController.text));
+                                          if (organization.organization_id != 0)
+                                          {
+                                            connectionRequest = await pionerDB.getStatusOrganizationByID(organization.organization_id);
+                                            await Navigator.pushReplacementNamed(context, 'user_organization', arguments: [connectionRequest, organization]);
+                                          }
+                                          else {
+                                            Widget okButton = TextButton(
+                                              child: Text("OK"),
+                                              onPressed: () {Navigator.pop(context);},
+                                            );
+
+                                            // set up the AlertDialog
+                                            AlertDialog alert = AlertDialog(
+                                              title: Text("Ошибка"),
+                                              content: Text("Организация с данными ИНН ${innController.text} и ОГРН ${ogrnController.text} не существует"),
+                                              actions: [
+                                                okButton,
+                                              ],
+                                            );
+
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return alert;
+                                              },
+                                            );
+                                          }
+                                        },
                                         style: ElevatedButton.styleFrom(
                                             backgroundColor: Colors.black26,
                                             fixedSize: Size(110, 50)),

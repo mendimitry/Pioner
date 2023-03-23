@@ -217,6 +217,28 @@ class PionerDB {
     return _organization;
   }
 
+
+  Future<Organization> getOrganizationByINNandOGRN(int inn, int ogrn) async{
+    //Подключаемся к БД
+    await initDatabaseConnection();
+
+    //Получаем список всех пользователей
+    var query = await dbConnection.mappedResultsQuery("SELECT * from organization where inn = '$inn' and ogrn='$ogrn'");
+    print(query);
+    //Нулевой объект
+    Organization _organization = Organization(organization_id: 0, inn: '', kpp: '', ogrn: '', responsible_person_phone_number: '');
+    for (var element in query) {
+      for (var subElement in element.values) {
+        _organization = Organization.fromReqBody(subElement);
+        _organization.printAttributes();
+      }
+    }
+    //Закрываем соединение с БД
+    await closeDatabaseConnection();
+
+    //Возвращаем всех полученных пользователей
+    return _organization;
+  }
   //Запросы ConnectionRequest
   Future<int> postStatusOrganization(int organization_id,String reg_number,DateTime date_begin,String status) async {
     await initDatabaseConnection();
@@ -541,6 +563,9 @@ class PionerDB {
     return id;
   }
 
+
+
+
   //Запросы ServiceRequestDetail
   Future<List<ServiceRequestDetail>> getAllServiceRequestDetail() async{
     //Подключаемся к БД
@@ -633,5 +658,7 @@ class PionerDB {
     //Возвращаем всех полученных агрегаторов
     return id;
   }
+
+
 
 }

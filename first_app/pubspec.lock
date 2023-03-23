@@ -15,13 +15,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.16"
-  alt_sms_autofill:
-    dependency: "direct main"
-    description:
-      name: alt_sms_autofill
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   analyzer:
     dependency: transitive
     description:
@@ -567,6 +560,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  sms_otp_auto_verify:
+    dependency: "direct main"
+    description:
+      name: sms_otp_auto_verify
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
   source_gen:
     dependency: transitive
     description:

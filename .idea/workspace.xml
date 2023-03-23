@@ -9,14 +9,15 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="add redirect to choice services">
+    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="добавлена проверка для checkbox'a">
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/data/PionerDBContext.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/data/PionerDBContext.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/lib/pages/auto_user_register_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/auto_user_register_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/list_applications.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/list_applications.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_organization/connecting_organization.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_organization/connecting_organization.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/login_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/login_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/button.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_organization/organization_register.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_organization/organization_register.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/pubspec.yaml" afterDir="false" />
     </list>
@@ -58,7 +59,7 @@
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/DmitryDima/Desktop/androidbuild/first_app/lib/pages/form_organization&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/DmitryDima/Downloads/readotp-master/readotp-master&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
@@ -299,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679469145344</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="добавлена проверка для checkbox'a">
+      <created>1679494569917</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1679494569917</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -337,6 +345,7 @@
     <MESSAGE value="put connecting organization (x2)" />
     <MESSAGE value="Added navigation to the main page, removing old tails, adding parts of models from the database, and get/post queries for them" />
     <MESSAGE value="add redirect to choice services" />
-    <option name="LAST_COMMIT_MESSAGE" value="add redirect to choice services" />
+    <MESSAGE value="добавлена проверка для checkbox'a" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавлена проверка для checkbox'a" />
   </component>
 </project>

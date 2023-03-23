@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_app/pages/choosing_service.dart';
+
 import 'package:first_app/pages/login_page.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +10,7 @@ import 'package:get/get.dart';
 import 'dart:math' as math;
 
 import 'package:get/get_core/src/get_main.dart';
+import 'package:sms_otp_auto_verify/sms_otp_auto_verify.dart';
 
 import 'form_organization/privacy_policy.dart';
 import 'main.dart';
@@ -23,6 +27,7 @@ bool rememberMe = false;
 
 class _MyPhoneState extends State<AutoUserRegister> {
   TextEditingController countryController = TextEditingController();
+  TextEditingController text = TextEditingController();
   final authController = Get.put(AuthController());
   final _formKey = GlobalKey<FormState>();
   var phone = '';
@@ -40,12 +45,23 @@ class _MyPhoneState extends State<AutoUserRegister> {
   bool value = false;
   bool buttonCheck = false;
   var timer;
+  final scaffoldKey = GlobalKey();
+
+
+
+  int _otpCodeLength = 6;
+  bool _isLoadingButton = false;
+  bool _enableButton = false;
+  String _otpCode = "";
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  final intRegex = RegExp(r'\d+', multiLine: true);
+  TextEditingController textEditingController = new TextEditingController(text: "");
 
   @override
   void initState() {
-    // TODO: implement initState
-    countryController.text = "";
     super.initState();
+
+
   }
 
   @override
@@ -111,16 +127,19 @@ class _MyPhoneState extends State<AutoUserRegister> {
                           style: TextStyle(fontSize: 20)),
                       Padding(padding: EdgeInsets.only(top: 5)),
                       TextField(
-                          onChanged: (value) {
-                            code = value;
-                          },
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: '999999',
-                              fillColor: Colors.black12,
-                              filled: true,
-                              contentPadding: EdgeInsets.only(
-                                  top: 5, right: 20, left: 20))),
+                        onChanged: (value) {
+                          code = value;
+
+                        },
+
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: '999999',
+                            fillColor: Colors.black12,
+                            filled: true,
+                            contentPadding:
+                                EdgeInsets.only(top: 5, right: 20, left: 20),),
+                      ),
                       Padding(padding: EdgeInsets.only(top: 50)),
                       Row(
                         children: [
@@ -134,80 +153,83 @@ class _MyPhoneState extends State<AutoUserRegister> {
                               }),
                           Flexible(
                               child: RichText(
-                                text: TextSpan(
-                                    text: 'Принимаю условия ',
-                                    style: TextStyle(
-                                        fontSize: 20, color: Colors.black),
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                          text: 'политики конфиденциальности',
-                                          style: const TextStyle(
-                                              color: Colors.blueAccent,
-                                              decoration: TextDecoration.underline),
-                                          recognizer: new TapGestureRecognizer()
-                                            ..onTap = () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          PrivacyPolicy()));
-                                            })
-                                    ]),
-                              )),
+                            text: TextSpan(
+                                text: 'Принимаю условия ',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.black),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                      text: 'политики конфиденциальности',
+                                      style: const TextStyle(
+                                          color: Colors.blueAccent,
+                                          decoration: TextDecoration.underline),
+                                      recognizer: new TapGestureRecognizer()
+                                        ..onTap = () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      PrivacyPolicy()));
+                                        })
+                                ]),
+                          )),
                         ],
                       ),
                       Padding(padding: EdgeInsets.only(top: 75)),
+
                       ElevatedButton(
                           onPressed: buttonCheck
                               ? () async {
-                            FirebaseAuth.instance.verifyPhoneNumber(
-                              phoneNumber: '${phone}',
-                              timeout: const Duration(seconds: 120),
-                              verificationCompleted:
-                                  (PhoneAuthCredential credential) {},
-                              verificationFailed:
-                                  (FirebaseAuthException e) {},
-                              codeSent: (String verificationId,
-                                  int? resendToken) {
-                                firebaseVerificationId = verificationId;
-                                isOtpSent.value = true;
-                                statusMessage.value =
-                                    "OTP sent to +7" + phone;
-                              },
-                              codeAutoRetrievalTimeout:
-                                  (String verificationId) {},
-                            );
-                          }
+                                  await FirebaseAuth.instance.verifyPhoneNumber(
+                                    phoneNumber: '${phone}',
+                                    timeout: const Duration(seconds: 20),
+                                    verificationCompleted:
+                                        (PhoneAuthCredential credential) {},
+                                    verificationFailed:
+                                        (FirebaseAuthException e) {},
+                                    codeSent: (String verificationId,
+                                        int? resendToken) {
+                                      firebaseVerificationId = verificationId;
+                                      isOtpSent.value = true;
+                                      statusMessage.value =
+                                          "OTP sent to +7" + phone;
+                                    },
+                                    codeAutoRetrievalTimeout:
+                                        (timeout) {},
+                                  );
+                                }
                               : null,
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.black26,
                               fixedSize: Size(300, 50)),
                           child: Text('Получить код',
                               style:
-                              TextStyle(fontSize: 18, color: Colors.white),
+                                  TextStyle(fontSize: 18, color: Colors.white),
                               textAlign: TextAlign.center)),
                       SizedBox(
                         height: 10,
                       ),
+
                       ElevatedButton(
                           onPressed: () async {
                             FirebaseAuth auth = FirebaseAuth.instance;
                             statusMessage.value = "Verifying... " + code;
                             // Create a PhoneAuthCredential with the code
                             PhoneAuthCredential credential =
-                            PhoneAuthProvider.credential(
-                                verificationId: firebaseVerificationId,
-                                smsCode: code);
+                                PhoneAuthProvider.credential(
+                                    verificationId: firebaseVerificationId,
+                                    smsCode: code);
                             // Sign the user in (or link) with the credential
                             await auth.signInWithCredential(credential);
-                           await Navigator.pushNamed(context, 'choosing_service', arguments: firebaseVerificationId);
+                            Navigator.pushNamed(context, 'choosing_service',
+                                arguments: firebaseVerificationId);
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.black26,
                               fixedSize: Size(300, 50)),
                           child: Text('Verification Test',
                               style:
-                              TextStyle(fontSize: 18, color: Colors.white),
+                                  TextStyle(fontSize: 18, color: Colors.white),
                               textAlign: TextAlign.center))
                     ],
                   ))
@@ -216,4 +238,6 @@ class _MyPhoneState extends State<AutoUserRegister> {
       backgroundColor: Colors.grey,
     );
   }
+
+
 }

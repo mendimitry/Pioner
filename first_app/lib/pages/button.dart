@@ -215,8 +215,40 @@ class _Button extends State<Button> {
                                   style: TextStyle(
                                       fontSize: 18, color: Colors.white),
                                   textAlign: TextAlign.center)),
-                        ]),
-                    Text("$data"),
+                        ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ElevatedButton(
+                            onPressed: () {pionerDB.getOrganizationByINNandOGRN(1346483456,4796315647230);},
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.black26,
+                                fixedSize: Size(120, 50)),
+                            child: Text('Получить организации по инн и огрн',
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.white),
+                                textAlign: TextAlign.center)),
+                        ElevatedButton(
+                            onPressed: () {pionerDB.getAllServiceRequest();},
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.black26,
+                                fixedSize: Size(120, 50)),
+                            child: Text('Получить все запросы для сервиса',
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.white),
+                                textAlign: TextAlign.center)),
+                        ElevatedButton(
+                            onPressed: () {pionerDB.getAllServiceRequestDetail();},
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.black26,
+                                fixedSize: Size(120, 50)),
+                            child: Text('Получить все детали запроса для сервиса',
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.white),
+                                textAlign: TextAlign.center)),
+                      ],
+                    ),
                   ],
 
                 ))
