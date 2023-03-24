@@ -1,3 +1,5 @@
+import 'package:first_app/models/ConnectionRequest.dart';
+import 'package:first_app/models/Organization.dart';
 import 'package:first_app/pages/form_administrator/user_administrator.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
@@ -17,7 +19,15 @@ PionerDB pionerDB = PionerDB();
 final TextEditingController regNumberTextController = TextEditingController();
 final TextEditingController DateCreateTextController = TextEditingController();
 final TextEditingController kratkoeTextController = TextEditingController();
+var response = pionerDB.getAllOrganization();
 
+Future<List<ConnectionRequest>> usersFuture = pionerDB.getAllAdminka();
+
+List<String> stringList = ((response) as List<dynamic>).cast<String>();
+print(stringList)
+{
+
+}
 var status = [
   "НОВАЯ",
   "В РАБОТЕ",
@@ -40,7 +50,10 @@ var organization3 = [
   "26.04.2023",
   "Каприз",
 ];
-var mass = [organization1, organization2, organization3];
+
+
+
+//var mass = [organization1, organization2, organization3];
 
 class _ListApplication extends State<ListApplication> {
   @override
@@ -53,7 +66,7 @@ class _ListApplication extends State<ListApplication> {
               transition(context),
               Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                   child: Column(
                     children: [
                       Container(
@@ -70,7 +83,7 @@ class _ListApplication extends State<ListApplication> {
                           width: 340,
                           height: 200,
                           padding:
-                              EdgeInsets.symmetric(horizontal: 20, vertical: 2),
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 2),
                           color: Colors.white38,
                           child: ListView.builder(
                               padding: EdgeInsets.zero,
@@ -110,52 +123,52 @@ class _ListApplication extends State<ListApplication> {
                                 )),
                             Container(
                                 child: Table(
-                              border: TableBorder.symmetric(
-                                  inside: BorderSide(
-                                      width: 1, color: Colors.black)),
-                              columnWidths: const <int, TableColumnWidth>{
-                                0: FixedColumnWidth(70),
-                                1: FixedColumnWidth(100),
-                              },
-                              children: [
-                                TableRow(
-                                    decoration:
+                                  border: TableBorder.symmetric(
+                                      inside: BorderSide(
+                                          width: 1, color: Colors.black)),
+                                  columnWidths: const <int, TableColumnWidth>{
+                                    0: FixedColumnWidth(70),
+                                    1: FixedColumnWidth(100),
+                                  },
+                                  children: [
+                                    TableRow(
+                                        decoration:
                                         BoxDecoration(color: Colors.black12),
-                                    children: [
-                                      Container(
-                                        // color: Colors.white,
-                                        height: 60,
-                                        child: Text(
-                                          "Рег. №",
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                      ),
-                                      Container(
-                                        //  color: Colors.white,
-                                        height: 60,
-                                        child: Text("Дата создания",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                color: Colors.white)),
-                                      ),
-                                      Container(
-                                        // color: Colors.white,
-                                        height: 60,
-                                        child: Text(
-                                            "Краткое\n"
-                                            "наим. -е\nорганизации",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                color: Colors.white)),
-                                      ),
-                                    ])
-                              ],
-                            )),
+                                        children: [
+                                          Container(
+                                            // color: Colors.white,
+                                            height: 60,
+                                            child: Text(
+                                              "Рег. №",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                          ),
+                                          Container(
+                                            //  color: Colors.white,
+                                            height: 60,
+                                            child: Text("Дата создания",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.white)),
+                                          ),
+                                          Container(
+                                            // color: Colors.white,
+                                            height: 60,
+                                            child: Text(
+                                                "Краткое\n"
+                                                    "наим. -е\nорганизации",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.white)),
+                                          ),
+                                        ])
+                                  ],
+                                )),
                             list_organization()
                           ],
                         ),
@@ -174,9 +187,9 @@ class _ListApplication extends State<ListApplication> {
             padding: EdgeInsets.zero,
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
-            itemCount: mass.length,
+            itemCount: 9,
             itemBuilder: (context, index) {
-              var vector = mass[index];
+
               return Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -192,44 +205,85 @@ class _ListApplication extends State<ListApplication> {
                           decoration: BoxDecoration(color: Colors.white),
                           children: [
                             Container(
-                                // color: Colors.white,b
+                              // color: Colors.white,b
                                 height: 40,
-                                child: TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    vector[0],
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontStyle: FontStyle.italic),
-                                  ),
-                                )),
+                                child: FutureBuilder<List<ConnectionRequest>>(
+                                    future: usersFuture,
+                                    builder: (context, snapshot) {
+                                      if(snapshot.connectionState != ConnectionState.done) {
+                                        // return: show loading widget
+                                      }
+                                      if(snapshot.hasError) {
+                                        // return: show error widget
+                                      }
+                                      List<ConnectionRequest> users = snapshot.data ?? [];
+                                      return ListView.builder(
+                                        itemCount: users.length,
+                                        itemBuilder: (context, index) {
+                                          ConnectionRequest user = users[index];
+                                          return Center(
+                                              child: new Text(
+                                                  '${user.reg_number}'));
+
+                                        },
+
+                                      );
+                                    })
+                                ),
                             Container(
-                                // color: Colors.white,
+                              // color: Colors.white,
                                 height: 40,
-                                child: TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    vector[1],
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontStyle: FontStyle.italic),
-                                  ),
-                                )),
+                                child: FutureBuilder<List<ConnectionRequest>>(
+                                    future: usersFuture,
+                                    builder: (context, snapshot) {
+                                      if(snapshot.connectionState != ConnectionState.done) {
+                                        // return: show loading widget
+                                      }
+                                      if(snapshot.hasError) {
+                                        // return: show error widget
+                                      }
+                                      List<ConnectionRequest> users = snapshot.data ?? [];
+                                      return ListView.builder(
+                                        itemCount: users.length,
+                                        itemBuilder: (context, index) {
+                                          ConnectionRequest user = users[index];
+
+                                          return Center(
+
+                                              child: new Text(
+                                                  '${user.date_begin}'));
+
+                                        },
+
+                                      );
+                                    })
+                                ),
                             Container(
-                                // color: Colors.white,
+                              // color: Colors.white,
                                 height: 40,
-                                child: TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    vector[2],
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontStyle: FontStyle.italic),
-                                  ),
-                                )),
+                                child: FutureBuilder<List<ConnectionRequest>>(
+                                    future: usersFuture,
+                                    builder: (context, snapshot) {
+                                      if(snapshot.connectionState != ConnectionState.done) {
+                                        // return: show loading widget
+                                      }
+                                      if(snapshot.hasError) {
+                                        // return: show error widget
+                                      }
+                                      List<ConnectionRequest> users = snapshot.data ?? [];
+                                      return ListView.builder(
+                                          itemCount: users.length,
+                                          itemBuilder: (context, index) {
+                                            ConnectionRequest user = users[index];
+                                            return Center(
+                                            child: new Text(
+                                            '${user.organization_id}'));
+
+                                            },
+
+                                          );
+                                    })
+                                ),
                           ])
                     ],
                   ),

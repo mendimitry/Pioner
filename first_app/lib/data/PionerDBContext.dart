@@ -281,6 +281,32 @@ class PionerDB {
     return _connectionRequest;
   }
 
+
+  Future<List<ConnectionRequest>> getAllAdminka() async{
+    //Подключаемся к БД
+    await initDatabaseConnection();
+
+    //Получаем список всех пользователей
+    List<Map<String, dynamic>> query = await dbConnection.mappedResultsQuery('SELECT * from connection_request');
+    print(query);
+    ConnectionRequest _organization;
+    List<ConnectionRequest> _organizations = [];
+    for (var element in query) {
+      for (var subElement in element.values) {
+        _organization=ConnectionRequest.fromReqBody(subElement);
+        _organization.printAttributes();
+
+        _organizations.add(_organization);
+      }
+    }
+    //Закрываем соединение с БД
+    await closeDatabaseConnection();
+
+    //Возвращаем всех полученных пользователей
+    return _organizations;
+  }
+
+
   //Запросы AggregatorSpecialist
   Future<List<AggregatorSpecialist>> getAllAggregatorSpecialists() async{
     //Подключаемся к БД
@@ -756,7 +782,7 @@ class PionerDB {
     return _addresses;
   }
 
-// test
+// test функция для Ивана
   Future<List<String>> getCityFromOneCity() async{
     //Подключаемся к БД
     await initDatabaseConnection();
