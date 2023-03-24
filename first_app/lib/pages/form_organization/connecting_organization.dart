@@ -1,12 +1,9 @@
 import 'dart:math' as math;
 
+import 'package:first_app/controllers/ConnectingOrganization.dart';
 import 'package:first_app/pages/form_organization/privacy_policy.dart';
-import 'package:first_app/pages/form_organization/user_organization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:postgres/postgres.dart';
-import 'package:first_app/models/Organization.dart';
-import 'package:first_app/models/ConnectionRequest.dart';
 import 'package:first_app/data/PionerDBContext.dart';
 
 import '../form_login_page/login_page.dart';
@@ -24,7 +21,9 @@ class ConnectingOrganization extends StatefulWidget {
 class _ConnectingOrganization extends State<ConnectingOrganization> {
   bool value = false;
   bool buttonCheck = false;
-  PionerDB pionerDB = PionerDB();
+
+  ConnectingOrganizationController _connectingOrganizationController = ConnectingOrganizationController();
+
   final TextEditingController polnoeTextController = TextEditingController();
   final TextEditingController kratkoeTextController = TextEditingController();
   final TextEditingController innTextController = TextEditingController();
@@ -32,13 +31,10 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
   final TextEditingController ogrnTextController = TextEditingController();
   final TextEditingController surnameTextController = TextEditingController();
   final TextEditingController nameTextController = TextEditingController();
-  final TextEditingController patronymicTextController =
-      TextEditingController();
+  final TextEditingController patronymicTextController = TextEditingController();
   final TextEditingController emailTextController = TextEditingController();
-  final TextEditingController phoneNumberTextController =
-      TextEditingController();
-  final TextEditingController additionalInfoTextController =
-      TextEditingController();
+  final TextEditingController phoneNumberTextController = TextEditingController();
+  final TextEditingController additionalInfoTextController = TextEditingController();
 
   /*
   postOrganization() async {
@@ -116,7 +112,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
     return ElevatedButton(
         onPressed: buttonCheck
             ? () async {
-                organization_id = await pionerDB.postOrganization(
+                organization_id = await _connectingOrganizationController.postOrganization(
                     polnoeTextController.text,
                     kratkoeTextController.text,
                     innTextController.text,
@@ -129,14 +125,13 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
                     phoneNumberTextController.text,
                     additionalInfoTextController.text);
 
-                post_id = await pionerDB.postStatusOrganization(organization_id,
+                post_id = await _connectingOrganizationController.postConnectionRequest(organization_id,
                     (organization_id + 1).toString(), DateTime.now(), "Новый");
 
-                await Navigator.pushReplacementNamed(
-                    context, 'user_organization',
+                await Navigator.pushReplacementNamed(context, 'user_organization',
                     arguments: [
-                      await pionerDB.getStatusOrganizationByID(post_id),
-                      await pionerDB.getOrganizationByID(organization_id)
+                      await _connectingOrganizationController.getConnectionRequestByID(post_id),
+                      await _connectingOrganizationController.getOrganizationByID(organization_id)
                     ]);
               }
             : null,

@@ -1,3 +1,4 @@
+import 'package:first_app/controllers/OrganizationRegister.dart';
 import 'package:first_app/data/PionerDBContext.dart';
 import 'package:first_app/models/ConnectionRequest.dart';
 import 'package:first_app/models/Organization.dart';
@@ -15,6 +16,8 @@ class OrganizationRegister extends StatefulWidget {
 PionerDB pionerDB=PionerDB();
 late Organization organization;
 late ConnectionRequest connectionRequest;
+
+OrganizationRegisterController _organizationRegisterController = OrganizationRegisterController();
 
 TextEditingController innController =   TextEditingController();
 TextEditingController ogrnController =   TextEditingController();
@@ -75,10 +78,10 @@ class _OrganizationRegister extends State<OrganizationRegister> {
                                   children: [
                                     ElevatedButton(
                                         onPressed: () async {
-                                          organization = await pionerDB.getOrganizationByINNandOGRN(int.parse(innController.text), int.parse(ogrnController.text));
+                                          organization = await _organizationRegisterController.getOrganizationByINNandOGRN(int.parse(innController.text), int.parse(ogrnController.text));
                                           if (organization.organization_id != 0)
                                           {
-                                            connectionRequest = await pionerDB.getStatusOrganizationByID(organization.organization_id);
+                                            connectionRequest = await _organizationRegisterController.getConnectionRequestByID(organization.organization_id);
                                             await Navigator.pushReplacementNamed(context, 'user_organization', arguments: [connectionRequest, organization]);
                                           }
                                           else {

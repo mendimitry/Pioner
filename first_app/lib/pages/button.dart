@@ -1,6 +1,5 @@
+import 'package:first_app/controllers/Button.dart';
 import 'package:first_app/models/Customer.dart';
-import 'package:first_app/models/Organization.dart';
-import 'package:first_app/pages/form_organization/user_organization.dart';
 import 'package:flutter/material.dart';
 import 'package:first_app/data/PionerDBContext.dart';
 
@@ -12,7 +11,7 @@ class Button extends StatefulWidget {
   @override
   State<Button> createState() => _Button();
 }
-
+ButtonController _buttonController = ButtonController();
 
 
 class _Button extends State<Button> {
@@ -28,43 +27,6 @@ class _Button extends State<Button> {
   @override
   initState() {
     super.initState();
-  }
-
-  getAllCustomers() {
-    pionerDB.getAllCustomers();
-
-  }
-
-  getCustomerByID(int ID){
-    pionerDB.getCustomerByID(ID);
-  }
-
-  getCustomerByPhoneNumber(String phoneNumber){
-    pionerDB.getCustomerByPhoneNumber(phoneNumber);
-  }
-
-  postCustomer(String? name, String? surname, String phoneNumber2){
-    pionerDB.postCustomer(phoneNumber2, name, surname);
-  }
-
-  deleteCustomer(String phoneNumber2){
-    pionerDB.deleteCustomer(phoneNumber2);
-  }
-
-  getAllOrganizations() {
-    pionerDB.getAllOrganization();
-  }
-
-  getOrganizationByID(ID){
-    pionerDB.getOrganizationByID(ID);
-  }
-
-  getAllAggregatorSpecialists(){
-    pionerDB.getAllAggregatorSpecialists();
-  }
-
-  getAllAggregatorSpecialistConnectorRequest(){
-    pionerDB.getAllAggregatorSpecialistConnectorRequest();
   }
 
   @override
@@ -85,9 +47,7 @@ class _Button extends State<Button> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           ElevatedButton(
-                              onPressed: () {getAllCustomers();
-
-                              },
+                              onPressed: () {},
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.black26,
                                   fixedSize: Size(120, 50)),
@@ -96,7 +56,7 @@ class _Button extends State<Button> {
                                       fontSize: 18, color: Colors.white),
                                   textAlign: TextAlign.center)),
                           ElevatedButton(
-                              onPressed: () {getCustomerByID(ID);},
+                              onPressed: () {},
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.black26,
                                   fixedSize: Size(120, 50)),
@@ -105,7 +65,7 @@ class _Button extends State<Button> {
                                       fontSize: 18, color: Colors.white),
                                   textAlign: TextAlign.center)),
                           ElevatedButton(
-                              onPressed: () {getCustomerByPhoneNumber(phoneNumber);},
+                              onPressed: () {},
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.black26,
                                   fixedSize: Size(120, 50)),
@@ -117,204 +77,7 @@ class _Button extends State<Button> {
                     SizedBox(
                       height: 20,
                     ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ElevatedButton(
-                              onPressed: () {postCustomer(name, surname, phoneNumber2);},
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.black26,
-                                  fixedSize: Size(120, 50)),
-                              child: Text('Добавить пользователя',
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.white),
-                                  textAlign: TextAlign.center)),
-                          ElevatedButton(
-                              onPressed: () {deleteCustomer(phoneNumber2);},
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.black26,
-                                  fixedSize: Size(120, 50)),
-                              child: Text('Удалить пользователя',
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.white),
-                                  textAlign: TextAlign.center)),
-                          ElevatedButton(
-                              onPressed: () {getAllOrganizations();},
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.black26,
-                                  fixedSize: Size(120, 50)),
-                              child: Text('Получить все организации',
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.white),
-                                  textAlign: TextAlign.center)),
-                        ]),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ElevatedButton(
-                              onPressed: () {getOrganizationByID(ID);},
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.black26,
-                                  fixedSize: Size(120, 50)),
-                              child: Text('Получить организацию по ID',
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.white),
-                                  textAlign: TextAlign.center)),
-                          ElevatedButton(
-                              onPressed: () async {Navigator.pushReplacementNamed(context,'user_organization',arguments: [await pionerDB.getStatusOrganizationByID(ID),await pionerDB.getOrganizationByID(ID)]);},
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.black26,
-                                  fixedSize: Size(120, 50)),
-                              child: Text('Хачу туда',
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.white),
-                                  textAlign: TextAlign.center)),
-                          ElevatedButton(
-                              onPressed: () {getAllAggregatorSpecialists();},
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.black26,
-                                  fixedSize: Size(120, 50)),
-                              child: Text('Получить всех специалистов',
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.white),
-                                  textAlign: TextAlign.center)),
-                        ]),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ElevatedButton(
-                              onPressed: () {getAllAggregatorSpecialistConnectorRequest();},
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.black26,
-                                  fixedSize: Size(120, 50)),
-                              child: Text('Получить все соединения',
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.white),
-                                  textAlign: TextAlign.center)),
-                          ElevatedButton(
-                              onPressed: () {pionerDB.getAllServiceRequest();},
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.black26,
-                                  fixedSize: Size(120, 50)),
-                              child: Text('Получить все запросы для сервиса',
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.white),
-                                  textAlign: TextAlign.center)),
-                          ElevatedButton(
-                              onPressed: () {pionerDB.getAllServiceRequestDetail();},
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.black26,
-                                  fixedSize: Size(120, 50)),
-                              child: Text('Получить все детали запроса для сервиса',
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.white),
-                                  textAlign: TextAlign.center)),
-                        ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ElevatedButton(
-                            onPressed: () {pionerDB.getOrganizationByINNandOGRN(1346483456,4796315647230);},
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.black26,
-                                fixedSize: Size(120, 50)),
-                            child: Text('Получить организации по инн и огрн',
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.white),
-                                textAlign: TextAlign.center)),
-                        ElevatedButton(
-                            onPressed: () {pionerDB.getAllAddresses();},
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.black26,
-                                fixedSize: Size(120, 50)),
-                            child: Text('Получить все адреса',
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.white),
-                                textAlign: TextAlign.center)),
-                        ElevatedButton(
-                            onPressed: () {pionerDB.getAllAddressesByOrganizationID(1);},
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.black26,
-                                fixedSize: Size(120, 50)),
-                            child: Text('Получить все адреса по id организации',
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.white),
-                                textAlign: TextAlign.center)),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ElevatedButton(
-                            onPressed: () {pionerDB.getAllCityFromAddresses();},
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.black26,
-                                fixedSize: Size(120, 50)),
-                            child: Text('Получить все города',
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.white),
-                                textAlign: TextAlign.center)),
-                        ElevatedButton(
-                            onPressed: () {pionerDB.getAllAddresses();},
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.black26,
-                                fixedSize: Size(120, 50)),
-                            child: Text('Получить все адреса',
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.white),
-                                textAlign: TextAlign.center)),
-                        ElevatedButton(
-                            onPressed: () {pionerDB.getAllAddressesByOrganizationID(1);},
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.black26,
-                                fixedSize: Size(120, 50)),
-                            child: Text('Получить все адреса по id организации',
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.white),
-                                textAlign: TextAlign.center)),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ElevatedButton(
-                            onPressed: () {pionerDB.getAggregatorSpecialistByID(ID);},
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.black26,
-                                fixedSize: Size(120, 50)),
-                            child: Text('Получить специалиста агрегатора',
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.white),
-                                textAlign: TextAlign.center)),
-                        ElevatedButton(
-                            onPressed: () {pionerDB.getAllAggregatorSpecialists();},
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.black26,
-                                fixedSize: Size(120, 50)),
-                            child: Text('Получить всех специалистов агрегатора',
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.white),
-                                textAlign: TextAlign.center)),
-                        ElevatedButton(
-                            onPressed: () {pionerDB.getAggregatorSpecialistByPhoneNumber("89677653554");},
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.black26,
-                                fixedSize: Size(120, 50)),
-                            child: Text('Получить специалистов по номеру телефона',
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.white),
-                                textAlign: TextAlign.center)),
-                      ],
-                    ),
                   ],
-
                 ))
           ])),
       backgroundColor: Colors.grey,

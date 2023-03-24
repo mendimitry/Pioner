@@ -26,11 +26,6 @@ class _UserOrganization extends State<UserOrganization>{
     super.initState();
   }
 
-  getFullInfoAboutStatusOfOrganization(int post_id,int organization_id) async{
-    connectionRequest = await pionerDB.getStatusOrganizationByID(post_id);
-    organization = await pionerDB.getOrganizationByID(organization_id);
-  }
-
   @override
   Widget build(BuildContext context) {
 
