@@ -20,15 +20,15 @@ PionerDB pionerDB = PionerDB();
 final TextEditingController regNumberTextController = TextEditingController();
 final TextEditingController DateCreateTextController = TextEditingController();
 final TextEditingController kratkoeTextController = TextEditingController();
-
-
+ConnectingOrganizationController _connectingOrganizationController = ConnectingOrganizationController();
 Future<List<ConnectionRequest>> getAllConnectionRequest() async {
   await pionerDB.initDatabaseConnection();
 
-  var query = await pionerDB.dbConnection.mappedResultsQuery('SELECT * from connection_request');
+  var query = await pionerDB.dbConnection
+      .mappedResultsQuery('SELECT * from connection_request');
   //Нулевой объект
   ConnectionRequest _connectionRequest;
-  List<ConnectionRequest> _conncetionRequests =[];
+  List<ConnectionRequest> _conncetionRequests = [];
   for (var element in query) {
     for (var subElement in element.values) {
       _connectionRequest = ConnectionRequest.fromReqBody(subElement);
@@ -43,8 +43,9 @@ Future<List<ConnectionRequest>> getAllConnectionRequest() async {
   //Возвращаем всех полученных пользователей
   return _conncetionRequests;
 }
+
 Future<List<ConnectionRequest>> usersFuture = getAllConnectionRequest();
-var status = [
+var listStatus = [
   "НОВАЯ",
   "В РАБОТЕ",
   "ИСПОЛНЕНА",
@@ -67,173 +68,126 @@ var organization3 = [
   "Каприз",
 ];
 var mass = [organization1, organization2, organization3];
+String listStatusValue = listStatus.first;
 
 class _ListApplication extends State<ListApplication> {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('d'),
-      ),
-      body: Container(
-        child: FutureBuilder<List<ConnectionRequest>>(
-            future: usersFuture,
-            builder: (context, snapshot) {
-              if(snapshot.connectionState != ConnectionState.done) {
-                // return: show loading widget
-              }
-              if(snapshot.hasError) {
-                // return: show error widget
-              }
-              List<ConnectionRequest> users = snapshot.data ?? [];
-              return ListView.builder(
-                  itemCount: users.length,
-                  itemBuilder: (context, index) {
-                    ConnectionRequest user = users[index];
-                    return ListTile(
-
-                        leading: CircleAvatar(
-
-                        ),
-                        title: new Text(
-                    '${user.reg_number}'+"      "+'${user.date_begin}'+"      "+'${user.organization_id}'),
-                        onTap: (){
-
-                          Navigator.push(context,
-                              new MaterialPageRoute(builder: (context) => ChoosingSerice()
-                          )
-
-                          );},
-
-
-
-                      // onTap: () {
-                      //  Navigator.push(context,
-                      //      new MaterialPageRoute(builder: (context) => new ChoosingSerice()));
-
-
-                    );
-                  });
-            }),
-      ),
-
-
-
-
-              );
-            }
-
-
-
-
-  }
-
-
-  Container list_organization() {
-    return Container(
-        child: ListView.builder(
-            padding: EdgeInsets.zero,
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            itemCount: mass.length,
-            itemBuilder: (context, index) {
-              var vector = mass[index];
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Table(
-                    border: TableBorder(
-                        top: BorderSide(width: 1, color: Colors.black)),
-                    columnWidths: const <int, TableColumnWidth>{
-                      0: FixedColumnWidth(70),
-                      1: FixedColumnWidth(100),
-                    },
-                    children: [
-                      TableRow(
-                          decoration: BoxDecoration(color: Colors.white),
-                          children: [
-                            Container(
-                                child: TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    vector[1],
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontStyle: FontStyle.italic),
-                                  ),
-                                )),
-                            Container(
-                                // color: Colors.white,
-                                height: 40,
-                                child: TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    vector[1],
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontStyle: FontStyle.italic),
-                                  ),
-                                )),
-                            Container(
-                                // color: Colors.white,
-                                height: 40,
-                                child: FutureBuilder<List<ConnectionRequest>>(
-                                    future: usersFuture,
-                                    builder: (context, snapshot) {
-                                      if(snapshot.connectionState != ConnectionState.done) {
-                                        // return: show loading widget
-                                      }
-                                      if(snapshot.hasError) {
-                                        // return: show error widget
-                                      }
-                                      List<ConnectionRequest> users = snapshot.data ?? [];
-                                      return ListView.builder(
-                                          itemCount: users.length,
-                                          itemBuilder: (context, index) {
-                                            ConnectionRequest user = users[index];
-                                            return Center(
-                                                child: new Text(
-                                                    '${user.date_begin}')
-
-                                             // onTap: () {
-                                              //  Navigator.push(context,
-                                              //      new MaterialPageRoute(builder: (context) => new ChoosingSerice()));
-
-
-                                            );
-                                          });
-                                    }),
+    return Scaffold(
+      backgroundColor: Colors.grey,
+      body: SingleChildScrollView(
+        child: Padding(
+            padding: EdgeInsets.only(top: 10),
+            child: Column(children: <Widget>[
+              transition(context),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: Container(
+                    color: Colors.white38,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text("Текущий статус: ",
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.black54)),
+                              DropdownButton<String>(
+                                value: listStatusValue,
+                                underline: Container(
+                                  height: 1,
+                                  color: Colors.deepPurpleAccent,
                                 ),
-                          ])
-                    ],
-                  ),
-                ],
-              );
-            }));
+                                items: listStatus.map<DropdownMenuItem<String>>(
+                                    (String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList(),
+                                onChanged: (String? value) {
+                                  // This is called when the user selects an item.
+                                  setState(() {
+                                    listStatusValue = value!;
+                                  });
+                                },
+                              )
+                            ],
+                          ),
+                          list_organization()
+                        ],
+                      ),
+                    )),
+              ),
+            ])),
+      ),
+    );
   }
+}
 
-  Row transition(BuildContext context) {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Transform.rotate(
-              angle: 180 * math.pi / 180,
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginPage()));
+Container list_organization() {
+  return Container(
+    child: FutureBuilder<List<ConnectionRequest>>(
+        future: usersFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState != ConnectionState.done) {
+            // return: show loading widget
+          }
+          if (snapshot.hasError) {
+            // return: show error widget
+          }
+          List<ConnectionRequest> users = snapshot.data ?? [];
+          return ListView.builder(
+              itemCount: users.length,
+              primary: false,
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                ConnectionRequest user = users[index];
+                return ListTile(
+                  title: new Text('${user.reg_number}' +
+                      "      " +
+                      '${user.date_begin}' +
+                      "      " +
+                      '${user.organization_id}'),
+                  onTap: () async {
+                    await Navigator.pushReplacementNamed(context, 'user_administrator',
+                        arguments: [
+                         // await _connectingOrganizationController.getConnectionRequestByID(post_id),
+                          await _connectingOrganizationController.getOrganizationByID(user.organization_id)
+                        ]);
+                 //   Navigator.push(
+                    //    context,
+                     //   new MaterialPageRoute(
+                     //       builder: (context) => UserAdministrator()));
                   },
-                  icon: Icon(Icons.logout))),
-          IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => UserAdministrator()));
-              },
-              icon: Icon(Icons.logout))
-        ]);
-  }
 
+                  // onTap: () {
+                  //  Navigator.push(context,
+                  //      new MaterialPageRoute(builder: (context) => new ChoosingSerice()));
+                );
+              });
+        }),
+  );
+}
+
+Row transition(BuildContext context) {
+  return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Transform.rotate(
+            angle: 180 * math.pi / 180,
+            child: IconButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginPage()));
+                },
+                icon: Icon(Icons.logout))),
+        IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => UserAdministrator()));
+            },
+            icon: Icon(Icons.logout))
+      ]);
+}
