@@ -9,10 +9,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="Переписал страницу администрирования, теперь при нажатии идет перенаправление на стр">
+    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="Повторно переписана страница администрирования, осталось дописать логику изменения заявки">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/list_applications.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/list_applications.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/user_administrator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/user_administrator.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -345,7 +344,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679680053949</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Повторно переписана страница администрирования, осталось дописать логику изменения заявки">
+      <created>1679720455104</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1679720455104</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -360,7 +366,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test program v6.4" />
     <MESSAGE value="add mysql" />
     <MESSAGE value="add postgres + test request" />
     <MESSAGE value="add postgres + get yandex" />
@@ -385,6 +390,7 @@
     <MESSAGE value="Написана минимальная логика к странице администрирования" />
     <MESSAGE value="Переписан проект под контроллеры" />
     <MESSAGE value="Переписал страницу администрирования, теперь при нажатии идет перенаправление на стр" />
-    <option name="LAST_COMMIT_MESSAGE" value="Переписал страницу администрирования, теперь при нажатии идет перенаправление на стр" />
+    <MESSAGE value="Повторно переписана страница администрирования, осталось дописать логику изменения заявки" />
+    <option name="LAST_COMMIT_MESSAGE" value="Повторно переписана страница администрирования, осталось дописать логику изменения заявки" />
   </component>
 </project>

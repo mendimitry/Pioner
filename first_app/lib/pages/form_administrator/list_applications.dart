@@ -115,14 +115,79 @@ class _ListApplication extends State<ListApplication> {
                               )
                             ],
                           ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                    Container(
+                      width: 340,
+                      child: Column(
+                        children: [
+                          Container(
+                              width: 340,
+                              height: 50,
+                              color: Colors.white24,
+                              child: const Center(
+                                child: Text(
+                                  "Список форм в выбранном статусе",
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                              )),
+                          Container(
+                              child: Table(
+                                border: TableBorder.symmetric(
+                                    inside: BorderSide(
+                                        width: 1, color: Colors.black)),
+                                columnWidths: const <int, TableColumnWidth>{
+                                  0: FixedColumnWidth(40),
+                                  1: FixedColumnWidth(200),
+                                },
+                                children: [
+                                  TableRow(
+                                      decoration:
+                                      BoxDecoration(color: Colors.black12),
+                                      children: [
+                                        Container(
+                                          // color: Colors.white,
+                                          height: 60,
+                                          child: Text(
+                                            "Рег. №",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                        Container(
+                                          //  color: Colors.white,
+                                          height: 60,
+                                          child: Text("Дата создания",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.white)),
+                                        ),
+                                        Container(
+                                          // color: Colors.white,
+                                          height: 60,
+                                          child: Text(
+                                              "Краткое\n"
+                                                  "наим. -е\nорганизации",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.white)),
+                                        ),
+                                      ])
+                                ],
+                              )),
                           list_organization()
                         ],
                       ),
-                    )),
-              ),
+                    ),
+
             ])),
       ),
-    );
+    )]))));
   }
 }
 
