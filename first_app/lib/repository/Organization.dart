@@ -98,4 +98,26 @@ class OrganizationRepository implements IOrganizationRepository{
     await _pionerDB.closeDatabaseConnection();
     return id;
   }
+
+  @override
+  Future<int> UpdateOrganization(String organization_full_name,String organization_short_name,String inn,String kpp,String ogrn,String responsible_person_surname,String responsible_person_name,String responsible_person_patronymic, String responsible_person_email,String responsible_person_phone_number,String? add_info)
+  async {
+    await _pionerDB.initDatabaseConnection();
+
+    var query = await _pionerDB.dbConnection.mappedResultsQuery(
+        "UPDATE organization  SET organization_full_name=$organization_full_name,organization_short_name=$organization_short_name,inn=$inn,kpp=$kpp,ogrn=$ogrn,responsible_person_surname=$responsible_person_surname,responsible_person_name=$responsible_person_name,responsible_person_patronymic=$responsible_person_patronymic, responsible_person_email=$responsible_person_email,responsible_person_phone_number=$responsible_person_phone_number,add_info=$add_info;");
+    print(query);
+
+    int id = -1;
+
+    for (var element in query) {
+      for (var subElement in element.values) {
+        id = subElement['organization_id'];
+        print(id);
+      }
+    }
+
+    await _pionerDB.closeDatabaseConnection();
+    return id;
+  }
 }

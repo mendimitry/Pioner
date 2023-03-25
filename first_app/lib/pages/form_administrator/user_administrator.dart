@@ -168,7 +168,8 @@ class _ConnectingOrganization extends State<UserAdministrator> {
     return ElevatedButton(
         onPressed: buttonCheck
             ? () async {
-          organization_id = await _connectingOrganizationController.postOrganization(
+          // todo я хз как нормально написать апдейт для статуса
+          organization_id = await _connectingOrganizationController.UpdateOrganization(
               polnoeTextController.text,
               kratkoeTextController.text,
               innTextController.text,
@@ -181,7 +182,7 @@ class _ConnectingOrganization extends State<UserAdministrator> {
               phoneNumberTextController.text,
               additionalInfoTextController.text);
 
-          post_id = await _connectingOrganizationController.postConnectionRequest(organization_id,
+          post_id = await _connectingOrganizationController.UpdateConnectionRequest(organization_id,
               (organization_id + 1).toString(), DateTime.now(), "Новый");
 
           await Navigator.pushReplacementNamed(context, 'user_organization',

@@ -20,7 +20,8 @@ PionerDB pionerDB = PionerDB();
 final TextEditingController regNumberTextController = TextEditingController();
 final TextEditingController DateCreateTextController = TextEditingController();
 final TextEditingController kratkoeTextController = TextEditingController();
-ConnectingOrganizationController _connectingOrganizationController = ConnectingOrganizationController();
+ConnectingOrganizationController _connectingOrganizationController =
+    ConnectingOrganizationController();
 Future<List<ConnectionRequest>> getAllConnectionRequest() async {
   await pionerDB.initDatabaseConnection();
 
@@ -74,120 +75,121 @@ class _ListApplication extends State<ListApplication> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
-      body: SingleChildScrollView(
-        child: Padding(
-            padding: EdgeInsets.only(top: 10),
-            child: Column(children: <Widget>[
-              transition(context),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Container(
-                    color: Colors.white38,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Text("Текущий статус: ",
-                                  style: TextStyle(
-                                      fontSize: 16, color: Colors.black54)),
-                              DropdownButton<String>(
-                                value: listStatusValue,
-                                underline: Container(
-                                  height: 1,
-                                  color: Colors.deepPurpleAccent,
-                                ),
-                                items: listStatus.map<DropdownMenuItem<String>>(
-                                    (String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(value),
-                                  );
-                                }).toList(),
-                                onChanged: (String? value) {
-                                  // This is called when the user selects an item.
-                                  setState(() {
-                                    listStatusValue = value!;
-                                  });
-                                },
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                    Container(
-                      width: 340,
-                      child: Column(
-                        children: [
-                          Container(
+        backgroundColor: Colors.grey,
+        body: SingleChildScrollView(
+            child: Padding(
+                padding: EdgeInsets.only(top: 10),
+                child: Column(children: <Widget>[
+                  transition(context),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Container(
+                      color: Colors.white38,
+                      child: Padding(
+                          padding:
+                              EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                          child: Column(children: [
+                            Row(
+                              children: [
+                                Text("Текущий статус: ",
+                                    style: TextStyle(
+                                        fontSize: 16, color: Colors.black54)),
+                                DropdownButton<String>(
+                                  value: listStatusValue,
+                                  underline: Container(
+                                    height: 1,
+                                    color: Colors.deepPurpleAccent,
+                                  ),
+                                  items: listStatus
+                                      .map<DropdownMenuItem<String>>(
+                                          (String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                  onChanged: (String? value) {
+                                    // This is called when the user selects an item.
+                                    setState(() {
+                                      listStatusValue = value!;
+                                    });
+                                  },
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
                               width: 340,
-                              height: 50,
-                              color: Colors.white24,
-                              child: const Center(
-                                child: Text(
-                                  "Список форм в выбранном статусе",
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                              )),
-                          Container(
-                              child: Table(
-                                border: TableBorder.symmetric(
-                                    inside: BorderSide(
-                                        width: 1, color: Colors.black)),
-                                columnWidths: const <int, TableColumnWidth>{
-                                  0: FixedColumnWidth(40),
-                                  1: FixedColumnWidth(200),
-                                },
+                              child: Column(
                                 children: [
-                                  TableRow(
-                                      decoration:
-                                      BoxDecoration(color: Colors.black12),
-                                      children: [
-                                        Container(
-                                          // color: Colors.white,
-                                          height: 60,
-                                          child: Text(
-                                            "Рег. №",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                color: Colors.white),
-                                          ),
+                                  Container(
+                                      width: 340,
+                                      height: 50,
+                                      color: Colors.white24,
+                                      child: const Center(
+                                        child: Text(
+                                          "Список форм в выбранном статусе",
+                                          style: TextStyle(fontSize: 16),
                                         ),
-                                        Container(
-                                          //  color: Colors.white,
-                                          height: 60,
-                                          child: Text("Дата создания",
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  color: Colors.white)),
-                                        ),
-                                        Container(
-                                          // color: Colors.white,
-                                          height: 60,
-                                          child: Text(
-                                              "Краткое\n"
+                                      )),
+                                  Container(
+                                      child: Table(
+                                    border: TableBorder.symmetric(
+                                        inside: BorderSide(
+                                            width: 1, color: Colors.black)),
+                                    columnWidths: const <int, TableColumnWidth>{
+                                      0: FixedColumnWidth(40),
+                                      1: FixedColumnWidth(200),
+                                    },
+                                    children: [
+                                      TableRow(
+                                          decoration: BoxDecoration(
+                                              color: Colors.black12),
+                                          children: [
+                                            Container(
+                                              // color: Colors.white,
+                                              height: 60,
+                                              child: Text(
+                                                "Рег. №",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.white),
+                                              ),
+                                            ),
+                                            Container(
+                                              //  color: Colors.white,
+                                              height: 60,
+                                              child: Text("Дата создания",
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.white)),
+                                            ),
+                                            Container(
+                                              // color: Colors.white,
+                                              height: 60,
+                                              child: Text(
+                                                  "Краткое\n"
                                                   "наим. -е\nорганизации",
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  color: Colors.white)),
-                                        ),
-                                      ])
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.white)),
+                                            ),
+                                          ])
+                                    ],
+                                  )),
+                                  list_organization()
                                 ],
-                              )),
-                          list_organization()
-                        ],
-                      ),
+                              ),
+                            ),
+                          ])),
                     ),
-
-            ])),
-      ),
-    )]))));
+                  )
+                ]))));
   }
 }
 
@@ -215,16 +217,23 @@ Container list_organization() {
                       '${user.date_begin}' +
                       "      " +
                       '${user.organization_id}'),
+
                   onTap: () async {
-                    await Navigator.pushReplacementNamed(context, 'user_administrator',
+                    await Navigator.pushReplacementNamed(
+                        context, 'user_administrator',
                         arguments: [
-                         // await _connectingOrganizationController.getConnectionRequestByID(post_id),
-                          await _connectingOrganizationController.getOrganizationByID(user.organization_id)
+                          // await _connectingOrganizationController.getConnectionRequestByID(post_id),
+                          await _connectingOrganizationController
+                              .getOrganizationByID(user.organization_id),
+
+
+                    Navigator.pop(context, "${user.organization_id}"),
                         ]);
-                 //   Navigator.push(
+
+                    //   Navigator.push(
                     //    context,
-                     //   new MaterialPageRoute(
-                     //       builder: (context) => UserAdministrator()));
+                    //   new MaterialPageRoute(
+                    //       builder: (context) => UserAdministrator()));
                   },
 
                   // onTap: () {

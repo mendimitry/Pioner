@@ -16,6 +16,15 @@ class ConnectingOrganizationController{
     return _connectionRequestRepository.postConnectionRequest(organization_id, reg_number, date_begin, status);
   }
 
+  Future<int> UpdateOrganization (String organization_full_name, String organization_short_name, String inn, String kpp, String ogrn, String responsible_person_surname, String responsible_person_name, String responsible_person_patronymic, String responsible_person_email, String responsible_person_phone_number, String? add_info){
+    return _organizationRepository.UpdateOrganization(organization_full_name, organization_short_name, inn, kpp, ogrn, responsible_person_surname, responsible_person_name, responsible_person_patronymic, responsible_person_email, responsible_person_phone_number, add_info);
+  }
+
+  Future<int> UpdateConnectionRequest(int organization_id, String reg_number, DateTime date_begin, String status){
+    return _connectionRequestRepository.UpdateConnectionRequest(organization_id, reg_number, date_begin, status);
+  }
+
+
   Future<Organization> getOrganizationByID(int id) async{
     return _organizationRepository.getOrganizationByID(id);
   }

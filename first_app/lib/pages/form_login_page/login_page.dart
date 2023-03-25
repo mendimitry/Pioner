@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:first_app/pages/form_register_number_telephone/auto_user_register_page.dart';
 import 'package:first_app/pages/button.dart';
 import 'package:first_app/pages/form_administrator/list_applications.dart';
@@ -16,7 +18,7 @@ class LoginPage extends StatelessWidget {
         Center(
             child: Column(children: [
               IconButton(
-                  onPressed: () {FlutterExitApp.exitApp();},
+                  onPressed: () {exit(0);},
                   icon: Icon(Icons.logout),
                   alignment: Alignment(40, 5)),
               Padding(padding: EdgeInsets.only(top: 150)),
