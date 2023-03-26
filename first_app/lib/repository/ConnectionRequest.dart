@@ -74,11 +74,32 @@ class ConnectionRequestRepository implements IConnectionRequestRepository{
 //UPDATE имя_таблицы
 // SET столбец1 = значение1, столбец2 = значение2
   @override
-  Future<int> UpdateConnectionRequest(int connection_request_id,String status) async {
+  Future<int> UpdateConnectionRequest(int connection_request_id,String status, DateTime date_end) async {
     await _pionerDB.initDatabaseConnection();
 
     var query = await _pionerDB.dbConnection.mappedResultsQuery(
-        "UPDATE connection_request SET status = '$status' where connection_request_id = $connection_request_id");
+        "UPDATE connection_request SET status = '$status', date_end='$date_end' where connection_request_id = $connection_request_id");
+    print(query);
+
+    int id = -1;
+
+    for (var element in query) {
+      for (var subElement in element.values) {
+        id = subElement['connection_request_id'];
+        print(id);
+      }
+    }
+
+    await _pionerDB.closeDatabaseConnection();
+    return id;
+  }
+
+  @override
+  Future<int> UpdateConnectionRequesNotTime(int connection_request_id,String status) async {
+    await _pionerDB.initDatabaseConnection();
+
+    var query = await _pionerDB.dbConnection.mappedResultsQuery(
+        "UPDATE connection_request SET status = '$status', date_end=NULL where connection_request_id = $connection_request_id");
     print(query);
 
     int id = -1;

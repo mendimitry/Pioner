@@ -20,8 +20,12 @@ class ConnectingOrganizationController{
     return _organizationRepository.UpdateOrganization(organization_full_name, organization_short_name, inn, kpp, ogrn, responsible_person_surname, responsible_person_name, responsible_person_patronymic, responsible_person_email, responsible_person_phone_number, add_info);
   }
 
-  Future<int> UpdateConnectionRequest(int connection_request_id, String status){
-    return _connectionRequestRepository.UpdateConnectionRequest(connection_request_id, status);
+  Future<int> UpdateConnectionRequest(int connection_request_id, String status, DateTime date_end){
+    return _connectionRequestRepository.UpdateConnectionRequest(connection_request_id, status, date_end);
+  }
+
+  Future<int> UpdateConnectionRequestNotDate(int connection_request_id, String status){
+    return _connectionRequestRepository.UpdateConnectionRequesNotTime(connection_request_id, status);
   }
 
 

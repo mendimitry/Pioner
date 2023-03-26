@@ -44,8 +44,10 @@ class _ConnectingOrganization extends State<UserAdministrator> {
   final TextEditingController phoneNumberTextController = TextEditingController();
   final TextEditingController additionalInfoTextController = TextEditingController();
   String listStatusValue = listStatus.first;
+  final DateTime date2 = DateTime.parse('2023-01-01');
+  final DateTime date3 = DateTime.parse('2023-03-26');
 
-
+  final dDay = DateTime.utc(2000, 1, 1);
   /*
   postOrganization() async {
     organization_id = await pionerDB.postOrganization(polnoeTextController.text, kratkoeTextController.text, innTextController.text, kppTextController.text,
@@ -132,9 +134,9 @@ class _ConnectingOrganization extends State<UserAdministrator> {
                     children: [
                       Text("Дата испольнения/отклонения: ${connectionRequest.date_end}",
                           style: TextStyle(
-                              fontSize: 16, color: Colors.black54)),
+                              fontSize: 12, color: Colors.black54)),
                       Text("",
-                          style: TextStyle(fontSize: 16)),
+                          style: TextStyle(fontSize: 9)),
                     ],
                   ),
                        Column(
@@ -187,36 +189,151 @@ class _ConnectingOrganization extends State<UserAdministrator> {
     return ElevatedButton(
         onPressed: buttonCheck
             ? () async {
+          if (listStatusValue.toString() == "Откланен") {
+            post_id =
+            await _connectingOrganizationController.UpdateConnectionRequest(
+                connectionRequest.connection_request_id,
+                listStatusValue.toString(), DateTime.now());
 
+
+            await _connectingOrganizationController.getConnectionRequestByID(
+                post_id);
+
+            Widget okButton = TextButton(
+              child: Text("OK"),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            );
+
+            // set up the AlertDialog
+            AlertDialog alert = AlertDialog(
+              title: Text("Обновление данных"),
+              content: Text("Статус организации ${organization
+                  .organization_full_name} обновлен"),
+              actions: [
+                okButton,
+              ],
+            );
+
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return alert;
+              },
+            );
+          }
+          if (listStatusValue.toString() == "Завершен") {
+            post_id =
+            await _connectingOrganizationController.UpdateConnectionRequest(
+                connectionRequest.connection_request_id,
+                listStatusValue.toString(), DateTime.now());
+
+
+            await _connectingOrganizationController.getConnectionRequestByID(
+                post_id);
+
+            Widget okButton = TextButton(
+              child: Text("OK"),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            );
+
+            // set up the AlertDialog
+            AlertDialog alert = AlertDialog(
+              title: Text("Обновление данных"),
+              content: Text("Статус организации ${organization
+                  .organization_full_name} обновлен"),
+              actions: [
+                okButton,
+              ],
+            );
+
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return alert;
+              },
+            );
+          }
+
+          if (listStatusValue.toString() == "В работе") {
 // написал изменение статуса
 
-          post_id = await _connectingOrganizationController.UpdateConnectionRequest(connectionRequest.connection_request_id, listStatusValue.toString());
+            post_id =
+            await _connectingOrganizationController
+                .UpdateConnectionRequestNotDate(
+                connectionRequest.connection_request_id,
+                listStatusValue.toString());
 
 
-                await _connectingOrganizationController.getConnectionRequestByID(post_id);
+            await _connectingOrganizationController.getConnectionRequestByID(
+                post_id);
+            Widget okButton = TextButton(
+              child: Text("OK"),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            );
 
-          Widget okButton = TextButton(
-            child: Text("OK"),
-            onPressed: () {Navigator.pop(context);},
-          );
+            // set up the AlertDialog
+            AlertDialog alert = AlertDialog(
+              title: Text("Обновление данных"),
+              content: Text("Статус организации ${organization
+                  .organization_full_name} обновлен"),
+              actions: [
+                okButton,
+              ],
+            );
 
-          // set up the AlertDialog
-          AlertDialog alert = AlertDialog(
-            title: Text("Обновление данных"),
-            content: Text("Статус организации ${organization.organization_full_name} обновлен"),
-            actions: [
-              okButton,
-            ],
-          );
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return alert;
+              },
+            );
+          }
 
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return alert;
-            },
-          );
+          if (listStatusValue.toString() == "Новый") {
+// написал изменение статуса
 
+            post_id =
+            await _connectingOrganizationController
+                .UpdateConnectionRequestNotDate(
+                connectionRequest.connection_request_id,
+                listStatusValue.toString());
+
+
+            await _connectingOrganizationController.getConnectionRequestByID(
+                post_id);
+            Widget okButton = TextButton(
+              child: Text("OK"),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            );
+
+            // set up the AlertDialog
+            AlertDialog alert = AlertDialog(
+              title: Text("Обновление данных"),
+              content: Text("Статус организации ${organization
+                  .organization_full_name} обновлен"),
+              actions: [
+                okButton,
+              ],
+            );
+
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return alert;
+              },
+            );
+          }
         }
+
+
             : null,
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.black26, fixedSize: Size(320, 50)),
