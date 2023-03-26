@@ -9,14 +9,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="Повторно переписана страница администрирования, осталось дописать логику изменения заявки(x2)">
+    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="Наполовину написанная логика для изменения статуса">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/lib/controllers/ConnectingOrganization.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/controllers/ConnectingOrganization.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/button.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/list_applications.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/list_applications.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/user_administrator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/user_administrator.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_login_page/login_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_login_page/login_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/lib/repository/ConnectionRequest.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/repository/ConnectionRequest.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/repository/Organization.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/repository/Organization.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -363,7 +362,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679721069691</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Наполовину написанная логика для изменения статуса">
+      <created>1679771353408</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1679771353408</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -378,7 +384,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add postgres + test request" />
     <MESSAGE value="add postgres + get yandex" />
     <MESSAGE value="add postgres + get yandex(x2)" />
     <MESSAGE value="add form organization + registration" />
@@ -403,6 +408,7 @@
     <MESSAGE value="Переписал страницу администрирования, теперь при нажатии идет перенаправление на стр" />
     <MESSAGE value="Повторно переписана страница администрирования, осталось дописать логику изменения заявки" />
     <MESSAGE value="Повторно переписана страница администрирования, осталось дописать логику изменения заявки(x2)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Повторно переписана страница администрирования, осталось дописать логику изменения заявки(x2)" />
+    <MESSAGE value="Наполовину написанная логика для изменения статуса" />
+    <option name="LAST_COMMIT_MESSAGE" value="Наполовину написанная логика для изменения статуса" />
   </component>
 </project>

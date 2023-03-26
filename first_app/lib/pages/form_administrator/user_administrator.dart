@@ -6,7 +6,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:first_app/data/PionerDBContext.dart';
 
+import '../../models/ConnectionRequest.dart';
+import '../../models/Organization.dart';
 import '../form_login_page/login_page.dart';
+import '../form_organization/organization_register.dart';
 
 late int organization_id;
 late int post_id;
@@ -19,15 +22,15 @@ class UserAdministrator extends StatefulWidget {
 }
 
 class _ConnectingOrganization extends State<UserAdministrator> {
-  bool value = false;
-  bool buttonCheck = false;
+
+  bool buttonCheck = true;
 
   ConnectingOrganizationController _connectingOrganizationController = ConnectingOrganizationController();
   static const List<String> listStatus = <String>[
-    "НОВАЯ",
-    "В РАБОТЕ",
-    "ИСПОЛНЕНА",
-    "ОТКЛОНЕНА"
+    "Новый",
+    "В работе",
+    "Откланен",
+    "Завершен"
   ];
   final TextEditingController polnoeTextController = TextEditingController();
   final TextEditingController kratkoeTextController = TextEditingController();
@@ -41,6 +44,8 @@ class _ConnectingOrganization extends State<UserAdministrator> {
   final TextEditingController phoneNumberTextController = TextEditingController();
   final TextEditingController additionalInfoTextController = TextEditingController();
   String listStatusValue = listStatus.first;
+
+
   /*
   postOrganization() async {
     organization_id = await pionerDB.postOrganization(polnoeTextController.text, kratkoeTextController.text, innTextController.text, kppTextController.text,
@@ -55,6 +60,14 @@ class _ConnectingOrganization extends State<UserAdministrator> {
 
   @override
   Widget build(BuildContext context) {
+    List<Object?> arg = ModalRoute.of(context)!.settings.arguments as List<Object>;
+    connectionRequest = arg[0] as ConnectionRequest;
+    organization = arg[1] as Organization;
+
+    connectionRequest.printAttributes();
+    organization.printAttributes();
+
+
     return Scaffold(
       body: SingleChildScrollView(
           child: Padding(
@@ -68,10 +81,14 @@ class _ConnectingOrganization extends State<UserAdministrator> {
                   child: Padding(
                     padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
                     child: Column(
-                        children: [
+                        children: [Text("ПОЛЬЗОВАТЕЛЬ - АДМИНИСТРАТОР: ",
+                            style: TextStyle(
+                                fontSize: 17, color: Colors.black54)),
                     Row(
+
                     children: [
-                    Text("Текущий статус: ",
+
+                    Text("Измененный статус: ",
                         style: TextStyle(
                             fontSize: 16, color: Colors.black54)),
                     DropdownButton<String>(
@@ -96,23 +113,27 @@ class _ConnectingOrganization extends State<UserAdministrator> {
                     )
                     ],
                   ),
-                  SizedBox(height: 0),
+                          Row(
+                            children: [
+                              Text("Текущий статус: ${connectionRequest.status}", style: const TextStyle(fontSize: 16, color: Colors.black54)),
+                            ],
+
+                          ),
                   Row(
                     children: [
-                      Text("Дата создания: ",
+                      Text("Дата создания: ${connectionRequest.date_begin}",
                           style: TextStyle(
                               fontSize: 16, color: Colors.black54)),
-                      Text("18.12.2023",
+                      Text("",
                           style: TextStyle(fontSize: 16)),
                     ],
                   ),
-                  SizedBox(height: 8),
                   Row(
                     children: [
-                      Text("Дата испольнения/отклонения: ",
+                      Text("Дата испольнения/отклонения: ${connectionRequest.date_end}",
                           style: TextStyle(
                               fontSize: 16, color: Colors.black54)),
-                      Text("25.12.2023",
+                      Text("",
                           style: TextStyle(fontSize: 16)),
                     ],
                   ),
@@ -151,8 +172,6 @@ class _ConnectingOrganization extends State<UserAdministrator> {
                           SizedBox(height: 8),
                           textField_addInformation(),
                           SizedBox(height: 8),
-                          check_privacyPolicy(context),
-                          SizedBox(height: 8),
                           button(),
                         ],
                       ),
@@ -168,28 +187,35 @@ class _ConnectingOrganization extends State<UserAdministrator> {
     return ElevatedButton(
         onPressed: buttonCheck
             ? () async {
-          // todo я хз как нормально написать апдейт для статуса
-          organization_id = await _connectingOrganizationController.UpdateOrganization(
-              polnoeTextController.text,
-              kratkoeTextController.text,
-              innTextController.text,
-              kppTextController.text,
-              ogrnTextController.text,
-              surnameTextController.text,
-              nameTextController.text,
-              patronymicTextController.text,
-              emailTextController.text,
-              phoneNumberTextController.text,
-              additionalInfoTextController.text);
 
-          post_id = await _connectingOrganizationController.UpdateConnectionRequest(organization_id,
-              (organization_id + 1).toString(), DateTime.now(), "Новый");
+// написал изменение статуса
 
-          await Navigator.pushReplacementNamed(context, 'user_organization',
-              arguments: [
-                await _connectingOrganizationController.getConnectionRequestByID(post_id),
-                await _connectingOrganizationController.getOrganizationByID(organization_id)
-              ]);
+          post_id = await _connectingOrganizationController.UpdateConnectionRequest(connectionRequest.connection_request_id, listStatusValue.toString());
+
+
+                await _connectingOrganizationController.getConnectionRequestByID(post_id);
+
+          Widget okButton = TextButton(
+            child: Text("OK"),
+            onPressed: () {Navigator.pop(context);},
+          );
+
+          // set up the AlertDialog
+          AlertDialog alert = AlertDialog(
+            title: Text("Обновление данных"),
+            content: Text("Статус организации ${organization.organization_full_name} обновлен"),
+            actions: [
+              okButton,
+            ],
+          );
+
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return alert;
+            },
+          );
+
         }
             : null,
         style: ElevatedButton.styleFrom(
@@ -199,41 +225,8 @@ class _ConnectingOrganization extends State<UserAdministrator> {
             textAlign: TextAlign.center));
   }
 
-  Row check_privacyPolicy(BuildContext context) {
-    return Row(
-      children: [
-        Checkbox(
-            value: value,
-            onChanged: (bool? newValue) {
-              setState(() {
-                value = newValue!;
-                buttonCheck = value;
-              });
-            }),
-        Flexible(
-            child: RichText(
-              text: TextSpan(
-                  text: 'Принимаю условия ',
-                  style: TextStyle(fontSize: 18, color: Colors.black),
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: 'политики конфиденциальности',
-                        style: const TextStyle(
-                            color: Colors.blueAccent,
-                            fontSize: 18,
-                            decoration: TextDecoration.underline),
-                        recognizer: new TapGestureRecognizer()
-                          ..onTap = () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => PrivacyPolicy()));
-                          })
-                  ]),
-            )),
-      ],
-    );
-  }
+
+
 
   Row textField_addInformation() {
     return Row(

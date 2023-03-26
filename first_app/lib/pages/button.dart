@@ -3,6 +3,7 @@ import 'package:first_app/models/Customer.dart';
 import 'package:flutter/material.dart';
 import 'package:first_app/data/PionerDBContext.dart';
 
+import '../controllers/ConnectingOrganization.dart';
 import 'form_login_page/login_page.dart';
 
 class Button extends StatefulWidget {
@@ -13,6 +14,7 @@ class Button extends StatefulWidget {
 }
 ButtonController _buttonController = ButtonController();
 
+ConnectingOrganizationController _connectingOrganizationController = ConnectingOrganizationController();
 
 class _Button extends State<Button> {
   PionerDB pionerDB = PionerDB();
@@ -47,7 +49,8 @@ class _Button extends State<Button> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {_connectingOrganizationController.getAllConnectionRequest();
+                                },
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.black26,
                                   fixedSize: Size(120, 50)),
@@ -56,7 +59,7 @@ class _Button extends State<Button> {
                                       fontSize: 18, color: Colors.white),
                                   textAlign: TextAlign.center)),
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {_connectingOrganizationController.getConnectionRequestByID(66);},
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.black26,
                                   fixedSize: Size(120, 50)),

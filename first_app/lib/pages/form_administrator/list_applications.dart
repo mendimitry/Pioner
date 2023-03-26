@@ -8,6 +8,7 @@ import '../../controllers/ConnectingOrganization.dart';
 import '../../data/PionerDBContext.dart';
 import '../form_organization/connecting_organization.dart';
 import '../form_login_page/login_page.dart';
+import '../form_organization/organization_register.dart';
 
 class ListApplication extends StatefulWidget {
   const ListApplication({super.key});
@@ -53,23 +54,19 @@ var listStatus = [
   "ОТКЛОНЕНА",
 ];
 
-var organization1 = [
-  "1",
-  "08.03.2023",
-  "Белый лед",
-];
-var organization2 = [
-  "2",
-  "18.01.2023",
-  "Ласточка",
-];
-var organization3 = [
-  "3",
-  "26.04.2023",
-  "Каприз",
-];
-var mass = [organization1, organization2, organization3];
 String listStatusValue = listStatus.first;
+Future? _future;
+Future<dynamic> getData() async {
+  //you can have more functions here, for explanation purpose, i'll have 2
+  final data1 = await getAllConnectionRequest();
+  final data2 = await getAllConnectionRequest();
+  return [data1, data2];
+}
+
+@override
+void initState() {
+  _future = getData();
+}
 
 class _ListApplication extends State<ListApplication> {
   @override
@@ -194,6 +191,7 @@ class _ListApplication extends State<ListApplication> {
 }
 
 Container list_organization() {
+
   return Container(
     child: FutureBuilder<List<ConnectionRequest>>(
         future: usersFuture,
@@ -205,6 +203,7 @@ Container list_organization() {
             // return: show error widget
           }
           List<ConnectionRequest> users = snapshot.data ?? [];
+
           return ListView.builder(
               itemCount: users.length,
               primary: false,
@@ -219,16 +218,13 @@ Container list_organization() {
                       '${user.organization_id}'),
 
                   onTap: () async {
+                    organization = await _connectingOrganizationController
+                        .getOrganizationByID(user.organization_id);
+                    connectionRequest = await _connectingOrganizationController
+                        .getConnectionRequestByID(user.organization_id);
                     await Navigator.pushReplacementNamed(
                         context, 'user_administrator',
-                        arguments: [
-                          // await _connectingOrganizationController.getConnectionRequestByID(post_id),
-                          await _connectingOrganizationController
-                              .getOrganizationByID(user.organization_id),
-
-
-                    Navigator.pop(context, "${user.organization_id}"),
-                        ]);
+                        arguments: [connectionRequest, organization]);
 
                     //   Navigator.push(
                     //    context,
