@@ -29,7 +29,7 @@ class _ConnectingOrganization extends State<UserAdministrator> {
   static const List<String> listStatus = <String>[
     "Новый",
     "В работе",
-    "Откланен",
+    "Отклонен",
     "Завершен"
   ];
   final TextEditingController polnoeTextController = TextEditingController();
@@ -48,17 +48,6 @@ class _ConnectingOrganization extends State<UserAdministrator> {
   final DateTime date3 = DateTime.parse('2023-03-26');
 
   final dDay = DateTime.utc(2000, 1, 1);
-  /*
-  postOrganization() async {
-    organization_id = await pionerDB.postOrganization(polnoeTextController.text, kratkoeTextController.text, innTextController.text, kppTextController.text,
-        ogrnTextController.text, surnameTextController.text, nameTextController.text, patronymicTextController.text, emailTextController.text,
-        phoneNumberTextController.text, additionalInfoTextController.text);
-
-
-    post_id = await pionerDB.postStatusOrganization(organization_id, (organization_id + 1).toString(), DateTime.now(), "Новый");
-  }
-*/
-
 
   @override
   Widget build(BuildContext context) {
@@ -189,7 +178,7 @@ class _ConnectingOrganization extends State<UserAdministrator> {
     return ElevatedButton(
         onPressed: buttonCheck
             ? () async {
-          if (listStatusValue.toString() == "Откланен") {
+          if (listStatusValue.toString() == "Отклонен") {
             post_id =
             await _connectingOrganizationController.UpdateConnectionRequest(
                 connectionRequest.connection_request_id,

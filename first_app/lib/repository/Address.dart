@@ -57,27 +57,24 @@ class AddressRepository implements IAddressRepository{
   }
 
   @override
-  Future<List<String>> getAllCityFromAddresses() async{
+  Future<List<Map<String, dynamic>>> getAllCityFromAddresses() async{
     //Подключаемся к БД
     await _pionerDB.initDatabaseConnection();
 
-    //Получаем список всех пользователей
     List<Map<String, dynamic>> query = await _pionerDB.dbConnection.mappedResultsQuery('SELECT DISTINCT city_name from address');
     print(query);
-    String _address;
-    List<String> _addresses = [];
+    Map<String, dynamic> _address;
+    List<Map<String, dynamic>> _addresses = [];
     for (var element in query) {
       for (var subElement in element.values) {
-        _address=subElement.toString();
+        _address={'city': subElement['city_name']};
         print(_address);
-
         _addresses.add(_address);
       }
     }
     //Закрываем соединение с БД
     await _pionerDB.closeDatabaseConnection();
 
-    //Возвращаем всех полученных пользователей
     return _addresses;
   }
 

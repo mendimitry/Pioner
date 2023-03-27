@@ -33,7 +33,7 @@ class _RecordConfirmation extends State<RecordConfirmation> {
     _days = widget.days;
     _resultTime = widget.resultTime;
     listResult = [
-      {"name": _resultAddress[1]["name"], "address": _resultAddress[1]["address"],"city": _resultAddress[0]["city"], "days": _days, "time": _resultTime, "serviceValue": _serviceValue},
+      {"name": _resultAddress[0]["name"], "address": _resultAddress[0]["address"],"city": _resultAddress[0]["city"], "days": _days, "time": _resultTime, "serviceValue": _serviceValue},
     ];
   }
   @override
@@ -53,9 +53,9 @@ class _RecordConfirmation extends State<RecordConfirmation> {
                         " в " +
                         _resultTime +
                         " в " +
-                        _resultAddress[1]["name"].toString() +
+                        _resultAddress[0]["name"].toString() +
                         " по адресу: " +
-                        _resultAddress[1]["address"].toString(),
+                        _resultAddress[0]["address"].toString(),
                     style: TextStyle(
                       fontSize: 20,
                     ),

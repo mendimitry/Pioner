@@ -6,7 +6,6 @@ import '../form_chooising_organization/choosing_organization.dart';
 import '../form_chooising_time/Choosing_time_service.dart';
 import '../form_login_page/login_page.dart';
 
-
 class CompositionServices extends StatefulWidget {
   List<Map<String, dynamic>> resultAddress;
   String serviceValue;
@@ -85,8 +84,9 @@ class _CompositionServices extends State<CompositionServices> {
   @override
   void initState() {
     _resultAddress = widget.resultAddress;
+    print(_resultAddress);
     _serviceValue = widget.serviceValue;
-    _textNameOrganization = widget.resultAddress[1]["name"];
+    _textNameOrganization = widget.resultAddress[0]["name"];
     if (_serviceValue == "Мойка") {
       _listService = _listServiceCarWash;
     } else if (_serviceValue == "Шиномонтаж") {

@@ -23,10 +23,10 @@ final TextEditingController regNumberTextController = TextEditingController();
 final TextEditingController DateCreateTextController = TextEditingController();
 final TextEditingController kratkoeTextController = TextEditingController();
 ListApplicationController _listApplicationController =
-    ListApplicationController();
+ListApplicationController();
 
 Future<List<ConnectionRequest>> usersFuture =
-    _listApplicationController.getAllConnectionRequest();
+_listApplicationController.getAllConnectionRequest();
 
 var listStatus = [
   "НОВАЯ",
@@ -57,7 +57,7 @@ class _ListApplication extends State<ListApplication> {
                       color: Colors.white38,
                       child: Padding(
                           padding:
-                              EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                          EdgeInsets.only(left: 10, right: 10, bottom: 10),
                           child: Column(children: [
                             Row(
                               children: [
@@ -73,11 +73,11 @@ class _ListApplication extends State<ListApplication> {
                                   items: listStatus
                                       .map<DropdownMenuItem<String>>(
                                           (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
                                   onChanged: (String? value) {
                                     // This is called when the user selects an item.
                                     setState(() {
@@ -106,52 +106,52 @@ class _ListApplication extends State<ListApplication> {
                                       )),
                                   Container(
                                       child: Table(
-                                    border: TableBorder.symmetric(
-                                        inside: BorderSide(
-                                            width: 1, color: Colors.black)),
-                                    columnWidths: const <int, TableColumnWidth>{
-                                      0: FixedColumnWidth(40),
-                                      1: FixedColumnWidth(200),
-                                    },
-                                    children: [
-                                      TableRow(
-                                          decoration: BoxDecoration(
-                                              color: Colors.black12),
-                                          children: [
-                                            Container(
-                                              // color: Colors.white,
-                                              height: 60,
-                                              child: Text(
-                                                "Рег. №",
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                            Container(
-                                              //  color: Colors.white,
-                                              height: 60,
-                                              child: Text("Дата создания",
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                      fontSize: 16,
-                                                      color: Colors.white)),
-                                            ),
-                                            Container(
-                                              // color: Colors.white,
-                                              height: 60,
-                                              child: Text(
-                                                  "Краткое\n"
-                                                  "наим. -е\nорганизации",
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                      fontSize: 16,
-                                                      color: Colors.white)),
-                                            ),
-                                          ])
-                                    ],
-                                  )),
+                                        border: TableBorder.symmetric(
+                                            inside: BorderSide(
+                                                width: 1, color: Colors.black)),
+                                        columnWidths: const <int, TableColumnWidth>{
+                                          0: FixedColumnWidth(40),
+                                          1: FixedColumnWidth(200),
+                                        },
+                                        children: [
+                                          TableRow(
+                                              decoration: BoxDecoration(
+                                                  color: Colors.black12),
+                                              children: [
+                                                Container(
+                                                  // color: Colors.white,
+                                                  height: 60,
+                                                  child: Text(
+                                                    "Рег. №",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        fontSize: 16,
+                                                        color: Colors.white),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  //  color: Colors.white,
+                                                  height: 60,
+                                                  child: Text("Дата создания",
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(
+                                                          fontSize: 16,
+                                                          color: Colors.white)),
+                                                ),
+                                                Container(
+                                                  // color: Colors.white,
+                                                  height: 60,
+                                                  child: Text(
+                                                      "Краткое\n"
+                                                          "наим. -е\nорганизации",
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(
+                                                          fontSize: 16,
+                                                          color: Colors.white)),
+                                                ),
+                                              ])
+                                        ],
+                                      )),
                                   _listApplicationController.list_organization()
                                 ],
                               ),

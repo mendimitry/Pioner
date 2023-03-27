@@ -9,18 +9,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="Дописал полноценную логику для административной панели">
+    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="Обновлены страницы мойки и шиномонтажки">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/controllers/ConnectingOrganization.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/controllers/ConnectingOrganization.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/list_applications.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/list_applications.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_chooising_organization/choosing_organization_car_wash.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_chooising_organization/choosing_organization_tire_service.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_chooising_service/choosing_service.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_chooising_time/Choosing_time_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_chooising_time/Choosing_time_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_composition_services_car_wash/composition_services_car_wash.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_end/record_confirmation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_end/record_confirmation.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_register_number_telephone/auto_user_register_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_register_number_telephone/auto_user_register_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_routing/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_routing/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/user_administrator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/user_administrator.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_chooising_organization/choosing_organization.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_chooising_organization/choosing_organization.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/repository/Address.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/repository/Address.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/repository/Address_Interface.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/repository/Address_Interface.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -388,7 +383,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679845536886</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Обновлены страницы мойки и шиномонтажки">
+      <created>1679909219422</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1679909219422</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -403,7 +405,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add form organization + registration" />
     <MESSAGE value="add instruction for backend developer" />
     <MESSAGE value="adding and removing a user" />
     <MESSAGE value="add connect organization" />
@@ -428,6 +429,7 @@
     <MESSAGE value="Наполовину написанная логика для изменения статуса" />
     <MESSAGE value="Написана полноценная логика для изменения статуса организации" />
     <MESSAGE value="Дописал полноценную логику для административной панели" />
-    <option name="LAST_COMMIT_MESSAGE" value="Дописал полноценную логику для административной панели" />
+    <MESSAGE value="Обновлены страницы мойки и шиномонтажки" />
+    <option name="LAST_COMMIT_MESSAGE" value="Обновлены страницы мойки и шиномонтажки" />
   </component>
 </project>

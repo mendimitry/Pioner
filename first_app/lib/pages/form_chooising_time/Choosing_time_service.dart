@@ -2,11 +2,10 @@ import 'package:first_app/pages/form_end/record_confirmation.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_radio_group/flutter_radio_group.dart';
-
 import '../form_composition_services_car_wash/composition_services.dart';
 import '../form_login_page/login_page.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_radio_group/flutter_radio_group.dart';
 
 class ChoosingTimeService extends StatefulWidget {
   List<Map<String, dynamic>> resultAddress;
@@ -104,8 +103,8 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
     _listService = widget.listServiceResult;
     _serviceValue = widget.serviceValue;
     _resultValue = widget.resultValue;
-    _addressText = _resultAddress[1]["address"];
-    _nameText = _resultAddress[1]["name"];
+    _addressText = _resultAddress[0]["address"];
+    _nameText = _resultAddress[0]["name"];
     if (_serviceValue == "Мойка") {
       _timesToday = _timesTodayCarWash;
       _timesTomorrow = _timesTomorrowCarWash;
