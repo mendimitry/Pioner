@@ -9,14 +9,18 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="Написана полноценная логика для изменения статуса организации">
+    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="Дописал полноценную логику для административной панели">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/lib/controllers/ConnectingOrganization.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/controllers/ConnectingOrganization.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/list_applications.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/list_applications.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/user_administrator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/user_administrator.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/repository/ConnectionRequest.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/repository/ConnectionRequest.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_chooising_organization/choosing_organization_car_wash.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_chooising_organization/choosing_organization_tire_service.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_chooising_service/choosing_service.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_chooising_time/Choosing_time_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_chooising_time/Choosing_time_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_composition_services_car_wash/composition_services_car_wash.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_end/record_confirmation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_end/record_confirmation.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_register_number_telephone/auto_user_register_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_register_number_telephone/auto_user_register_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_routing/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_routing/main.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,20 +51,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/DmitryDima/Desktop/androidbuild&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "io.flutter.reload.alreadyRun": "true",
+    "last_opened_file_path": "C:/Users/DmitryDima/Desktop/Pioner7/Pioner7/first_app",
+    "settings.editor.selected.configurable": "editor.preferences.tabs",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\DmitryDima\Desktop\androidbuild\first_app\lib\data" />
@@ -70,11 +74,11 @@
       <recent name="C:\Users\DmitryDima\Desktop\androidbuild\first_app\lib\pages\form_chooising_organization" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\DmitryDima\Desktop\androidbuild\first_app\lib\models" />
-      <recent name="C:\Users\DmitryDima\Desktop\androidbuild\first_app\lib" />
-      <recent name="C:\Users\DmitryDima\Desktop\androidbuild\first_app" />
-      <recent name="C:\Users\DmitryDima\Desktop\androidbuild\first_app\lib\pages\form_routing" />
-      <recent name="C:\Users\DmitryDima\Desktop\androidbuild\first_app\lib\pages\form_login_page" />
+      <recent name="C:\Users\DmitryDima\Desktop\androidbuild\first_app\lib\pages\form_end" />
+      <recent name="C:\Users\DmitryDima\Desktop\androidbuild\first_app\lib\pages\form_composition_services_car_wash" />
+      <recent name="C:\Users\DmitryDima\Desktop\androidbuild\first_app\lib\pages\form_chooising_time" />
+      <recent name="C:\Users\DmitryDima\Desktop\androidbuild\first_app\lib\pages\form_chooising_service" />
+      <recent name="C:\Users\DmitryDima\Desktop\androidbuild\first_app\lib\pages\form_chooising_organization" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -377,7 +381,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679819290879</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Дописал полноценную логику для административной панели">
+      <created>1679845536886</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1679845536886</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -392,7 +403,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add postgres + get yandex(x2)" />
     <MESSAGE value="add form organization + registration" />
     <MESSAGE value="add instruction for backend developer" />
     <MESSAGE value="adding and removing a user" />
@@ -417,6 +427,7 @@
     <MESSAGE value="Повторно переписана страница администрирования, осталось дописать логику изменения заявки(x2)" />
     <MESSAGE value="Наполовину написанная логика для изменения статуса" />
     <MESSAGE value="Написана полноценная логика для изменения статуса организации" />
-    <option name="LAST_COMMIT_MESSAGE" value="Написана полноценная логика для изменения статуса организации" />
+    <MESSAGE value="Дописал полноценную логику для административной панели" />
+    <option name="LAST_COMMIT_MESSAGE" value="Дописал полноценную логику для административной панели" />
   </component>
 </project>

@@ -1,60 +1,130 @@
-import 'dart:async';
-import 'package:first_app/data/composition_of_services.dart';
 import 'package:first_app/pages/form_end/record_confirmation.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import 'package:first_app/models/service.dart';
-import '../form_chooising_organization/choosing_organization_car_wash.dart';
-import '../form_composition_services_car_wash/composition_services_car_wash.dart';
-import '../form_login_page/login_page.dart';
-import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_radio_group/flutter_radio_group.dart';
 
+import '../form_composition_services_car_wash/composition_services.dart';
+import '../form_login_page/login_page.dart';
+
 class ChoosingTimeService extends StatefulWidget {
-  const ChoosingTimeService({super.key});
+  List<Map<String, dynamic>> resultAddress;
+  List<Map<String, dynamic>> listServiceResult;
+  String serviceValue;
+  num resultValue;
+
+  ChoosingTimeService(
+      {super.key,
+      required this.listServiceResult,
+      required this.resultAddress,
+      required this.serviceValue,
+      required this.resultValue});
 
   State<ChoosingTimeService> createState() => _ChoosingTimeService();
 }
 
-var _timesToday = [
-  "11:20",
-  "13:40",
-  "14:20",
-  "15:40",
-  "16:25",
-  "11:20",
-  "13:40",
-  "14:20",
-  "15:40",
-  "16:25"
-];
-var _timesTomorrow = [
-  "11:25",
-  "12:40",
-  "14:20",
-  "15:40",
-  "16:25",
-  "15:40",
-  "16:25",
-  "11:20",
-  "13:40",
-  "14:20",
-];
-var _indexTimesToday = 0;
-var _indexTimesTomorrow = 0;
-bool _visibleToday = true;
-bool _visibleTomorrow = false;
-
 class _ChoosingTimeService extends State<ChoosingTimeService> {
+  num _valueTime = 0;
+  var _listTime;
+  var _indexTimes = 0;
+  String _resultTime = "";
+  String _days = "Сегодня";
+  List<Map<String, dynamic>> _listServiceResult = [];
+  String _serviceValue = "";
+  num _resultValue = 0;
+  List<Map<String, dynamic>> _listService = [];
+  List<Map<String, dynamic>> _resultAddress = [];
+  String _addressText = '';
+  String _nameText = '';
+  void _resultValueTime() {
+    for (int i = 0; i < _listService.length; i++) {
+      _valueTime += _listService[i]["timeValue"];
+    }
+  }
+
+  final _timesTodayCarWash = [
+    "11:20",
+    "13:40",
+    "14:20",
+    "15:40",
+    "16:25",
+    "11:20",
+    "13:40",
+    "14:20",
+    "15:40",
+    "16:25"
+  ];
+  final _timesTomorrowCarWash = [
+    "11:25",
+    "12:40",
+    "14:20",
+    "15:40",
+    "16:25",
+    "15:40",
+    "16:25",
+    "11:20",
+    "13:40",
+    "14:20",
+    "14:20",
+    "14:20",
+  ];
+  final _timesTomorrowTireService = [
+    "11:",
+    "12:0",
+    "14:20",
+    "15:0",
+    "16:25",
+    "15:40",
+    "16:25",
+    "11:20",
+    "13:40",
+    "14:20",
+    "14:20",
+    "14:20",
+  ];
+  final _timesTodayTireService = [
+    "11:20",
+    "13:10",
+    "14:10",
+    "15:10",
+    "16:15",
+    "11:10",
+    "13:10",
+    "14:10",
+    "15:10",
+    "16:15"
+  ];
+  var _timesToday = [];
+  var _timesTomorrow = [];
+
+  @override
+  void initState() {
+    _resultAddress = widget.resultAddress;
+    _listService = widget.listServiceResult;
+    _serviceValue = widget.serviceValue;
+    _resultValue = widget.resultValue;
+    _addressText = _resultAddress[1]["address"];
+    _nameText = _resultAddress[1]["name"];
+    if (_serviceValue == "Мойка") {
+      _timesToday = _timesTodayCarWash;
+      _timesTomorrow = _timesTomorrowCarWash;
+    } else if (_serviceValue == "Шиномонтаж") {
+      _timesToday = _timesTodayTireService;
+      _timesTomorrow = _timesTomorrowTireService;
+    }
+    _resultValueTime();
+    _listTime = _timesToday;
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey,
-      body:
-      SingleChildScrollView(
-          child:
-          Padding(
+      body: SingleChildScrollView(
+          child: Padding(
               padding: const EdgeInsets.only(top: 15),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,39 +137,56 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
                           children: [
                             location(),
                             SizedBox(height: 12),
-                            TextInformation(),
+                            ListService(),
+                            Divider(
+                              color: Colors.black,
+                            ),
+                            ResultRow(),
                             SizedBox(
                               height: 10,
                             ),
                             ButtonDays(),
                             Center(
                                 child: Text(
-                                  "Время записи",
-                                  style: TextStyle(fontSize: 18),
-                                )),
+                              "Время записи",
+                              style: TextStyle(fontSize: 18),
+                            )),
                             SizedBox(
                               height: 10,
                             ),
-                            Row(
-                              children: [ListTimsToday(), ListTimsToomorrow()],
+                            Center(
+                              child: ListTime(_listTime),
                             ),
                             SizedBox(
                               height: 10,
                             ),
                             ButtonNext(context),
+                            SizedBox(
+                              height: 10,
+                            ),
                           ],
                         ))
-                  ]))
-      ),
+                  ]))),
     );
   }
+
+
+
+
+
+
+
+
 
   Center ButtonNext(BuildContext context) {
     return Center(
       child: ElevatedButton(
         onPressed: () {
+          _resultTime = _listTime[_indexTimes];
+          print(_resultTime); // _resultTime и _days нужно передать в push
+          print(_days);
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => RecordConfirmation()));
+              MaterialPageRoute(builder: (context) => RecordConfirmation(resultAddress: _resultAddress, listService: _listService, serviceValue: _serviceValue, days: _days, resultTime: _resultTime)));
         },
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.black26, fixedSize: Size(300, 50)),
@@ -110,15 +197,24 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
     );
   }
 
+
+
+
+
+
+
+
+
+
   ListView location() {
-    return ListView(shrinkWrap: true, children: [
+    return ListView(shrinkWrap: true, padding: EdgeInsets.zero, children: [
       Text(
-        "Авангард",
+        _nameText,
         style: TextStyle(fontSize: 18),
       ),
       SizedBox(height: 5),
       Text(
-        "Походный проезд д.10",
+      _addressText,
         style: TextStyle(fontSize: 18),
       ),
       SizedBox(height: 12),
@@ -137,12 +233,12 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
         TextButton(
             style: ButtonStyle(
                 padding:
-                MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(0))),
+                    MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(0))),
             onPressed: () {
               setState(() {
-                if (_visibleToday == false) {
-                  _visibleTomorrow = !_visibleTomorrow;
-                  _visibleToday = !_visibleToday;
+                if (_listTime == _timesTomorrow) {
+                  _listTime = _timesToday;
+                  _days = "Сегодня";
                 }
               });
             },
@@ -153,12 +249,12 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
         TextButton(
             style: ButtonStyle(
                 padding:
-                MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(0))),
+                    MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(0))),
             onPressed: () {
               setState(() {
-                if (_visibleTomorrow == false) {
-                  _visibleTomorrow = !_visibleTomorrow;
-                  _visibleToday = !_visibleToday;
+                if (_listTime == _timesToday) {
+                  _listTime = _timesTomorrow;
+                  _days = "Завтра";
                 }
               });
             },
@@ -168,147 +264,56 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
     );
   }
 
-  ListView TextInformation() {
-    return ListView(
-      // scrollDirection: Axis.vertical,
-      padding: EdgeInsets.zero,
-      shrinkWrap: true,
+  Row ResultRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "Мойка днища",
-              style: TextStyle(fontSize: 18),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  "200 RUB",
-                  style: TextStyle(fontSize: 18),
-                ),
-                SizedBox(width: 10,),
-                Text(
-                  "20 мин",
-                  style: TextStyle(fontSize: 18),
-                ),
-              ],
-            )
-
-          ],
-        ),
-        SizedBox(height: 5),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "Мойка двигателя",
-              style: TextStyle(fontSize: 18),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  "250 RUB",
-                  style: TextStyle(fontSize: 18),
-                ),
-                SizedBox(width: 10,),
-                Text(
-                  "15 мин",
-                  style: TextStyle(fontSize: 18),
-                ),
-              ],
-            )
-
-          ],
-        ),
-        Divider(
-          color: Colors.black,
+        Text(
+          "Итого",
+          style: TextStyle(fontSize: 16),
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-              "Итого",
-              style: TextStyle(fontSize: 18),
+              "$_resultValue RUB",
+              style: TextStyle(fontSize: 16),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  "450 RUB",
-                  style: TextStyle(fontSize: 18),
-                ),
-                SizedBox(width: 10,),
-                Text(
-                  "35 мин",
-                  style: TextStyle(fontSize: 18),
-                ),
-              ],
-            )
-
+            SizedBox(
+              width: 10,
+            ),
+            Text(
+              "$_valueTime мин",
+              style: TextStyle(fontSize: 16),
+            ),
           ],
-        ),
+        )
       ],
     );
   }
 
-  Visibility ListTimsToday() {
-    return Visibility(
-        maintainSize: true,
-        maintainAnimation: true,
-        maintainState: true,
-        visible: _visibleToday,
-        child: Container(
-          width: 180,
-          height: 400,
-          color: Colors.black12,
-          child: (ListView(
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            children: [
-              FlutterRadioGroup(
-                  titleStyle: TextStyle(fontSize: 22),
-                  activeColor: Colors.blue,
-                  titles: _timesToday,
-                  defaultSelected: _indexTimesToday,
-                  onChanged: (index) {
-                    setState(() {
-                      _indexTimesToday = index!;
-                    });
-                  })
-            ],
-          )),
-        ));
-  }
-
-  Visibility ListTimsToomorrow() {
-    return Visibility(
-        maintainSize: true,
-        maintainAnimation: true,
-        maintainState: true,
-        visible: _visibleTomorrow,
-        child: Container(
-          width: 180,
-          height: 400,
-          color: Colors.black12,
-          child: (ListView(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              children: [
-                FlutterRadioGroup(
-                    titleStyle: TextStyle(fontSize: 22),
-                    activeColor: Colors.blue,
-                    titles: _timesTomorrow,
-                    defaultSelected: _indexTimesTomorrow,
-                    onChanged: (index) {
-                      setState(() {
-                        _indexTimesTomorrow = index!;
-                      });
-                    })
-              ])),
-        ));
+  Container ListTime(var _listTime) {
+    return Container(
+      width: 180,
+      height: 380,
+      color: Colors.black12,
+      child: ListView(
+          padding: EdgeInsets.zero,
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          children: [
+            FlutterRadioGroup(
+                titleStyle: TextStyle(fontSize: 22),
+                activeColor: Colors.blue,
+                titles: _listTime,
+                defaultSelected: _indexTimes,
+                onChanged: (index) {
+                  setState(() {
+                    _indexTimes = index!;
+                  });
+                })
+          ]),
+    );
   }
 
   Row transition(BuildContext context) {
@@ -322,8 +327,10 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                CompositionServicesCarWash()));
+                            builder: (context) => CompositionServices(
+                                  resultAddress: [],
+                                  serviceValue: '',
+                                )));
                   },
                   icon: Icon(Icons.logout))),
           IconButton(
@@ -333,5 +340,54 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
               },
               icon: Icon(Icons.logout))
         ]);
+  }
+
+  ListView ListService() {
+    return ListView.builder(
+        padding: EdgeInsets.zero,
+        shrinkWrap: true,
+        itemCount: _listService.length,
+        itemBuilder: (BuildContext context, int index) {
+          final service = _listService[index];
+          return ListView(
+              scrollDirection: Axis.vertical,
+              padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Text((index + 1).toString() + "."),
+                        SizedBox(
+                          width: 2,
+                        ),
+                        Text(
+                          service["nameService"],
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          "${service["value"]} RUB",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "${service["timeValue"]} мин",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    )
+                  ],
+                )
+              ]);
+        });
   }
 }

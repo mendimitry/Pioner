@@ -1,25 +1,20 @@
 // Выбор услуги
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_app/pages/form_login_page/login_page.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'dart:math' as math;
+import '../form_chooising_organization/choosing_organization.dart';
 
-import '../form_register_number_telephone/auto_user_register_page.dart';
-import '../form_chooising_organization/choosing_organization_car_wash.dart';
-import '../form_chooising_organization/choosing_organization_tire_service.dart';
 
 enum services { car_wash, tire_service }
 
-class ChoosingSerice extends StatefulWidget {
-  const ChoosingSerice({super.key});
+class ChoosingServices extends StatefulWidget {
+  const ChoosingServices({super.key});
 
   @override
-  State<ChoosingSerice> createState() => _ChoosingSerice();
+  State<ChoosingServices> createState() => _ChoosingServices();
 }
 
-class _ChoosingSerice extends State<ChoosingSerice> {
+class _ChoosingServices extends State<ChoosingServices> {
+  String _serviceValue = "Мойка";
   services? _service = services.car_wash;
 
   @override
@@ -55,16 +50,12 @@ class _ChoosingSerice extends State<ChoosingSerice> {
   ElevatedButton ButtonChoosingService(BuildContext context) {
     return ElevatedButton(
         onPressed: () {
-          if (_service == services.car_wash) {
+          print(_serviceValue); // _serviceValue нужно передать в push
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => ChoosingOrganizationCarWash()));
-          } else
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ChoosingOrganizationTireService()));
+                    builder: (context) =>
+                     ChoosingOrganization(serviceValue: _serviceValue)));
         },
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.black26, fixedSize: Size(300, 50)),
@@ -82,6 +73,7 @@ class _ChoosingSerice extends State<ChoosingSerice> {
         onChanged: (services? value) {
           setState(() {
             _service = value;
+            _serviceValue = "Шиномонтаж";
           });
         },
       ),
@@ -96,6 +88,7 @@ class _ChoosingSerice extends State<ChoosingSerice> {
         groupValue: _service,
         onChanged: (services? value) {
           setState(() {
+            _serviceValue = "Мойка";
             _service = value;
           });
         },

@@ -37,7 +37,7 @@ class ConnectingOrganizationController{
     return _connectionRequestRepository.getConnectionRequestByID(organization_id);
   }
 
-  Future<Future<List<ConnectionRequest>>> getAllConnectionRequest() async{
+  Future<List<ConnectionRequest>> getAllConnectionRequest() async{
     return _connectionRequestRepository.getAllConnectionRequest();
   }
 

@@ -85,7 +85,7 @@ class _MyPhoneState extends State<AutoUserRegister> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ChoosingSerice()));
+                                  builder: (context) => ChoosingServices()));
                         },
                         icon: Icon(Icons.logout))
                   ]),

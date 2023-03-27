@@ -1,3 +1,4 @@
+import 'package:first_app/controllers/ListApplication.dart';
 import 'package:first_app/models/ConnectionRequest.dart';
 import 'package:first_app/pages/form_administrator/user_administrator.dart';
 import 'package:first_app/pages/form_chooising_service/choosing_service.dart';
@@ -21,33 +22,12 @@ PionerDB pionerDB = PionerDB();
 final TextEditingController regNumberTextController = TextEditingController();
 final TextEditingController DateCreateTextController = TextEditingController();
 final TextEditingController kratkoeTextController = TextEditingController();
-ConnectingOrganizationController _connectingOrganizationController =
-    ConnectingOrganizationController();
-Future<List<ConnectionRequest>> getAllConnectionRequest() async {
-  await pionerDB.initDatabaseConnection();
+ListApplicationController _listApplicationController =
+    ListApplicationController();
 
-  var query = await pionerDB.dbConnection
-      .mappedResultsQuery('SELECT * from connection_request');
-  //Нулевой объект
-  ConnectionRequest _connectionRequest;
-  List<ConnectionRequest> _conncetionRequests = [];
-  for (var element in query) {
-    for (var subElement in element.values) {
-      _connectionRequest = ConnectionRequest.fromReqBody(subElement);
-      _connectionRequest.printAttributes();
+Future<List<ConnectionRequest>> usersFuture =
+    _listApplicationController.getAllConnectionRequest();
 
-      _conncetionRequests.add(_connectionRequest);
-    }
-  }
-  //Закрываем соединение с БД
-  await pionerDB.closeDatabaseConnection();
-
-  //Возвращаем всех полученных пользователей
-  return _conncetionRequests;
-}
-
-
-Future<List<ConnectionRequest>> usersFuture = getAllConnectionRequest();
 var listStatus = [
   "НОВАЯ",
   "В РАБОТЕ",
@@ -57,17 +37,9 @@ var listStatus = [
 
 String listStatusValue = listStatus.first;
 Future? _future;
-Future<dynamic> getData() async {
-  //you can have more functions here, for explanation purpose, i'll have 2
-  final data1 = await getAllConnectionRequest();
-  final data2 = await getAllConnectionRequest();
-  return [data1, data2];
-}
 
 @override
-void initState() {
-  _future = getData();
-}
+void initState() {}
 
 class _ListApplication extends State<ListApplication> {
   @override
@@ -180,7 +152,7 @@ class _ListApplication extends State<ListApplication> {
                                           ])
                                     ],
                                   )),
-                                  list_organization()
+                                  _listApplicationController.list_organization()
                                 ],
                               ),
                             ),
@@ -189,57 +161,6 @@ class _ListApplication extends State<ListApplication> {
                   )
                 ]))));
   }
-}
-
-Container list_organization() {
-
-  return Container(
-    child: FutureBuilder<List<ConnectionRequest>>(
-        future: usersFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState != ConnectionState.done) {
-            // return: show loading widget
-          }
-          if (snapshot.hasError) {
-            // return: show error widget
-          }
-          List<ConnectionRequest> users = snapshot.data ?? [];
-
-          return ListView.builder(
-              itemCount: users.length,
-              primary: false,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                ConnectionRequest user = users[index];
-                return ListTile(
-                  title: new Text('${user.reg_number}' +
-                      "      " +
-                      '${user.date_begin}' +
-                      "      " +
-                      '${user.organization_id}'),
-
-                  onTap: () async {
-                    organization = await _connectingOrganizationController
-                        .getOrganizationByID(user.organization_id);
-                    connectionRequest = await _connectingOrganizationController
-                        .getConnectionRequestByID(user.organization_id);
-                    await Navigator.pushReplacementNamed(
-                        context, 'user_administrator',
-                        arguments: [connectionRequest, organization]);
-
-                    //   Navigator.push(
-                    //    context,
-                    //   new MaterialPageRoute(
-                    //       builder: (context) => UserAdministrator()));
-                  },
-
-                  // onTap: () {
-                  //  Navigator.push(context,
-                  //      new MaterialPageRoute(builder: (context) => new ChoosingSerice()));
-                );
-              });
-        }),
-  );
 }
 
 Row transition(BuildContext context) {

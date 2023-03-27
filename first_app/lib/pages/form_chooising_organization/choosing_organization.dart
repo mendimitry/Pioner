@@ -2,46 +2,75 @@
 
 import 'package:first_app/pages/form_login_page/login_page.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/simple/list_notifier.dart';
 import 'dart:math' as math;
-import 'package:first_app/pages/form_chooising_service/choosing_service.dart';
-import 'package:first_app/pages/form_composition_services_car_wash/composition_services_car_wash.dart';
 
-class ChoosingOrganizationCarWash extends StatefulWidget {
-  const ChoosingOrganizationCarWash({super.key});
+import '../form_chooising_service/choosing_service.dart';
+import '../form_composition_services_car_wash/composition_services.dart';
+
+
+
+
+class ChoosingOrganization extends StatefulWidget {
+  final String serviceValue;
+  const ChoosingOrganization({super.key, required this.serviceValue});
 
   @override
-  State<ChoosingOrganizationCarWash> createState() =>
-      _ChoosingOrganizationCarWash();
+  State<ChoosingOrganization> createState() => _ChoosingOrganization();
 }
-
-List<Map<String, dynamic>> _listOrganization = [
-  {"name": "АвтоМир", "adress": "ул. Чекистов, д. 3"},
-  {"name": "АвтоМssир", "adress": "ул. Чекистов, д. 5"},
-  {"name": "Авто", "adress": "ул. Чекистов, д. 6"},
-  {"name": "Автsdfо", "adress": "ул. Чекистов, д. 6"},
+List<Map<String, dynamic>> _listOrganizationCarWash = [
+  // ДАННЫЕ МОЙКИ
+  {"name": "АвтоМир", "address": "ул. Чекистов, д. 3"},
+  {"name": "АвтоМssир", "address": "ул. Чекистов, д. 5"},
+  {"name": "Авто", "address": "ул. Чекистов, д. 6"},
+  {"name": "Автsdfо", "address": "ул. Чекистов, д. 6"},
 ];
 
-List<Map<String, dynamic>> _listCity = [
+List<Map<String, dynamic>> _listOrganizationTireService = [
+  // ДАННЫЕ ШИНОМОНТАЖКИ
+  {"name": "Автофыв", "address": "ул. выа, д. 3"},
+  {"name": "Авфывр", "address": "ул. Чекиспатов, д. 5"},
+  {"name": "Аывавы", "address": "ул. Чеавпавпкистов, д. 6"},
+  {"name": "Авва", "address": "ул. авпап, д. 6"},
+];
+
+List<Map<String, dynamic>> _listCityCarWash = [
+  // ДАННЫЕ МОЙКИ
   {"city": "Самара"},
   {"city": "Москва"},
   {"city": "Саратов"},
 ];
 
-class _ChoosingOrganizationCarWash extends State<ChoosingOrganizationCarWash> {
-  bool _visibleButtonNext = false;
+List<Map<String, dynamic>> _listCityTireService = [
+  // ДАННЫЕ ШИНОМОНТАЖКИ
+  {"city": "Питер"},
+  {"city": "Казань"},
+  {"city": "Пенза"},
+];
+
+class _ChoosingOrganization extends State<ChoosingOrganization> {
 
   String textFlex = 'Введите город';
   String cityText = '';
-  String adresText = '';
+  String addressText = '';
   String nameText = '';
   List<Map<String, dynamic>> findList = [];
   List<String> cityFind = [];
   List<Map<String, dynamic>> _listType = [];
   List<Map<String, dynamic>> _resultAddress = []; // ВЫХОДНЫЕ ДАННЫЕ
+  List<Map<String, dynamic>> _listCity = [];
+  List<Map<String, dynamic>> _listOrganization = [];
+  String _serviceValue = "";
 
   @override
   void initState() {
+    _serviceValue = widget.serviceValue;
+    if (_serviceValue == "Мойка") {
+      _listCity = _listCityCarWash;
+      _listOrganization = _listOrganizationCarWash;
+    } else if (_serviceValue == "Шиномонтаж") {
+      _listCity = _listCityTireService;
+      _listOrganization = _listOrganizationTireService;
+    }
     _listType = _listCity;
     findList = _listCity;
     // TODO: implement initState
@@ -69,7 +98,6 @@ class _ChoosingOrganizationCarWash extends State<ChoosingOrganizationCarWash> {
       findList = result;
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,30 +110,23 @@ class _ChoosingOrganizationCarWash extends State<ChoosingOrganizationCarWash> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    textCity(),
-                    SizedBox(height: 15),
-                    textOrganization(),
-                    SizedBox(height: 15),
-                    textAddress(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        textCity(),
+                      ],
+                    ),
                     SizedBox(
                       height: 15,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                          width: 300,
-                          child: TextField(
-                            onChanged: (value) =>
-                                _filterValue(value, _listType),
-                            decoration: InputDecoration(
-                                hintText: textFlex,
-                                suffixIcon: Icon(Icons.search)),
-                          ),
-                        ),
-                      ],
+                    SizedBox(
+                      width: double.infinity,
+                      child: TextField(
+                        onChanged: (value) => _filterValue(value, _listType),
+                        decoration: InputDecoration(
+                            hintText: textFlex, suffixIcon: Icon(Icons.search)),
+                      ),
                     ),
                     SizedBox(
                       height: 20,
@@ -160,21 +181,19 @@ class _ChoosingOrganizationCarWash extends State<ChoosingOrganizationCarWash> {
               ),
             ),
           ));
-    } else if (_listType == _listOrganization) {
+    } else {
       return TextButton(
           onPressed: () {
             setState(() {
               nameText = _list[index]["name"].toString();
-              adresText = _list[index]["adress"].toString();
+              addressText = _list[index]["address"].toString();
               _resultAddress.add(findList[index]);
-              print(_list[index].toString());
-              _visibleButtonNext = true;
-              print(_resultAddress);
+              print(_resultAddress); // _resultAddress нужно передать в push
               Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          const CompositionServicesCarWash()));// ПЕРЕХОД НА СЛЕД. ФОРМУ
+                          CompositionServices(resultAddress: _resultAddress, serviceValue: _serviceValue))); // ПЕРЕХОД НА СЛЕД. ФОРМУ
             });
           },
           child: Align(
@@ -188,7 +207,7 @@ class _ChoosingOrganizationCarWash extends State<ChoosingOrganizationCarWash> {
                     ),
                   ),
                   subtitle: Text(
-                    _list[index]["adress"].toString(), // АДРЕС ОРГАНИЗАЦИИ
+                    _list[index]["address"].toString(), // АДРЕС ОРГАНИЗАЦИИ
                     style: TextStyle(
                         fontSize: 14,
                         color: Colors.black87,
@@ -197,70 +216,15 @@ class _ChoosingOrganizationCarWash extends State<ChoosingOrganizationCarWash> {
 
                   //  textAlign: TextAlign.right,
                   )));
-    } else
-      return Text("data");
+    }
   }
-
-  /* Row buttonBackNext(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ElevatedButton(
-          onPressed: _visibleButtonNext
-              ? () {
-                  setState(() {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const CompositionServicesCarWash()));
-                  });
-                }
-              : null,
-          style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.black26, fixedSize: const Size(150, 50)),
-          child: const Text('Далее',
-              style: TextStyle(fontSize: 18, color: Colors.white),
-              textAlign: TextAlign.center),
-        ),
-      ],
-    );
-  }*/
-
-  Text textAddress() {
-    return Text(
-      "Адрес: $adresText",
-      style: TextStyle(
-        fontSize: 16,
-        color: Colors.black87,
-      ),
-    );
-  }
-
-  Text textOrganization() {
-    return Text(
-      "Наименование оганизации: $nameText",
-      style: TextStyle(
-        fontSize: 16,
-        color: Colors.black87,
-      ),
-    );
-  }
-
   Row textCity() {
     return Row(
       children: [
         Text(
-          "Город: ",
-          style: TextStyle(
-            fontSize: 16,
-            color: Colors.black87,
-          ),
-        ),
-        Text(
           "$cityText",
           style: TextStyle(
-            fontSize: 16,
+            fontSize: 18,
             color: Colors.black87,
           ),
         ),
@@ -276,10 +240,8 @@ class _ChoosingOrganizationCarWash extends State<ChoosingOrganizationCarWash> {
               angle: 180 * math.pi / 180,
               child: IconButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ChoosingSerice()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ChoosingServices()));
                   },
                   icon: const Icon(Icons.logout))),
           IconButton(

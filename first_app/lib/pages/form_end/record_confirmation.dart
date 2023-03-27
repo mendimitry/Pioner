@@ -1,13 +1,41 @@
 import 'package:first_app/pages/form_login_page/login_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:icons_flutter/icons_flutter.dart';
 
 class RecordConfirmation extends StatefulWidget {
+  List<Map<String, dynamic>> resultAddress;
+  List<Map<String, dynamic>> listService;
+  String serviceValue;
+  String days;
+  String resultTime;
+  RecordConfirmation(
+      {super.key,
+        required this.listService,
+        required this.resultAddress,
+        required this.serviceValue,
+        required this.resultTime,
+        required this.days});
   State<RecordConfirmation> createState() => _RecordConfirmation();
 }
 
 class _RecordConfirmation extends State<RecordConfirmation> {
+  List<Map<String, dynamic>> _resultAddress = []; // {годод, название орг-ции, адрес}
+  List<Map<String, dynamic>> _listService = []; // Лист услуг
+  String _serviceValue =""; // {Мойка, шинка}
+  String _days ="";
+  String _resultTime ="";
+  List<Map<String, dynamic>> listResult = []; // выходные данные в бд
+  @override
+  void initState() {
+    _resultAddress = widget.resultAddress;
+    _listService = widget.listService;
+    _serviceValue = widget.serviceValue;
+    _days = widget.days;
+    _resultTime = widget.resultTime;
+    listResult = [
+      {"name": _resultAddress[1]["name"], "address": _resultAddress[1]["address"],"city": _resultAddress[0]["city"], "days": _days, "time": _resultTime, "serviceValue": _serviceValue},
+    ];
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +48,14 @@ class _RecordConfirmation extends State<RecordConfirmation> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "Ждем вас сегодня в 19:30 в Авангард по адресу: Походный проезд д. 3",
+                    "Ждем вас " +
+                        _days +
+                        " в " +
+                        _resultTime +
+                        " в " +
+                        _resultAddress[1]["name"].toString() +
+                        " по адресу: " +
+                        _resultAddress[1]["address"].toString(),
                     style: TextStyle(
                       fontSize: 20,
                     ),
@@ -29,6 +64,7 @@ class _RecordConfirmation extends State<RecordConfirmation> {
                   IconButton(
                       iconSize: 150,
                       onPressed: () {
+                        print(listResult);
                         Navigator.push(
                             context,
                             MaterialPageRoute(
