@@ -14,23 +14,7 @@ class ChoosingOrganizationAddress extends StatefulWidget {
   @override
   State<ChoosingOrganizationAddress> createState() => _ChoosingOrganizationAddress();
 }
-/*
-List<Map<String, dynamic>> _listOrganizationCarWash = [
-  // ДАННЫЕ МОЙКИ
-  {"name": "АвтоМир", "address": "ул. Чекистов, д. 3"},
-  {"name": "АвтоМssир", "address": "ул. Чекистов, д. 5"},
-  {"name": "Авто", "address": "ул. Чекистов, д. 6"},
-  {"name": "Автsdfо", "address": "ул. Чекистов, д. 6"},
-];
 
-List<Map<String, dynamic>> _listOrganizationTireService = [
-  // ДАННЫЕ ШИНОМОНТАЖКИ
-  {"name": "Автофыв", "address": "ул. выа, д. 3"},
-  {"name": "Авфывр", "address": "ул. Чекиспатов, д. 5"},
-  {"name": "Аывавы", "address": "ул. Чеавпавпкистов, д. 6"},
-  {"name": "Авва", "address": "ул. авпап, д. 6"},
-];
-*/
 
 ChoosingOrganizationAddressController _choosingOrganizationAddressController = ChoosingOrganizationAddressController();
 
@@ -78,7 +62,21 @@ class _ChoosingOrganizationAddress extends State<ChoosingOrganizationAddress> {
         child: Padding(
             padding: const EdgeInsets.only(top: 15),
             child: Column(children: <Widget>[
-              transition(context),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Transform.rotate(
+                        angle: 180 * math.pi / 180,
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginPage()));
+                            },
+                            icon: Icon(Icons.logout))),
+
+                  ]),
               Padding(
                 padding:
                 const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
@@ -185,25 +183,5 @@ class _ChoosingOrganizationAddress extends State<ChoosingOrganizationAddress> {
       ],
     );
   }
-  Row transition(BuildContext context) {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Transform.rotate(
-              angle: 180 * math.pi / 180,
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(
-                            builder: (context) => ChoosingServices()));
-                  },
-                  icon: const Icon(Icons.logout))),
-          IconButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginPage()));
-              },
-              icon: const Icon(Icons.logout))
-        ]);
+
   }
-}

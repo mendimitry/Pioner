@@ -43,7 +43,21 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
         child: Padding(
             padding: EdgeInsets.only(top: 15),
             child: Column(children: <Widget>[
-              transition(context),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Transform.rotate(
+                        angle: 180 * math.pi / 180,
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginPage()));
+                            },
+                            icon: Icon(Icons.logout))),
+
+                  ]),
               Padding(
                 padding: EdgeInsets.all(10),
                 child: Container(
@@ -432,23 +446,5 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
     );
   }
 
-  Row transition(BuildContext context) {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Transform.rotate(
-              angle: 180 * math.pi / 180,
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(Icons.logout))),
-          IconButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginPage()));
-              },
-              icon: Icon(Icons.logout))
-        ]);
-  }
+
 }

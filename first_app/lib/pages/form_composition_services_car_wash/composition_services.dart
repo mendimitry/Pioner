@@ -106,7 +106,21 @@ class _CompositionServices extends State<CompositionServices> {
           padding: const EdgeInsets.only(top: 15),
           child: Column(
             children: <Widget>[
-              transition(context),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Transform.rotate(
+                        angle: 180 * math.pi / 180,
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginPage()));
+                            },
+                            icon: Icon(Icons.logout))),
+
+                  ]),
               Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
@@ -182,26 +196,7 @@ class _CompositionServices extends State<CompositionServices> {
     );
   }
 
-  Row transition(BuildContext context) {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Transform.rotate(
-              angle: 180 * math.pi / 180,
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ChoosingOrganization(serviceValue: _serviceValue)));
-                  },
-                  icon: const Icon(Icons.logout))),
-          IconButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginPage()));
-              },
-              icon: const Icon(Icons.logout))
-        ]);
-  }
+
 
   Padding buttonNext(BuildContext context) {
     return Padding(

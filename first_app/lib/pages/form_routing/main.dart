@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:first_app/pages/form_chooising_time/Choosing_time_service.dart';
-import 'package:first_app/pages/TestAdminka.dart';
 import 'package:first_app/pages/form_register_number_telephone/auto_user_register_page.dart';
 
 
@@ -44,7 +43,6 @@ class MyApp extends StatelessWidget {
         'choosing_time_service':(context) => ChoosingTimeService(listServiceResult: [], resultAddress: {}, serviceValue: '', resultValue: 0),
         'composition_services_car_wash':(context) => CompositionServices(resultAddress: {}, serviceValue: '',),
         'record_confirmation':(context) => RecordConfirmation(listService: [], resultAddress: {}, serviceValue: '', resultTime: '', days: '',),
-        'TestAdminka':(context) => const TestAdminka(),
         'login_page':(context) => LoginPage(),
         'organization_register':(context) => const OrganizationRegister(),
         'user_administrator':(context) => const UserAdministrator()

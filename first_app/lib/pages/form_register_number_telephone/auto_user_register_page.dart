@@ -14,7 +14,7 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../form_organization/privacy_policy.dart';
 import '../form_routing/main.dart';
-import '../otp.dart';
+
 
 class AutoUserRegister extends StatefulWidget {
   const AutoUserRegister({Key? key, required Object value}) : super(key: key);
@@ -29,7 +29,6 @@ AutoUserRegisterPageController _autoUserRegisterPageController = AutoUserRegiste
 class _MyPhoneState extends State<AutoUserRegister> {
   TextEditingController countryController = TextEditingController();
   TextEditingController text = TextEditingController();
-  final authController = Get.put(AuthController());
   final _formKey = GlobalKey<FormState>();
   var phone = '';
   var code = '';
@@ -48,11 +47,7 @@ class _MyPhoneState extends State<AutoUserRegister> {
   var timer;
   final scaffoldKey = GlobalKey();
 
-  int _otpCodeLength = 6;
-  bool _isLoadingButton = false;
-  bool _enableButton = false;
-  String _otpCode = "";
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   final intRegex = RegExp(r'\d+', multiLine: true);
   TextEditingController textEditingController =
       new TextEditingController(text: "");
@@ -82,14 +77,7 @@ class _MyPhoneState extends State<AutoUserRegister> {
                                       builder: (context) => LoginPage()));
                             },
                             icon: Icon(Icons.logout))),
-                    IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ChoosingServices()));
-                        },
-                        icon: Icon(Icons.logout))
+
                   ]),
               Padding(padding: EdgeInsets.only(top: 25)),
               Container(
@@ -221,7 +209,7 @@ class _MyPhoneState extends State<AutoUserRegister> {
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.black26,
                               fixedSize: Size(300, 50)),
-                          child: Text('Verification Test',
+                          child: Text('Авторизация',
                               style:
                                   TextStyle(fontSize: 18, color: Colors.white),
                               textAlign: TextAlign.center))

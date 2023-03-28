@@ -17,21 +17,7 @@ class ChoosingOrganization extends StatefulWidget {
   @override
   State<ChoosingOrganization> createState() => _ChoosingOrganization();
 }
-/*
-List<Map<String, dynamic>> _listCityCarWash = [
-  // ДАННЫЕ МОЙКИ
-  {"city": "Самара"},
-  {"city": "Москва"},
-  {"city": "Саратов"},
-];
 
-List<Map<String, dynamic>> _listCityTireService = [
-  // ДАННЫЕ ШИНОМОНТАЖКИ
-  {"city": "Питер"},
-  {"city": "Казань"},
-  {"city": "Пенза"},
-];
-*/
 ChoosingOrganizationController _choosingOrganizationController = ChoosingOrganizationController();
 Future<List<Map<String, dynamic>>> cities = _choosingOrganizationController.getAllCityFromAddresses();
 
@@ -68,7 +54,22 @@ class _ChoosingOrganization extends State<ChoosingOrganization> {
         child: Padding(
             padding: const EdgeInsets.only(top: 15),
             child: Column(children: <Widget>[
-              transition(context),
+
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Transform.rotate(
+                        angle: 180 * math.pi / 180,
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginPage()));
+                            },
+                            icon: Icon(Icons.logout))),
+
+                  ]),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
@@ -139,24 +140,5 @@ class _ChoosingOrganization extends State<ChoosingOrganization> {
           ));
     }
 
-  Row transition(BuildContext context) {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Transform.rotate(
-              angle: 180 * math.pi / 180,
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ChoosingServices()));
-                  },
-                  icon: const Icon(Icons.logout))),
-          IconButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginPage()));
-              },
-              icon: const Icon(Icons.logout))
-        ]);
-  }
+
 }

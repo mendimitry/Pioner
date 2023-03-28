@@ -32,7 +32,21 @@ class _OrganizationRegister extends State<OrganizationRegister> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  transition(context),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Transform.rotate(
+                            angle: 180 * math.pi / 180,
+                            child: IconButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LoginPage()));
+                                },
+                                icon: Icon(Icons.logout))),
+
+                      ]),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 80, horizontal: 25),
                     child: Container(
@@ -142,25 +156,5 @@ class _OrganizationRegister extends State<OrganizationRegister> {
     );
   }
 
-  Row transition(BuildContext context) {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Transform.rotate(
-              angle: 180 * math.pi / 180,
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(Icons.logout))),
-          IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => LoginPage()));
-              },
-              icon: Icon(Icons.logout))
-        ]);
-  }
+
 }

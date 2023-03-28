@@ -3,7 +3,7 @@ import 'package:first_app/models/Customer.dart';
 import 'package:first_app/pages/form_chooising_organization/choosing_organization.dart';
 import 'package:first_app/pages/form_login_page/login_page.dart';
 import 'package:flutter/material.dart';
-
+import 'dart:math' as math;
 
 
 enum services { car_wash, tire_service }
@@ -40,7 +40,23 @@ class _ChoosingServices extends State<ChoosingServices> {
         child: Padding(
             padding: EdgeInsets.only(top: 15),
             child: Column(children: <Widget>[
-              transition(context),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Transform.rotate(
+                        angle: 180 * math.pi / 180,
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginPage()));
+                            },
+                            icon: Icon(Icons.logout))),
+
+                  ]),
+              
+
               Padding(padding: EdgeInsets.only(top: 25)),
               Container(
                 constraints: BoxConstraints.tightFor(width: 325, height: 600),
@@ -112,14 +128,5 @@ class _ChoosingServices extends State<ChoosingServices> {
     );
   }
 
-  Align transition(BuildContext context) {
-    return Align(
-        alignment: Alignment.topRight,
-        child: IconButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => LoginPage()));
-            },
-            icon: Icon(Icons.logout)));
-  }
+
 }

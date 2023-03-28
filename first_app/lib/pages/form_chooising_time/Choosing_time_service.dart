@@ -128,7 +128,21 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    transition(context),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Transform.rotate(
+                              angle: 180 * math.pi / 180,
+                              child: IconButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => LoginPage()));
+                                  },
+                                  icon: Icon(Icons.logout))),
+
+                        ]),
                     Padding(
                         padding: const EdgeInsets.only(left: 15, right: 15),
                         child: Column(
@@ -315,28 +329,7 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
     );
   }
 
-  Row transition(BuildContext context) {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Transform.rotate(
-              angle: 180 * math.pi / 180,
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => CompositionServices(resultAddress: {}, serviceValue: '',)));
-                  },
-                  icon: Icon(Icons.logout))),
-          IconButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginPage()));
-              },
-              icon: Icon(Icons.logout))
-        ]);
-  }
+
 
   ListView ListService() {
     return ListView.builder(

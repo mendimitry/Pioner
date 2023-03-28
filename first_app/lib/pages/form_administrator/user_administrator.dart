@@ -34,10 +34,7 @@ class _ConnectingOrganization extends State<UserAdministrator> {
   ];
 
   String listStatusValue = listStatus.first;
-  final DateTime date2 = DateTime.parse('2023-01-01');
-  final DateTime date3 = DateTime.parse('2023-03-26');
 
-  final dDay = DateTime.utc(2000, 1, 1);
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +51,21 @@ class _ConnectingOrganization extends State<UserAdministrator> {
           child: Padding(
             padding: EdgeInsets.only(top: 10),
             child: Column(children: <Widget>[
-                transition(context),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Transform.rotate(
+                        angle: 180 * math.pi / 180,
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginPage()));
+                            },
+                            icon: Icon(Icons.logout))),
+
+                  ]),
             Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Container(
@@ -586,23 +597,5 @@ class _ConnectingOrganization extends State<UserAdministrator> {
     );
   }
 
-  Row transition(BuildContext context) {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Transform.rotate(
-              angle: 180 * math.pi / 180,
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(Icons.logout))),
-          IconButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginPage()));
-              },
-              icon: Icon(Icons.logout))
-        ]);
-  }
+
 }

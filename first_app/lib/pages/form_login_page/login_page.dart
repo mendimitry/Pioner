@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:first_app/pages/form_register_number_telephone/auto_user_register_page.dart';
-import 'package:first_app/pages/button.dart';
 import 'package:first_app/pages/form_administrator/list_applications.dart';
 import 'package:first_app/pages/form_organization/connecting_organization.dart';
 import 'package:flutter/material.dart';

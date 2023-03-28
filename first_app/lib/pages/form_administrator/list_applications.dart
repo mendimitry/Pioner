@@ -48,7 +48,21 @@ class _ListApplication extends State<ListApplication> {
             child: Padding(
                 padding: EdgeInsets.only(top: 10),
                 child: Column(children: <Widget>[
-                  transition(context),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Transform.rotate(
+                            angle: 180 * math.pi / 180,
+                            child: IconButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LoginPage()));
+                                },
+                                icon: Icon(Icons.logout))),
+
+                      ]),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     child: Container(
@@ -161,23 +175,3 @@ class _ListApplication extends State<ListApplication> {
   }
 }
 
-Row transition(BuildContext context) {
-  return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Transform.rotate(
-            angle: 180 * math.pi / 180,
-            child: IconButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginPage()));
-                },
-                icon: Icon(Icons.logout))),
-        IconButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => UserAdministrator()));
-            },
-            icon: Icon(Icons.logout))
-      ]);
-}

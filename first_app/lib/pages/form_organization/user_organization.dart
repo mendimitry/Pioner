@@ -40,7 +40,21 @@ class _UserOrganization extends State<UserOrganization>{
       body: Padding(
           padding: const EdgeInsets.only(top: 15),
           child: Column(children: <Widget>[
-            transition(context),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Transform.rotate(
+                      angle: 180 * math.pi / 180,
+                      child: IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginPage()));
+                          },
+                          icon: Icon(Icons.logout))),
+
+                ]),
             Padding(
               padding: const EdgeInsets.all(10),
               child: Container(
@@ -109,26 +123,6 @@ class _UserOrganization extends State<UserOrganization>{
     );
   }
 
-  Row transition(BuildContext context) {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Transform.rotate(
-              angle: 180 * math.pi / 180,
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const ConnectingOrganization()));
-                  },
-                  icon: const Icon(Icons.logout))),
-          IconButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginPage()));
-              },
-              icon: const Icon(Icons.logout))
-        ]);
-  }
 
   Row textField_addInformation() {
     return Row(
