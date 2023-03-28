@@ -7,6 +7,7 @@ import 'package:first_app/pages/form_chooising_service/choosing_service.dart';
 import 'package:first_app/pages/form_login_page/login_page.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'dart:math' as math;
 
@@ -14,7 +15,6 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../form_organization/privacy_policy.dart';
 import '../form_routing/main.dart';
-
 
 class AutoUserRegister extends StatefulWidget {
   const AutoUserRegister({Key? key, required Object value}) : super(key: key);
@@ -24,7 +24,8 @@ class AutoUserRegister extends StatefulWidget {
 }
 
 bool rememberMe = false;
-AutoUserRegisterPageController _autoUserRegisterPageController = AutoUserRegisterPageController();
+AutoUserRegisterPageController _autoUserRegisterPageController =
+    AutoUserRegisterPageController();
 
 class _MyPhoneState extends State<AutoUserRegister> {
   TextEditingController countryController = TextEditingController();
@@ -46,7 +47,6 @@ class _MyPhoneState extends State<AutoUserRegister> {
   bool buttonCheck = false;
   var timer;
   final scaffoldKey = GlobalKey();
-
 
   final intRegex = RegExp(r'\d+', multiLine: true);
   TextEditingController textEditingController =
@@ -77,7 +77,6 @@ class _MyPhoneState extends State<AutoUserRegister> {
                                       builder: (context) => LoginPage()));
                             },
                             icon: Icon(Icons.logout))),
-
                   ]),
               Padding(padding: EdgeInsets.only(top: 25)),
               Container(
@@ -164,22 +163,49 @@ class _MyPhoneState extends State<AutoUserRegister> {
                       ElevatedButton(
                           onPressed: buttonCheck
                               ? () async {
-                                  await FirebaseAuth.instance.verifyPhoneNumber(
-                                    phoneNumber: '${phone}',
-                                    timeout: const Duration(seconds: 20),
-                                    verificationCompleted:
-                                        (PhoneAuthCredential credential) {},
-                                    verificationFailed:
-                                        (FirebaseAuthException e) {},
-                                    codeSent: (String verificationId,
-                                        int? resendToken) {
-                                      firebaseVerificationId = verificationId;
-                                      isOtpSent.value = true;
-                                      statusMessage.value =
-                                          "OTP sent to +7" + phone;
-                                    },
-                                    codeAutoRetrievalTimeout: (timeout) {},
-                                  );
+                                  try {
+                                    FirebaseAuth.instance.verifyPhoneNumber(
+                                      phoneNumber: '${phone}',
+                                      timeout: const Duration(seconds: 120),
+                                      verificationCompleted:
+                                          (PhoneAuthCredential credential) {},
+                                      verificationFailed:
+                                          (FirebaseAuthException e) {
+                                            Widget okButton = TextButton(
+                                              child: Text("OK"),
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                            );
+
+                                            // set up the AlertDialog
+                                            AlertDialog alert = AlertDialog(
+                                              title: Text("Ошибка"),
+                                              content: Text("Ошибка:  ${e}"),
+                                              actions: [
+                                                okButton,
+                                              ],
+                                            );
+
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return alert;
+                                              },
+                                            );
+                                          },
+                                      codeSent: (String verificationId,
+                                          int? resendToken) {
+                                        firebaseVerificationId = verificationId;
+                                        isOtpSent.value = true;
+                                        statusMessage.value =
+                                            "OTP sent to +7" + phone;
+                                      },
+                                      codeAutoRetrievalTimeout: (timeout) {},
+                                    );
+                                  } on FirebaseAuthException catch (error) {
+
+                                  }
                                 }
                               : null,
                           style: ElevatedButton.styleFrom(
@@ -194,17 +220,46 @@ class _MyPhoneState extends State<AutoUserRegister> {
                       ),
                       ElevatedButton(
                           onPressed: () async {
-                            FirebaseAuth auth = FirebaseAuth.instance;
-                            statusMessage.value = "Verifying... " + code;
-                            // Create a PhoneAuthCredential with the code
-                            PhoneAuthCredential credential =
-                                PhoneAuthProvider.credential(
-                                    verificationId: firebaseVerificationId,
-                                    smsCode: code);
-                            // Sign the user in (or link) with the credential
-                            await auth.signInWithCredential(credential);
-                            Navigator.pushNamed(context, 'choosing_service',
-                                arguments: [firebaseVerificationId, await _autoUserRegisterPageController.getCustomerByPhoneNumber('+7$phone')]);
+                            try {
+                              FirebaseAuth auth = FirebaseAuth.instance;
+                              statusMessage.value = "Verifying... " + code;
+                              // Create a PhoneAuthCredential with the code
+                              PhoneAuthCredential credential =
+                                  PhoneAuthProvider.credential(
+                                      verificationId: firebaseVerificationId,
+                                      smsCode: code);
+                              // Sign the user in (or link) with the credential
+                              await auth.signInWithCredential(credential);
+                              Navigator.pushNamed(context, 'choosing_service',
+                                  arguments: [
+                                    firebaseVerificationId,
+                                    await _autoUserRegisterPageController
+                                        .getCustomerByPhoneNumber('+7$phone')
+                                  ]);
+                            } catch (e) {
+                              Widget okButton = TextButton(
+                                child: Text("OK"),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              );
+
+                              // set up the AlertDialog
+                              AlertDialog alert = AlertDialog(
+                                title: Text("Ошибка"),
+                                content: Text("Ошибка:  ${e}"),
+                                actions: [
+                                  okButton,
+                                ],
+                              );
+
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return alert;
+                                },
+                              );
+                            }
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.black26,
