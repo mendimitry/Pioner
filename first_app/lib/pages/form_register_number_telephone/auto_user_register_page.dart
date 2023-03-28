@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_app/controllers/AutoUserRegisterPage.dart';
 import 'package:first_app/pages/form_chooising_service/choosing_service.dart';
 
 import 'package:first_app/pages/form_login_page/login_page.dart';
@@ -23,6 +24,7 @@ class AutoUserRegister extends StatefulWidget {
 }
 
 bool rememberMe = false;
+AutoUserRegisterPageController _autoUserRegisterPageController = AutoUserRegisterPageController();
 
 class _MyPhoneState extends State<AutoUserRegister> {
   TextEditingController countryController = TextEditingController();
@@ -214,7 +216,7 @@ class _MyPhoneState extends State<AutoUserRegister> {
                             // Sign the user in (or link) with the credential
                             await auth.signInWithCredential(credential);
                             Navigator.pushNamed(context, 'choosing_service',
-                                arguments: firebaseVerificationId);
+                                arguments: [firebaseVerificationId, await _autoUserRegisterPageController.getCustomerByPhoneNumber('+7$phone')]);
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.black26,

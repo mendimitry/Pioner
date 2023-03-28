@@ -1,12 +1,14 @@
 // Выборо организации(Мойка)
 
+import 'package:first_app/controllers/ChoosingOrganization.dart';
 import 'package:first_app/pages/form_chooising_organization/choosing_orgznization_address.dart';
+import 'package:first_app/pages/form_chooising_service/choosing_service.dart';
 import 'package:first_app/pages/form_login_page/login_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 
-import '../form_chooising_service/choosing_service.dart';
+
 
 class ChoosingOrganization extends StatefulWidget {
   final String serviceValue;
@@ -15,7 +17,7 @@ class ChoosingOrganization extends StatefulWidget {
   @override
   State<ChoosingOrganization> createState() => _ChoosingOrganization();
 }
-
+/*
 List<Map<String, dynamic>> _listCityCarWash = [
   // ДАННЫЕ МОЙКИ
   {"city": "Самара"},
@@ -29,25 +31,21 @@ List<Map<String, dynamic>> _listCityTireService = [
   {"city": "Казань"},
   {"city": "Пенза"},
 ];
+*/
+ChoosingOrganizationController _choosingOrganizationController = ChoosingOrganizationController();
+Future<List<Map<String, dynamic>>> cities = _choosingOrganizationController.getAllCityFromAddresses();
 
 class _ChoosingOrganization extends State<ChoosingOrganization> {
 
   String textFlex = 'Введите город';
   List<Map<String, dynamic>> findList = [];
   List<String> cityFind = [];
-  List<Map<String, dynamic>> _resultAddress = []; // ВЫХОДНЫЕ ДАННЫЕ
   List<Map<String, dynamic>> _listCity = [];
   String _serviceValue = "";
 
   @override
   void initState() {
-    _serviceValue = widget.serviceValue;
-    if (_serviceValue == "Мойка") {
-      _listCity = _listCityCarWash;
-    } else if (_serviceValue == "Шиномонтаж") {
-      _listCity = _listCityTireService;
-    }
-    findList = _listCity;
+   _serviceValue = widget.serviceValue;
     // TODO: implement initState
     super.initState();
   }
@@ -65,7 +63,6 @@ class _ChoosingOrganization extends State<ChoosingOrganization> {
   }
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -77,30 +74,22 @@ class _ChoosingOrganization extends State<ChoosingOrganization> {
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                      ],
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
+                    Row(mainAxisAlignment: MainAxisAlignment.center),
+                    SizedBox(height: 15),
                     SizedBox(
                       width: double.infinity,
                       child: TextField(
                         onChanged: (value) => _filterValue(value, _listCity),
-                        decoration: InputDecoration(
-                            hintText: textFlex, suffixIcon: Icon(Icons.search)),
+                        decoration: InputDecoration(hintText: textFlex, suffixIcon: Icon(Icons.search)),
                       ),
                     ),
                     SizedBox(
                       height: 20,
                     ),
-                    ListAdress(findList),
+                    ListAdress(),
                     SizedBox(
                       height: 20,
                     ),
-                    // buttonBackNext(context)
                   ],
                 ),
               ),
@@ -110,27 +99,32 @@ class _ChoosingOrganization extends State<ChoosingOrganization> {
     );
   }
 
-  Container ListAdress(List<Map<String, dynamic>> _list) {
+  Container ListAdress() {
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 10),
         height: 470,
         color: Colors.white10,
-        child: ListView.builder(
-            padding: EdgeInsets.zero,
-            itemCount: _list.length,
-            itemBuilder: (BuildContext context, int index) {
-              return listInformation(_list, index);
-            }));
+        child: FutureBuilder<List<Map<String,dynamic>>>(
+            future: cities,
+            builder: (context, snapshot){
+              List<Map<String,dynamic>> city = snapshot.data ?? [];
+              return ListView.separated(
+                  padding: EdgeInsets.zero,
+                  itemCount: city.length,
+                  separatorBuilder: (context, index) => Divider(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return listInformation(city, index);
+                  });}));
   }
 
   Widget listInformation(List<Map<String, dynamic>> _list, int index) {
       return TextButton(
           onPressed: () {
             setState(() {
-              _resultAddress.add(findList[index]);
-              print(_resultAddress);
+             // _resultAddress.add(findList[index]);
+              print(_list[index]);
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ChoosingOrganizationAddress(serviceValue: _serviceValue, resultAddress: _resultAddress)));
+                  MaterialPageRoute(builder: (context) => ChoosingOrganizationAddress(serviceValue: _serviceValue, resultAddress: _list[index])));
             });
           },
           child: Align(
@@ -144,7 +138,6 @@ class _ChoosingOrganization extends State<ChoosingOrganization> {
             ),
           ));
     }
-
 
   Row transition(BuildContext context) {
     return Row(

@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RecordConfirmation extends StatefulWidget {
-  List<Map<String, dynamic>> resultAddress;
+  Map<String, dynamic> resultAddress;
   List<Map<String, dynamic>> listService;
   String serviceValue;
   String days;
@@ -19,7 +19,7 @@ class RecordConfirmation extends StatefulWidget {
 }
 
 class _RecordConfirmation extends State<RecordConfirmation> {
-  List<Map<String, dynamic>> _resultAddress = []; // {годод, название орг-ции, адрес}
+  late Map<String, dynamic> _resultAddress; // {годод, название орг-ции, адрес}
   List<Map<String, dynamic>> _listService = []; // Лист услуг
   String _serviceValue =""; // {Мойка, шинка}
   String _days ="";
@@ -33,7 +33,7 @@ class _RecordConfirmation extends State<RecordConfirmation> {
     _days = widget.days;
     _resultTime = widget.resultTime;
     listResult = [
-      {"name": _resultAddress[0]["name"], "address": _resultAddress[0]["address"],"city": _resultAddress[0]["city"], "days": _days, "time": _resultTime, "serviceValue": _serviceValue},
+      {"name": _resultAddress["name"], "address": _resultAddress["address"],"city": _resultAddress["city"], "days": _days, "time": _resultTime, "serviceValue": _serviceValue},
     ];
   }
   @override
@@ -53,9 +53,9 @@ class _RecordConfirmation extends State<RecordConfirmation> {
                         " в " +
                         _resultTime +
                         " в " +
-                        _resultAddress[0]["name"].toString() +
+                        _resultAddress["name"].toString() +
                         " по адресу: " +
-                        _resultAddress[0]["address"].toString(),
+                        _resultAddress["address"].toString(),
                     style: TextStyle(
                       fontSize: 20,
                     ),
@@ -70,7 +70,7 @@ class _RecordConfirmation extends State<RecordConfirmation> {
                             MaterialPageRoute(
                                 builder: (context) => LoginPage()));
                       },
-                      icon: Icon(Icons.task_alt_outlined))
+                      icon: Icon(Icons.done))
                 ],
               ))),
     );

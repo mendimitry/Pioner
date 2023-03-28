@@ -8,24 +8,8 @@ import 'package:flutter/widgets.dart';
 class ChoosingOrganizationController {
   final AddressRepository _addressRepository = AddressRepository(PionerDB());
 
-  String textFlex = 'Введите город';
-  String cityText = '';
-  String addressText = '';
-  String nameText = '';
-  List<Map<String, dynamic>> findList = [];
-  List<String> cityFind = [];
-  List<Map<String, dynamic>> _listType = [];
-  List<Map<String, dynamic>> _resultAddress = []; // ВЫХОДНЫЕ ДАННЫЕ
-  List<Map<String, dynamic>> _listCity = [];
-  List<Map<String, dynamic>> _listOrganization = [];
-  String _serviceValue = "";
-
-  Container ListAdress(List<Map<String, dynamic>> _list) {
-    return Container(
-
-
-            );
+  Future<List<Map<String, dynamic>>> getAllCityFromAddresses() async{
+    return _addressRepository.getAllCityFromAddresses();
   }
 
-
-  }
+}

@@ -67,16 +67,7 @@ class LoginPage extends StatelessWidget {
                       style: TextStyle(fontSize: 18, color: Colors.white),
                       textAlign: TextAlign.center)),
               Padding(padding: EdgeInsets.only(top: 50)),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Button()));
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black26, fixedSize: Size(300, 50)),
-                  child: Text('Кнопочки для Ивана',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
-                      textAlign: TextAlign.center)),
+
             ])),
       ),
 

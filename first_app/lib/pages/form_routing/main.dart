@@ -41,13 +41,13 @@ class MyApp extends StatelessWidget {
         'auto_user_register_page':(context) => const AutoUserRegister(value: "",),
         'choosing_organization_car_wash':(context) => const ChoosingOrganization(serviceValue: '',),
         'choosing_service':(context) => const ChoosingServices(),
-        'choosing_time_service':(context) => ChoosingTimeService(listServiceResult: [], resultAddress: [], serviceValue: '', resultValue: 0),
-        'composition_services_car_wash':(context) => CompositionServices(resultAddress: [], serviceValue: '',),
-        'record_confirmation':(context) => RecordConfirmation(listService: [], resultAddress: [], serviceValue: '', resultTime: '', days: '',),
+        'choosing_time_service':(context) => ChoosingTimeService(listServiceResult: [], resultAddress: {}, serviceValue: '', resultValue: 0),
+        'composition_services_car_wash':(context) => CompositionServices(resultAddress: {}, serviceValue: '',),
+        'record_confirmation':(context) => RecordConfirmation(listService: [], resultAddress: {}, serviceValue: '', resultTime: '', days: '',),
         'TestAdminka':(context) => const TestAdminka(),
         'login_page':(context) => LoginPage(),
-        'organization_register':(context) => OrganizationRegister(),
-        'user_administrator':(context) => UserAdministrator()
+        'organization_register':(context) => const OrganizationRegister(),
+        'user_administrator':(context) => const UserAdministrator()
       },
       theme: ThemeData(
         primarySwatch: Colors.grey,

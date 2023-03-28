@@ -64,7 +64,7 @@ class _UserOrganization extends State<UserOrganization>{
                         const SizedBox(height: 12),
                         Row(
                           children: [
-                            Text("Дата испольнения/отклонения: ${connectionRequest.date_end}", style: const TextStyle(fontSize: 16, color: Colors.black54)),
+                            Text("Дата исполнения/отклонения: ${connectionRequest.date_end}", style: const TextStyle(fontSize: 16, color: Colors.black54)),
                           ],
                         ),
                         const SizedBox(height: 12),

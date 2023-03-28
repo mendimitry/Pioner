@@ -1,3 +1,4 @@
+import 'package:first_app/controllers/ChoosingOrganizationAddress.dart';
 import 'package:flutter/material.dart';
 
 import '../form_chooising_service/choosing_service.dart';
@@ -7,12 +8,13 @@ import '../form_login_page/login_page.dart';
 import 'dart:math' as math;
 class ChoosingOrganizationAddress extends StatefulWidget {
   final String serviceValue;
-  List<Map<String, dynamic>> resultAddress;
+  Map<String, dynamic> resultAddress;
   ChoosingOrganizationAddress({super.key, required this.serviceValue, required this.resultAddress});
 
   @override
   State<ChoosingOrganizationAddress> createState() => _ChoosingOrganizationAddress();
 }
+/*
 List<Map<String, dynamic>> _listOrganizationCarWash = [
   // ДАННЫЕ МОЙКИ
   {"name": "АвтоМир", "address": "ул. Чекистов, д. 3"},
@@ -28,6 +30,9 @@ List<Map<String, dynamic>> _listOrganizationTireService = [
   {"name": "Аывавы", "address": "ул. Чеавпавпкистов, д. 6"},
   {"name": "Авва", "address": "ул. авпап, д. 6"},
 ];
+*/
+
+ChoosingOrganizationAddressController _choosingOrganizationAddressController = ChoosingOrganizationAddressController();
 
 class _ChoosingOrganizationAddress extends State<ChoosingOrganizationAddress> {
   String textFlex = 'Введите адрес';
@@ -36,25 +41,20 @@ class _ChoosingOrganizationAddress extends State<ChoosingOrganizationAddress> {
   String nameText = '';
   List<Map<String, dynamic>> findList = [];
   List<String> cityFind = [];
-  List<Map<String, dynamic>> _resultAddress = []; // ВЫХОДНЫЕ ДАННЫЕ {годод}
+  late Map<String, dynamic> _resultAddress; // ВЫХОДНЫЕ ДАННЫЕ {годод}
   List<Map<String, dynamic>> _listOrganization = [];
-  List<Map<String, dynamic>> _resultOrganization = []; // {город, адрес, название}
+  late Map<String, dynamic> _resultOrganization; // {город, адрес, название}
   String _serviceValue = "";
 
+  late Future<List<Map<String,dynamic>>> address;
 
   @override
   void initState() {
     _resultAddress = widget.resultAddress;
     _serviceValue = widget.serviceValue;
-    cityText = widget.resultAddress[0]["city"].toString();
-    if (_serviceValue == "Мойка") {
-      _listOrganization = _listOrganizationCarWash;
-    } else if (_serviceValue == "Шиномонтаж") {
-      _listOrganization = _listOrganizationTireService;
-    }
+    cityText = widget.resultAddress["city"].toString();
     // TODO: implement initState
     super.initState();
-    findList = _listOrganization;
   }
 
   void _filterValue(String enteredKeyword, List<Map<String, dynamic>> _list) {
@@ -72,6 +72,7 @@ class _ChoosingOrganizationAddress extends State<ChoosingOrganizationAddress> {
 
   @override
   Widget build(BuildContext context) {
+    address = _choosingOrganizationAddressController.getAllAddressFromCity(_resultAddress['city']);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -104,7 +105,7 @@ class _ChoosingOrganizationAddress extends State<ChoosingOrganizationAddress> {
                     SizedBox(
                       height: 20,
                     ),
-                    ListAdress(findList),
+                    ListAdress(),
                     SizedBox(
                       height: 20,
                     ),
@@ -118,17 +119,22 @@ class _ChoosingOrganizationAddress extends State<ChoosingOrganizationAddress> {
     );
   }
 
-  Container ListAdress(List<Map<String, dynamic>> _list) {
+  Container ListAdress() {
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 10),
         height: 470,
         color: Colors.white10,
-        child: ListView.builder(
-            padding: EdgeInsets.zero,
-            itemCount: _list.length,
-            itemBuilder: (BuildContext context, int index) {
-              return listInformation(_list, index);
-            }));
+        child: FutureBuilder<List<Map<String,dynamic>>>(
+            future: address,
+            builder: (context, snapshot){
+              List<Map<String,dynamic>> addresses = snapshot.data ?? [];
+              return ListView.separated(
+                  padding: EdgeInsets.zero,
+                  itemCount: addresses.length,
+                  separatorBuilder: (context, index) => Divider(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return listInformation(addresses, index);
+                  });}));
   }
 
   Widget listInformation(List<Map<String, dynamic>> _list, int index) {
@@ -138,14 +144,13 @@ class _ChoosingOrganizationAddress extends State<ChoosingOrganizationAddress> {
             nameText = _list[index]["name"].toString();
             addressText = _list[index]["address"].toString();
             print(_resultAddress);
-            _resultOrganization.add({"city": _resultAddress[0]["city"].toString(), "name": findList[0]["name"].toString(), "address":findList[0]["address"].toString()});
+            _resultOrganization = {"city": _resultAddress["city"].toString(), "name": _list[index]["name"].toString(), "address":_list[index]["address"].toString()};
             print(_resultOrganization); // _resultAddress нужно передать в push
             Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) =>
-                        CompositionServices(resultAddress: _resultOrganization,
-                            serviceValue: _serviceValue))); // ПЕРЕХОД НА СЛЕД. ФОРМУ
+                        CompositionServices(resultAddress: _resultOrganization, serviceValue: _serviceValue))); // ПЕРЕХОД НА СЛЕД. ФОРМУ
           });
         },
         child: Align(
@@ -165,8 +170,6 @@ class _ChoosingOrganizationAddress extends State<ChoosingOrganizationAddress> {
                       color: Colors.black87,
                       fontStyle: FontStyle.italic),
                 )
-
-              //  textAlign: TextAlign.right,
             )));
   }
   Row textCity() {

@@ -8,7 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_radio_group/flutter_radio_group.dart';
 
 class ChoosingTimeService extends StatefulWidget {
-  List<Map<String, dynamic>> resultAddress;
+  Map<String, dynamic> resultAddress;
   List<Map<String, dynamic>> listServiceResult;
   String serviceValue;
   num resultValue;
@@ -33,7 +33,7 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
   String _serviceValue = "";
   num _resultValue = 0;
   List<Map<String, dynamic>> _listService = [];
-  List<Map<String, dynamic>> _resultAddress = [];
+  late Map<String, dynamic> _resultAddress;
   String _addressText = '';
   String _nameText = '';
   void _resultValueTime() {
@@ -103,8 +103,8 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
     _listService = widget.listServiceResult;
     _serviceValue = widget.serviceValue;
     _resultValue = widget.resultValue;
-    _addressText = _resultAddress[0]["address"];
-    _nameText = _resultAddress[0]["name"];
+    _addressText = _resultAddress["address"];
+    _nameText = _resultAddress["name"];
     if (_serviceValue == "Мойка") {
       _timesToday = _timesTodayCarWash;
       _timesTomorrow = _timesTomorrowCarWash;
@@ -326,10 +326,7 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CompositionServices(
-                                  resultAddress: [],
-                                  serviceValue: '',
-                                )));
+                            builder: (context) => CompositionServices(resultAddress: {}, serviceValue: '',)));
                   },
                   icon: Icon(Icons.logout))),
           IconButton(

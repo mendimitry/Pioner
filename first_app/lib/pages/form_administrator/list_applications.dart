@@ -22,11 +22,9 @@ PionerDB pionerDB = PionerDB();
 final TextEditingController regNumberTextController = TextEditingController();
 final TextEditingController DateCreateTextController = TextEditingController();
 final TextEditingController kratkoeTextController = TextEditingController();
-ListApplicationController _listApplicationController =
-ListApplicationController();
+ListApplicationController _listApplicationController = ListApplicationController();
 
-Future<List<ConnectionRequest>> usersFuture =
-_listApplicationController.getAllConnectionRequest();
+Future<List<ConnectionRequest>> usersFuture = _listApplicationController.getAllConnectionRequest();
 
 var listStatus = [
   "НОВАЯ",

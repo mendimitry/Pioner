@@ -32,17 +32,7 @@ class _ConnectingOrganization extends State<UserAdministrator> {
     "Отклонен",
     "Завершен"
   ];
-  final TextEditingController polnoeTextController = TextEditingController();
-  final TextEditingController kratkoeTextController = TextEditingController();
-  final TextEditingController innTextController = TextEditingController();
-  final TextEditingController kppTextController = TextEditingController();
-  final TextEditingController ogrnTextController = TextEditingController();
-  final TextEditingController surnameTextController = TextEditingController();
-  final TextEditingController nameTextController = TextEditingController();
-  final TextEditingController patronymicTextController = TextEditingController();
-  final TextEditingController emailTextController = TextEditingController();
-  final TextEditingController phoneNumberTextController = TextEditingController();
-  final TextEditingController additionalInfoTextController = TextEditingController();
+
   String listStatusValue = listStatus.first;
   final DateTime date2 = DateTime.parse('2023-01-01');
   final DateTime date3 = DateTime.parse('2023-03-26');
@@ -332,8 +322,6 @@ class _ConnectingOrganization extends State<UserAdministrator> {
   }
 
 
-
-
   Row textField_addInformation() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -344,13 +332,13 @@ class _ConnectingOrganization extends State<UserAdministrator> {
         ),
         SizedBox(
           width: 250,
-          child: TextField(
+          child: TextFormField(
+            initialValue: organization.add_info,
             decoration: InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
-            controller: additionalInfoTextController,
           ),
         ),
       ],
@@ -367,13 +355,13 @@ class _ConnectingOrganization extends State<UserAdministrator> {
         ),
         SizedBox(
           width: 250,
-          child: TextField(
+          child: TextFormField(
+            initialValue: organization.responsible_person_phone_number,
             decoration: InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
-            controller: phoneNumberTextController,
           ),
         ),
       ],
@@ -390,13 +378,13 @@ class _ConnectingOrganization extends State<UserAdministrator> {
         ),
         SizedBox(
           width: 250,
-          child: TextField(
+          child: TextFormField(
+            initialValue: organization.responsible_person_email,
             decoration: InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
-            controller: emailTextController,
           ),
         ),
       ],
@@ -407,19 +395,19 @@ class _ConnectingOrganization extends State<UserAdministrator> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
+        const Text(
           "отчество",
           style: TextStyle(fontSize: 16),
         ),
         SizedBox(
           width: 250,
-          child: TextField(
-            decoration: InputDecoration(
+          child: TextFormField(
+            initialValue: organization.responsible_person_patronymic,
+            decoration: const InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
-            controller: patronymicTextController,
           ),
         ),
       ],
@@ -430,19 +418,19 @@ class _ConnectingOrganization extends State<UserAdministrator> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
+        const Text(
           "имя",
           style: TextStyle(fontSize: 16),
         ),
         SizedBox(
           width: 250,
-          child: TextField(
-            decoration: InputDecoration(
+          child: TextFormField(
+            initialValue: organization.responsible_person_name,
+            decoration: const InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
-            controller: nameTextController,
           ),
         ),
       ],
@@ -453,19 +441,19 @@ class _ConnectingOrganization extends State<UserAdministrator> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
+        const Text(
           "фамилия",
           style: TextStyle(fontSize: 16),
         ),
         SizedBox(
           width: 250,
-          child: TextField(
-            decoration: InputDecoration(
+          child: TextFormField(
+            initialValue: organization.responsible_person_surname,
+            decoration: const InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
-            controller: surnameTextController,
           ),
         ),
       ],
@@ -476,19 +464,19 @@ class _ConnectingOrganization extends State<UserAdministrator> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
+        const Text(
           "ОГРН",
           style: TextStyle(fontSize: 16),
         ),
         SizedBox(
           width: 250,
-          child: TextField(
-            decoration: InputDecoration(
+          child: TextFormField(
+            initialValue: organization.ogrn,
+            decoration: const InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
-            controller: ogrnTextController,
           ),
         ),
       ],
@@ -499,19 +487,19 @@ class _ConnectingOrganization extends State<UserAdministrator> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
+        const Text(
           "КПП",
           style: TextStyle(fontSize: 16),
         ),
         SizedBox(
           width: 250,
-          child: TextField(
-            decoration: InputDecoration(
+          child: TextFormField(
+            initialValue: organization.kpp,
+            decoration: const InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
-            controller: kppTextController,
           ),
         ),
       ],
@@ -522,19 +510,19 @@ class _ConnectingOrganization extends State<UserAdministrator> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
+        const Text(
           "ИНН",
           style: TextStyle(fontSize: 16),
         ),
         SizedBox(
           width: 250,
-          child: TextField(
-            decoration: InputDecoration(
+          child: TextFormField(
+            initialValue: organization.inn,
+            decoration: const InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
-            controller: innTextController,
           ),
         ),
       ],
@@ -545,19 +533,19 @@ class _ConnectingOrganization extends State<UserAdministrator> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
+        const Text(
           "краткое",
           style: TextStyle(fontSize: 16),
         ),
         SizedBox(
           width: 250,
-          child: TextField(
-            decoration: InputDecoration(
+          child: TextFormField(
+            initialValue: organization.organization_short_name,
+            decoration: const InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
-            controller: kratkoeTextController,
           ),
         ),
       ],
@@ -568,19 +556,19 @@ class _ConnectingOrganization extends State<UserAdministrator> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
+        const Text(
           "полное",
           style: TextStyle(fontSize: 16),
         ),
         SizedBox(
           width: 250,
-          child: TextField(
-            decoration: InputDecoration(
+          child: TextFormField(
+            initialValue: organization.organization_full_name,
+            decoration: const InputDecoration(
               isDense: true, // Added this
               contentPadding: EdgeInsets.all(12),
               border: OutlineInputBorder(),
             ),
-            controller: polnoeTextController,
           ),
         ),
       ],

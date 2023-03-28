@@ -1,7 +1,9 @@
 // Выбор услуги
+import 'package:first_app/models/Customer.dart';
+import 'package:first_app/pages/form_chooising_organization/choosing_organization.dart';
 import 'package:first_app/pages/form_login_page/login_page.dart';
 import 'package:flutter/material.dart';
-import '../form_chooising_organization/choosing_organization.dart';
+
 
 
 enum services { car_wash, tire_service }
@@ -13,12 +15,26 @@ class ChoosingServices extends StatefulWidget {
   State<ChoosingServices> createState() => _ChoosingServices();
 }
 
+/*
+late Customer customer;
+late var token;
+*/
+
 class _ChoosingServices extends State<ChoosingServices> {
   String _serviceValue = "Мойка";
   services? _service = services.car_wash;
 
+
   @override
   Widget build(BuildContext context) {
+    /*
+    Данные необходимые для полноценной работы авторизации
+    List<Object?> arg = ModalRoute.of(context)!.settings.arguments as List<Object?>;
+
+    token = arg[0];
+    customer = arg[1] as Customer;
+     */
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(

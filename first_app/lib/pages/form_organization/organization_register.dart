@@ -116,7 +116,6 @@ class _OrganizationRegister extends State<OrganizationRegister> {
                                             textAlign: TextAlign.center)),
                                     ElevatedButton(
                                         onPressed: () {
-
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(

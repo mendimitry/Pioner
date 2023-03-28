@@ -36,16 +36,6 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
   final TextEditingController phoneNumberTextController = TextEditingController();
   final TextEditingController additionalInfoTextController = TextEditingController();
 
-  /*
-  postOrganization() async {
-    organization_id = await pionerDB.postOrganization(polnoeTextController.text, kratkoeTextController.text, innTextController.text, kppTextController.text,
-        ogrnTextController.text, surnameTextController.text, nameTextController.text, patronymicTextController.text, emailTextController.text,
-        phoneNumberTextController.text, additionalInfoTextController.text);
-
-
-    post_id = await pionerDB.postStatusOrganization(organization_id, (organization_id + 1).toString(), DateTime.now(), "Новый");
-  }
-*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,7 +116,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
                     additionalInfoTextController.text);
 
                 post_id = await _connectingOrganizationController.postConnectionRequest(organization_id,
-                    (organization_id + 1).toString(), DateTime.now(), "Новый");
+                    (organization_id + 1).toString(), DateTime.now().toLocal(), "Новый");
 
                 await Navigator.pushReplacementNamed(context, 'user_organization',
                     arguments: [

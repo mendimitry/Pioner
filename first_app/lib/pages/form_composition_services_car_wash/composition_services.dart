@@ -7,7 +7,7 @@ import '../form_chooising_time/Choosing_time_service.dart';
 import '../form_login_page/login_page.dart';
 
 class CompositionServices extends StatefulWidget {
-  List<Map<String, dynamic>> resultAddress;
+  Map<String, dynamic> resultAddress;
   String serviceValue;
   CompositionServices({super.key, required this.resultAddress, required this.serviceValue});
 
@@ -36,7 +36,7 @@ class _CompositionServices extends State<CompositionServices> {
   List<Map<String, dynamic>> _listService = [];
   List<Map<String, dynamic>> _listTypeIsCheck = [];
   List<Map<String, dynamic>> _listServiceResult = [];
-  List<Map<String, dynamic>> _resultAddress =[];
+  late Map<String, dynamic> _resultAddress ;
   String _textResult = "";
   String _textNameOrganization = "";
   num _resultValue = 0;
@@ -86,7 +86,7 @@ class _CompositionServices extends State<CompositionServices> {
     _resultAddress = widget.resultAddress;
     print(_resultAddress);
     _serviceValue = widget.serviceValue;
-    _textNameOrganization = widget.resultAddress[0]["name"];
+    _textNameOrganization = widget.resultAddress["name"];
     if (_serviceValue == "Мойка") {
       _listService = _listServiceCarWash;
     } else if (_serviceValue == "Шиномонтаж") {
