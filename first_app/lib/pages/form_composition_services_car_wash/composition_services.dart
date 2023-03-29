@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+import '../../controllers/ServiceDetail.dart';
 import '../form_chooising_organization/choosing_organization.dart';
 import '../form_chooising_time/Choosing_time_service.dart';
 import '../form_login_page/login_page.dart';
@@ -15,17 +16,21 @@ class CompositionServices extends StatefulWidget {
       _CompositionServices();
 }
 
+ServiceDetailController _service = ServiceDetailController();
+Future<List<Map<String, dynamic>>> cities = _service.getAllServiceDetail();
+
 class _CompositionServices extends State<CompositionServices> {
-  final List<Map<String, dynamic>> _listServiceCarWash = [
-    {"nameService": "Мойка днища", "value": 200, "timeValue": 15},
-    {"nameService": "Мойка двигателя", "value": 250, "timeValue": 15},
-    {"nameService": "Уборка салона пылесосом", "value": 100, "timeValue": 10},
-    {"nameService": "Комплексная мойка", "value": 600, "timeValue": 40},
-    {"nameService": "Мойка радиатора", "value": 100, "timeValue": 10},
-    {"nameService": "Бесконтактная мойка", "value": 200, "timeValue": 15},
-    {"nameService": "Мойка с полировкой воском", "value": 400, "timeValue": 20},
-    {"nameService": "Мойка с чисткой салона", "value": 350, "timeValue": 20},
-    {"nameService": "Евромойка", "value": 700, "timeValue": 45}
+
+
+
+
+  final List<Map<String, dynamic>> _listServiceCarWash = [   // как сделать так, чтобы у меня массив был динамическим??
+    {"nameService": "Сезонная перекидка", "value": 500, "timeValue": 35},
+    {"nameService": "Правка литых дисков", "value": 600, "timeValue": 15},
+    {"nameService": "Правка стальных дисков", "value": 500, "timeValue": 10},
+    {"nameService": "Дошиповка шин", "value": 300, "timeValue": 15},
+    {"nameService": "Дошиповка шин", "value": 300, "timeValue": 15},
+
   ];
   final List<Map<String, dynamic>> _listServiceTireService = [
     {"nameService": "Сезонная перекидка", "value": 500, "timeValue": 35},
@@ -37,6 +42,7 @@ class _CompositionServices extends State<CompositionServices> {
   List<Map<String, dynamic>> _listTypeIsCheck = [];
   List<Map<String, dynamic>> _listServiceResult = [];
   late Map<String, dynamic> _resultAddress ;
+
   String _textResult = "";
   String _textNameOrganization = "";
   num _resultValue = 0;
@@ -52,6 +58,7 @@ class _CompositionServices extends State<CompositionServices> {
       return _resultValue;
     }
   }
+
 
   List<Map<String, dynamic>> _list() {
     for (int i = 0; i < _listService.length; i++) {
@@ -83,12 +90,14 @@ class _CompositionServices extends State<CompositionServices> {
 
   @override
   void initState() {
+
+
     _resultAddress = widget.resultAddress;
     print(_resultAddress);
     _serviceValue = widget.serviceValue;
     _textNameOrganization = widget.resultAddress["name"];
     if (_serviceValue == "Мойка") {
-      _listService = _listServiceCarWash;
+      _listService = _listServiceCarWash ;  // без обьявления каких либо данных - услуги не показываются
     } else if (_serviceValue == "Шиномонтаж") {
       _listService = _listServiceTireService;
     }
@@ -145,7 +154,7 @@ class _CompositionServices extends State<CompositionServices> {
                       SizedBox(
                         height: 10,
                       ),
-                      ListService(),
+                      ListServices(),
                       buttonNext(context),
                     ],
                   )),
@@ -156,7 +165,27 @@ class _CompositionServices extends State<CompositionServices> {
     );
   }
 
-  Container ListService() {
+
+
+  Container ListServices() {
+    return Container(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        height: 470,
+        color: Colors.white10,
+        child: FutureBuilder<List<Map<String,dynamic>>>(
+            future: cities,
+            builder: (context, snapshot){
+              List<Map<String,dynamic>> city = snapshot.data ?? [];
+              return ListView.separated(
+                  padding: EdgeInsets.zero,
+                  itemCount: city.length,
+                  separatorBuilder: (context, index) => Divider(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return listInformation(city, index);
+                  });}));
+  }
+
+  Widget listInformation(List<Map<String, dynamic>> _list, int index) {
     return Container(
       width: 500,
       height: 570,
@@ -176,25 +205,33 @@ class _CompositionServices extends State<CompositionServices> {
                       children: <Widget>[
                         CheckboxListTile(
                             checkColor: Colors.lightBlue,
-                            title: Text(service["nameService"]),
+                            title: Text(_list[index]["nameService"]),
                             controlAffinity: ListTileControlAffinity.leading,
                             subtitle: Text(
-                                "${service["value"]} RUB, ${service["timeValue"]} мин"),
+                                "${_list[index]["value"]} RUB, ${_list[index]["timeValue"]} мин"),
                             value: service["isCheck"],
                             onChanged: (bool? newcheck) {
                               setState(() {
                                 service["isCheck"] = newcheck!;
                                 _textResult = _resultValueCount(
-                                        _listTypeIsCheck[index]["isCheck"],
-                                        _listTypeIsCheck[index]["value"])
+                                    _listTypeIsCheck[index]["isCheck"],
+                                    _list[index]["value"],
+                                )
                                     .toString();
+
+
                               });
+
                             }),
                       ],
                     )));
-          }),
-    );
+          }));
+
+
   }
+
+
+
 
 
 
