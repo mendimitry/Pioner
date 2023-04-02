@@ -37,7 +37,7 @@ class ServiceDetailRepository implements IServiceDetailRepository{
     print(query);
 
     //Нулевой объект
-    ServiceDetail _servieDetail = ServiceDetail(service_detail_id: 0, type_id: 0, service_detail_code: '', servoce_detail_name: '', service_detail_cost: 0, service_detail_duration: 0);
+    ServiceDetail _servieDetail = ServiceDetail(service_detail_id: 0, type_id: 0, service_detail_code: '', service_detail_name: '', service_detail_cost: 0, service_detail_duration: 0);
     for (var element in query) {
       for (var subElement in element.values) {
         _servieDetail = ServiceDetail.fromReqBody(subElement);

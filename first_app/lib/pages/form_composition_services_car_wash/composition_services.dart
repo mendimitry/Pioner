@@ -13,20 +13,16 @@ import '../form_login_page/login_page.dart';
 class CompositionServices extends StatefulWidget {
   Map<String, dynamic> resultAddress;
   String serviceValue;
-  CompositionServices(
-      {super.key, required this.resultAddress, required this.serviceValue});
+  CompositionServices({super.key, required this.resultAddress, required this.serviceValue});
 
   State<CompositionServices> createState() => _CompositionServices();
 }
 
-PionerDB _pionerDB = PionerDB();
 ServiceDetailController _service = ServiceDetailController();
-Future<List<Map<String, dynamic>>> cities = _service.getAllServiceDetail();
-
-ServiceDetailRepository _service1 = ServiceDetailRepository(_pionerDB);
-Future<List<ServiceDetail>> cities1 = _service1.getAllServiceDetail();
+late Future<List<Map<String, dynamic>>> services;
 
 class _CompositionServices extends State<CompositionServices> {
+  /*
   final List<Map<String, dynamic>> _listServiceCarWash = [
     // как сделать так, чтобы у меня массив был динамическим??
     {"nameService": "Сезонная перекидка", "value": 500, "timeValue": 35},
@@ -42,15 +38,14 @@ class _CompositionServices extends State<CompositionServices> {
     {"nameService": "Правка стальных дисков", "value": 500, "timeValue": 10},
     {"nameService": "Дошиповка шин", "value": 300, "timeValue": 15},
   ];
+   */
+
   List<Map<String, dynamic>> _listService = [];
   List<Map<String, dynamic>> _listTypeIsCheck = [];
   List<Map<String, dynamic>> _listServiceResult = [];
   late Map<String, dynamic> _resultAddress;
 
   String _textResult = "";
-  String _textResult1 = "";
-  String _textResult2 = "";
-  String _textResult3 = "";
   String _textNameOrganization = "";
   num _resultValue = 0;
   bool isCheck = false;
@@ -66,20 +61,7 @@ class _CompositionServices extends State<CompositionServices> {
     }
   }
 
-  List<Map<String, dynamic>> _list() {
-    for (int i = 0; i < _listService.length; i++) {
-      _listTypeIsCheck.add({
-        "nameService": _listService[i]["nameService"],
-        "timeValue": _listService[i]["timeValue"],
-        "value": _listService[i]["value"],
-        "isCheck": false
-      });
-    }
-    return _listTypeIsCheck;
-  }
-
-  List<Map<String, dynamic>> _resultList(
-      List<Map<String, dynamic>> _list, List<Map<String, dynamic>> _list2) {
+  List<Map<String, dynamic>> _resultList(List<Map<String, dynamic>> _list, List<Map<String, dynamic>> _list2) {
     List<Map<String, dynamic>> _listResult = [];
     for (int i = 0; i < _listService.length; i++) {
       if (_list[i]["isCheck"] == true) {
@@ -94,25 +76,31 @@ class _CompositionServices extends State<CompositionServices> {
     return _listResult;
   }
 
+  List<Map<String, dynamic>> _list(list) {
+    for (int i = 0; i < list.length; i++) {
+      _listTypeIsCheck.add({
+        "nameService": list[i]["nameService"],
+        "timeValue": list[i]["timeValue"],
+        "value": list[i]["value"],
+        "isCheck": false
+      });
+    }
+    return _listTypeIsCheck;
+  }
+
   @override
   void initState() {
     _resultAddress = widget.resultAddress;
     print(_resultAddress);
     _serviceValue = widget.serviceValue;
     _textNameOrganization = widget.resultAddress["name"];
-    if (_serviceValue == "Мойка") {
-      _listService =
-          _listServiceCarWash; // без обьявления каких либо данных - услуги не показываются
-    } else if (_serviceValue == "Шиномонтаж") {
-      _listService = _listServiceTireService;
-    }
-    _list();
     // TODO: implement initState
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    services = _service.getAllServiceDetail();
     return Scaffold(
       backgroundColor: Colors.grey,
       body: SingleChildScrollView(
@@ -174,8 +162,8 @@ class _CompositionServices extends State<CompositionServices> {
         padding: EdgeInsets.symmetric(horizontal: 10),
         height: 470,
         color: Colors.white10,
-        child: FutureBuilder<List<ServiceDetail>>(
-            future: cities1,
+        child: FutureBuilder <List<Map<String, dynamic>>>(
+            future: services,
             builder: (context, snapshot) {
               if (snapshot.connectionState != ConnectionState.done) {
                 // return: show loading widget
@@ -183,37 +171,32 @@ class _CompositionServices extends State<CompositionServices> {
               if (snapshot.hasError) {
                 // return: show error widget
               }
-              List<ServiceDetail> users = snapshot.data ?? [];
-
+              List<Map<String, dynamic>> list = snapshot.data ?? [];
+              _listService = list;
+              _listTypeIsCheck = _list(list);
               return ListView.separated(
                   padding: EdgeInsets.zero,
-                  itemCount: users.length,
+                  itemCount: _listTypeIsCheck.length,
                   separatorBuilder: (context, index) => Divider(),
                   itemBuilder: (BuildContext context, int index) {
-                    final service = _listTypeIsCheck[index];
-                    ServiceDetail user = users[index];
-                    return Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: CheckboxListTile(
-                          checkColor: Colors.lightBlue,
-                          title: Text(user.servoce_detail_name),
-                          controlAffinity: ListTileControlAffinity.leading,
-                          subtitle: Text(
-                              "${user.service_detail_cost} RUB, ${user.service_detail_duration} мин"),
-                          value: service["isCheck"],
-                          onChanged: (bool? newcheck) {
-                            setState(() {
-                              service["isCheck"] = newcheck!;
-                              _textResult = _resultValueCount(
-                                _listTypeIsCheck[index]["isCheck"],
-                                user.service_detail_cost,
-                              ).toString();
-
-                            });
-                          }),
-                    );
+                  return listInfo(_listTypeIsCheck, index);
                   });
             }));
+  }
+
+  Widget listInfo(List<Map<String, dynamic>> service, int index){
+    return  CheckboxListTile(
+        checkColor: Colors.lightBlue,
+        title: Text(service[index]['nameService']),
+        controlAffinity: ListTileControlAffinity.leading,
+        subtitle: Text("${service[index]['value']} RUB, ${service[index]['timeValue']} мин"),
+        value: service[index]["isCheck"],
+        onChanged: (bool? newcheck) {
+          setState(() {
+            service[index]["isCheck"] = newcheck!;
+            _textResult = _resultValueCount(service[index]["isCheck"], service[index]['value'],).toString();
+          });
+        });
   }
 
   Padding buttonNext(BuildContext context) {

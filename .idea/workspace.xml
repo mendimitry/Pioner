@@ -9,10 +9,14 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="Build program version 1.0.2.1(написал условно рабочую страницу с услугами, но с массивом что то надо делать)">
+    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="Build program version 1.0.2.2(Страница со выбором услуги написана, но проблема с массивом осталась)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/controllers/AutoUserRegisterPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/controllers/AutoUserRegisterPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/controllers/ServiceDetail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/controllers/ServiceDetail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/models/ServiceDetail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/models/ServiceDetail.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_chooising_time/Choosing_time_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_chooising_time/Choosing_time_service.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_composition_services_car_wash/composition_services.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_composition_services_car_wash/composition_services.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/repository/ServiceDetail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/repository/ServiceDetail.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,27 +47,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/DmitryDima/Desktop/testandroidbuild/first_app/lib/pages/form_login_page&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "io.flutter.reload.alreadyRun": "true",
+    "last_opened_file_path": "C:/Users/DmitryDima/Desktop/testandroidbuild/first_app/lib/repository",
+    "settings.editor.selected.configurable": "editor.preferences.tabs",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\DmitryDima\Desktop\testandroidbuild\first_app\lib\pages\form_login_page" />
       <recent name="C:\Users\DmitryDima\Desktop\testandroidbuild\first_app\lib\repository" />
-      <recent name="C:\Users\DmitryDima\Desktop\testandroidbuild\first_app\lib\pages\form_routing" />
-      <recent name="C:\Users\DmitryDima\Desktop\testandroidbuild\first_app\lib\pages\form_register_number_telephone" />
-      <recent name="C:\Users\DmitryDima\Desktop\testandroidbuild\first_app\lib\pages\form_organization" />
+      <recent name="C:\Users\DmitryDima\Desktop\testandroidbuild\first_app\lib\pages" />
+      <recent name="C:\Users\DmitryDima\Desktop\testandroidbuild\first_app\lib\models" />
+      <recent name="C:\Users\DmitryDima\Desktop\testandroidbuild\first_app\lib\data" />
+      <recent name="C:\Users\DmitryDima\Desktop\testandroidbuild\first_app\lib\controllers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\DmitryDima\Desktop\testandroidbuild\first_app\lib\pages\form_register_number_telephone" />
@@ -419,7 +423,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680083795855</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Build program version 1.0.2.2(Страница со выбором услуги написана, но проблема с массивом осталась)">
+      <created>1680422969747</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1680422969747</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -434,7 +445,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add policy(x2)" />
     <MESSAGE value="add policy(x3)" />
     <MESSAGE value="add policy(x4)" />
     <MESSAGE value="add policy(x5)" />
@@ -459,6 +469,7 @@
     <MESSAGE value="Build program version 1.0.1" />
     <MESSAGE value="Build program version 1.0.2" />
     <MESSAGE value="Build program version 1.0.2.1(написал условно рабочую страницу с услугами, но с массивом что то надо делать)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Build program version 1.0.2.1(написал условно рабочую страницу с услугами, но с массивом что то надо делать)" />
+    <MESSAGE value="Build program version 1.0.2.2(Страница со выбором услуги написана, но проблема с массивом осталась)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Build program version 1.0.2.2(Страница со выбором услуги написана, но проблема с массивом осталась)" />
   </component>
 </project>

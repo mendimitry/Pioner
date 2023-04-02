@@ -300,7 +300,10 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
           children: [
             Text(
               "$_resultValue RUB",
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(
+                  height: 1.2 ,// the height between text, default is null
+                  letterSpacing: -0.9 // the white space between letter, default is 0.0/You can set your custom height here
+              ),
             ),
             SizedBox(
               width: 10,
@@ -359,13 +362,11 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
                     Row(
                       children: [
                         Text((index + 1).toString() + "."),
-                        SizedBox(
-                          width: 2,
-                        ),
+
                         Text(
                           service["nameService"],
-                          style: TextStyle(fontSize: 16),
-                        ),
+                            style: TextStyle(fontSize: 10 ,fontWeight:FontWeight.bold,color: Colors.black) , )
+
                       ],
                     ),
                     Row(
@@ -373,7 +374,10 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
                       children: [
                         Text(
                           "${service["value"]} RUB",
-                          style: TextStyle(fontSize: 16),
+                            style: TextStyle(
+                                height: 1.2 ,// the height between text, default is null
+                                letterSpacing: -0.9 // the white space between letter, default is 0.0/You can set your custom height here
+                            ),
                         ),
                         SizedBox(
                           width: 10,
