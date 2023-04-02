@@ -9,8 +9,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="Build program version 1.0.2">
+    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="Build program version 1.0.2.1(написал условно рабочую страницу с услугами, но с массивом что то надо делать)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_chooising_time/Choosing_time_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_chooising_time/Choosing_time_service.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_composition_services_car_wash/composition_services.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_composition_services_car_wash/composition_services.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -411,7 +412,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679991249753</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Build program version 1.0.2.1(написал условно рабочую страницу с услугами, но с массивом что то надо делать)">
+      <created>1680083795855</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1680083795855</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -426,7 +434,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add policy" />
     <MESSAGE value="add policy(x2)" />
     <MESSAGE value="add policy(x3)" />
     <MESSAGE value="add policy(x4)" />
@@ -451,6 +458,7 @@
     <MESSAGE value="Build program version 1.0" />
     <MESSAGE value="Build program version 1.0.1" />
     <MESSAGE value="Build program version 1.0.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Build program version 1.0.2" />
+    <MESSAGE value="Build program version 1.0.2.1(написал условно рабочую страницу с услугами, но с массивом что то надо делать)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Build program version 1.0.2.1(написал условно рабочую страницу с услугами, но с массивом что то надо делать)" />
   </component>
 </project>

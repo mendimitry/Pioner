@@ -40,7 +40,16 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
     for (int i = 0; i < _listService.length; i++) {
       _valueTime += _listService[i]["timeValue"];
     }
+
   }
+
+  void _resultValueName() {
+    for (int i = 0; i < _listService.length; i++) {
+      _serviceValue += _listService[i]["nameService"];
+    }
+
+  }
+
 
   final _timesTodayCarWash = [
     "11:20",
@@ -113,6 +122,7 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
       _timesTomorrow = _timesTomorrowTireService;
     }
     _resultValueTime();
+    _resultValueName();
     _listTime = _timesToday;
     // TODO: implement initState
     super.initState();
