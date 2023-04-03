@@ -1,14 +1,17 @@
 //Уточнение состава услуги(Мойка)
 
+import 'package:first_app/pages/form_chooising_organization/choosing_orgznization_address.dart';
 import 'package:first_app/repository/ServiceDetail.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import '../../controllers/ServiceDetail.dart';
-import '../../data/PionerDBContext.dart';
-import '../../models/ServiceDetail.dart';
-import '../form_chooising_organization/choosing_organization.dart';
-import '../form_chooising_time/Choosing_time_service.dart';
-import '../form_login_page/login_page.dart';
+import 'package:first_app/controllers/ServiceDetail.dart';
+import 'package:first_app/data/PionerDBContext.dart';
+import 'package:first_app/models/ServiceDetail.dart';
+import 'package:first_app/pages/form_chooising_organization/choosing_organization.dart';
+import 'package:first_app/pages/form_chooising_time/Choosing_time_service.dart';
+import 'package:first_app/pages/form_login_page/login_page.dart';
+
+import '../form_chooising_service/choosing_service.dart';
 
 class CompositionServices extends StatefulWidget {
   Map<String, dynamic> resultAddress;
@@ -118,7 +121,7 @@ class _CompositionServices extends State<CompositionServices> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => LoginPage()));
+                                      builder: (context) => ChoosingServices()));
                             },
                             icon: Icon(Icons.logout))),
                   ]),

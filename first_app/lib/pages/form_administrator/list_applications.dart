@@ -5,11 +5,11 @@ import 'package:first_app/pages/form_chooising_service/choosing_service.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-import '../../controllers/ConnectingOrganization.dart';
-import '../../data/PionerDBContext.dart';
-import '../form_organization/connecting_organization.dart';
-import '../form_login_page/login_page.dart';
-import '../form_organization/organization_register.dart';
+import 'package:first_app/controllers/ConnectingOrganization.dart';
+import 'package:first_app/data/PionerDBContext.dart';
+import 'package:first_app/pages/form_organization/connecting_organization.dart';
+import 'package:first_app/pages/form_login_page/login_page.dart';
+import 'package:first_app/pages/form_organization/organization_register.dart';
 
 class ListApplication extends StatefulWidget {
   const ListApplication({super.key});

@@ -15,8 +15,8 @@ import 'package:first_app/pages/form_end/record_confirmation.dart';
 import 'package:flutter/material.dart';
 import 'package:first_app/pages/form_login_page/login_page.dart';
 
-import '../form_chooising_organization/choosing_organization.dart';
-import '../form_composition_services_car_wash/composition_services.dart';
+import 'package:first_app/pages/form_chooising_organization/choosing_organization.dart';
+import 'package:first_app/pages/form_composition_services_car_wash/composition_services.dart';
 void main() async {
   runApp(const MyApp());
   WidgetsFlutterBinding.ensureInitialized();

@@ -6,7 +6,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:first_app/data/PionerDBContext.dart';
 
-import '../form_login_page/login_page.dart';
+import 'package:first_app/pages/form_login_page/login_page.dart';
+
+import 'organization_register.dart';
 
 late int organization_id;
 late int post_id;
@@ -53,7 +55,7 @@ class _ConnectingOrganization extends State<ConnectingOrganization> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => LoginPage()));
+                                      builder: (context) => OrganizationRegister()));
                             },
                             icon: Icon(Icons.logout))),
 

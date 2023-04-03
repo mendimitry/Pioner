@@ -2,10 +2,12 @@ import 'package:first_app/pages/form_end/record_confirmation.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-import '../form_composition_services_car_wash/composition_services.dart';
-import '../form_login_page/login_page.dart';
+import 'package:first_app/pages/form_composition_services_car_wash/composition_services.dart';
+import 'package:first_app/pages/form_login_page/login_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_radio_group/flutter_radio_group.dart';
+
+import 'package:first_app/pages/form_chooising_service/choosing_service.dart';
 
 class ChoosingTimeService extends StatefulWidget {
   Map<String, dynamic> resultAddress;
@@ -148,7 +150,7 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => LoginPage()));
+                                            builder: (context) => ChoosingServices()));
                                   },
                                   icon: Icon(Icons.logout))),
 

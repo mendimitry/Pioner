@@ -6,8 +6,10 @@ import 'dart:math' as math;
 
 import 'package:first_app/pages/form_organization/privacy_policy.dart';
 import 'package:flutter/gestures.dart';
-import '../../data/PionerDBContext.dart';
-import '../form_login_page/login_page.dart';
+import 'package:first_app/data/PionerDBContext.dart';
+import 'package:first_app/pages/form_login_page/login_page.dart';
+
+import 'package:first_app/pages/form_organization/organization_register.dart';
 class UserOrganization extends StatefulWidget{
   const UserOrganization({super.key});
 
@@ -50,7 +52,7 @@ class _UserOrganization extends State<UserOrganization>{
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => LoginPage()));
+                                    builder: (context) => OrganizationRegister()));
                           },
                           icon: Icon(Icons.logout))),
 

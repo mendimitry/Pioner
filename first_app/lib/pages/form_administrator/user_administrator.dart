@@ -1,15 +1,10 @@
 import 'dart:math' as math;
-
 import 'package:first_app/controllers/ConnectingOrganization.dart';
-import 'package:first_app/pages/form_organization/privacy_policy.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:first_app/data/PionerDBContext.dart';
-
-import '../../models/ConnectionRequest.dart';
-import '../../models/Organization.dart';
-import '../form_login_page/login_page.dart';
-import '../form_organization/organization_register.dart';
+import 'package:first_app/models/ConnectionRequest.dart';
+import 'package:first_app/models/Organization.dart';
+import 'package:first_app/pages/form_organization/organization_register.dart';
+import 'package:first_app/pages/form_administrator/list_applications.dart';
 
 late int organization_id;
 late int post_id;
@@ -22,10 +17,10 @@ class UserAdministrator extends StatefulWidget {
 }
 
 class _ConnectingOrganization extends State<UserAdministrator> {
-
   bool buttonCheck = true;
 
-  ConnectingOrganizationController _connectingOrganizationController = ConnectingOrganizationController();
+  ConnectingOrganizationController _connectingOrganizationController =
+      ConnectingOrganizationController();
   static const List<String> listStatus = <String>[
     "Новый",
     "В работе",
@@ -35,20 +30,19 @@ class _ConnectingOrganization extends State<UserAdministrator> {
 
   String listStatusValue = listStatus.first;
 
-
   @override
   Widget build(BuildContext context) {
-    List<Object?> arg = ModalRoute.of(context)!.settings.arguments as List<Object>;
+    List<Object?> arg =
+        ModalRoute.of(context)!.settings.arguments as List<Object>;
     connectionRequest = arg[0] as ConnectionRequest;
     organization = arg[1] as Organization;
 
     connectionRequest.printAttributes();
     organization.printAttributes();
 
-
     return Scaffold(
       body: SingleChildScrollView(
-          child: Padding(
+        child: Padding(
             padding: EdgeInsets.only(top: 10),
             child: Column(children: <Widget>[
               Row(
@@ -61,115 +55,114 @@ class _ConnectingOrganization extends State<UserAdministrator> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => LoginPage()));
+                                      builder: (context) => ListApplication()));
                             },
                             icon: Icon(Icons.logout))),
-
                   ]),
-            Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Container(
                   color: Colors.white38,
                   child: Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                    child: Column(
-                        children: [Text("ПОЛЬЗОВАТЕЛЬ - АДМИНИСТРАТОР: ",
-                            style: TextStyle(
-                                fontSize: 17, color: Colors.black54)),
-                    Row(
-
-                    children: [
-
-                    Text("Измененный статус: ",
-                        style: TextStyle(
-                            fontSize: 16, color: Colors.black54)),
-                    DropdownButton<String>(
-                      value: listStatusValue,
-                      underline: Container(
-                        height: 1,
-                        color: Colors.deepPurpleAccent,
-                      ),
-                      items: listStatus.map<DropdownMenuItem<String>>(
-                              (String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                      onChanged: (String? value) {
-                        // This is called when the user selects an item.
-                        setState(() {
-                          listStatusValue = value!;
-                        });
-                      },
-                    )
-                    ],
-                  ),
-                          Row(
-                            children: [
-                              Text("Текущий статус: ${connectionRequest.status}", style: const TextStyle(fontSize: 16, color: Colors.black54)),
-                            ],
-
-                          ),
-                  Row(
-                    children: [
-                      Text("Дата создания: ${connectionRequest.date_begin}",
-                          style: TextStyle(
-                              fontSize: 16, color: Colors.black54)),
-                      Text("",
-                          style: TextStyle(fontSize: 16)),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text("Дата испольнения/отклонения: ${connectionRequest.date_end}",
-                          style: TextStyle(
-                              fontSize: 12, color: Colors.black54)),
-                      Text("",
-                          style: TextStyle(fontSize: 9)),
-                    ],
-                  ),
-                       Column(
-                        children: [
-                          text_named_organization(),
-                          SizedBox(height: 8),
-                          text_polnoe(),
-                          SizedBox(height: 8),
-                          textField_kratkoe(),
-                          SizedBox(height: 8),
-                          texField_INN(),
-                          SizedBox(height: 8),
-                          textField_KPP(),
-                          SizedBox(height: 8),
-                          textFiled_OGRN(),
-                          SizedBox(height: 8),
-                          Row(
-                            children: const [
-                              Text(
-                                "Контактное лицо:",
-                                style: TextStyle(fontSize: 18),
+                      padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                      child: Column(children: [
+                        Text("ПОЛЬЗОВАТЕЛЬ - АДМИНИСТРАТОР: ",
+                            style:
+                                TextStyle(fontSize: 17, color: Colors.black54)),
+                        Row(
+                          children: [
+                            Text("Измененный статус: ",
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.black54)),
+                            DropdownButton<String>(
+                              value: listStatusValue,
+                              underline: Container(
+                                height: 1,
+                                color: Colors.deepPurpleAccent,
                               ),
-                            ],
-                          ),
-                          SizedBox(height: 8),
-                          textField_famil(),
-                          SizedBox(height: 8),
-                          textField_name(),
-                          SizedBox(height: 8),
-                          textField_Otch(),
-                          SizedBox(height: 8),
-                          textField_email(),
-                          SizedBox(height: 8),
-                          textField_phoneNumber(),
-                          SizedBox(height: 8),
-                          textField_addInformation(),
-                          SizedBox(height: 8),
-                          button(),
-                        ],
-                      ),
-                    ])),
-              ),
-      )])),
+                              items: listStatus.map<DropdownMenuItem<String>>(
+                                  (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                              onChanged: (String? value) {
+                                // This is called when the user selects an item.
+                                setState(() {
+                                  listStatusValue = value!;
+                                });
+                              },
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text("Текущий статус: ${connectionRequest.status}",
+                                style: const TextStyle(
+                                    fontSize: 16, color: Colors.black54)),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                                "Дата создания: ${connectionRequest.date_begin}",
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.black54)),
+                            Text("", style: TextStyle(fontSize: 16)),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                                "Дата испольнения/отклонения: ${connectionRequest.date_end}",
+                                style: TextStyle(
+                                    fontSize: 12, color: Colors.black54)),
+                            Text("", style: TextStyle(fontSize: 9)),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            text_named_organization(),
+                            SizedBox(height: 8),
+                            text_polnoe(),
+                            SizedBox(height: 8),
+                            textField_kratkoe(),
+                            SizedBox(height: 8),
+                            texField_INN(),
+                            SizedBox(height: 8),
+                            textField_KPP(),
+                            SizedBox(height: 8),
+                            textFiled_OGRN(),
+                            SizedBox(height: 8),
+                            Row(
+                              children: const [
+                                Text(
+                                  "Контактное лицо:",
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 8),
+                            textField_famil(),
+                            SizedBox(height: 8),
+                            textField_name(),
+                            SizedBox(height: 8),
+                            textField_Otch(),
+                            SizedBox(height: 8),
+                            textField_email(),
+                            SizedBox(height: 8),
+                            textField_phoneNumber(),
+                            SizedBox(height: 8),
+                            textField_addInformation(),
+                            SizedBox(height: 8),
+                            button(),
+                          ],
+                        ),
+                      ])),
+                ),
+              )
+            ])),
       ),
       backgroundColor: Colors.grey,
     );
@@ -179,151 +172,145 @@ class _ConnectingOrganization extends State<UserAdministrator> {
     return ElevatedButton(
         onPressed: buttonCheck
             ? () async {
-          if (listStatusValue.toString() == "Отклонен") {
-            post_id =
-            await _connectingOrganizationController.UpdateConnectionRequest(
-                connectionRequest.connection_request_id,
-                listStatusValue.toString(), DateTime.now());
+                if (listStatusValue.toString() == "Отклонен") {
+                  post_id = await _connectingOrganizationController
+                      .UpdateConnectionRequest(
+                          connectionRequest.connection_request_id,
+                          listStatusValue.toString(),
+                          DateTime.now());
 
+                  await _connectingOrganizationController
+                      .getConnectionRequestByID(post_id);
 
-            await _connectingOrganizationController.getConnectionRequestByID(
-                post_id);
+                  Widget okButton = TextButton(
+                    child: Text("OK"),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  );
 
-            Widget okButton = TextButton(
-              child: Text("OK"),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            );
+                  // set up the AlertDialog
+                  AlertDialog alert = AlertDialog(
+                    title: Text("Обновление данных"),
+                    content: Text(
+                        "Статус организации ${organization.organization_full_name} обновлен"),
+                    actions: [
+                      okButton,
+                    ],
+                  );
 
-            // set up the AlertDialog
-            AlertDialog alert = AlertDialog(
-              title: Text("Обновление данных"),
-              content: Text("Статус организации ${organization
-                  .organization_full_name} обновлен"),
-              actions: [
-                okButton,
-              ],
-            );
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return alert;
+                    },
+                  );
+                }
+                if (listStatusValue.toString() == "Завершен") {
+                  post_id = await _connectingOrganizationController
+                      .UpdateConnectionRequest(
+                          connectionRequest.connection_request_id,
+                          listStatusValue.toString(),
+                          DateTime.now());
 
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return alert;
-              },
-            );
-          }
-          if (listStatusValue.toString() == "Завершен") {
-            post_id =
-            await _connectingOrganizationController.UpdateConnectionRequest(
-                connectionRequest.connection_request_id,
-                listStatusValue.toString(), DateTime.now());
+                  await _connectingOrganizationController
+                      .getConnectionRequestByID(post_id);
 
+                  Widget okButton = TextButton(
+                    child: Text("OK"),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  );
 
-            await _connectingOrganizationController.getConnectionRequestByID(
-                post_id);
+                  // set up the AlertDialog
+                  AlertDialog alert = AlertDialog(
+                    title: Text("Обновление данных"),
+                    content: Text(
+                        "Статус организации ${organization.organization_full_name} обновлен"),
+                    actions: [
+                      okButton,
+                    ],
+                  );
 
-            Widget okButton = TextButton(
-              child: Text("OK"),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            );
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return alert;
+                    },
+                  );
+                }
 
-            // set up the AlertDialog
-            AlertDialog alert = AlertDialog(
-              title: Text("Обновление данных"),
-              content: Text("Статус организации ${organization
-                  .organization_full_name} обновлен"),
-              actions: [
-                okButton,
-              ],
-            );
-
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return alert;
-              },
-            );
-          }
-
-          if (listStatusValue.toString() == "В работе") {
+                if (listStatusValue.toString() == "В работе") {
 // написал изменение статуса
 
-            post_id =
-            await _connectingOrganizationController
-                .UpdateConnectionRequestNotDate(
-                connectionRequest.connection_request_id,
-                listStatusValue.toString());
+                  post_id = await _connectingOrganizationController
+                      .UpdateConnectionRequestNotDate(
+                          connectionRequest.connection_request_id,
+                          listStatusValue.toString());
 
+                  await _connectingOrganizationController
+                      .getConnectionRequestByID(post_id);
+                  Widget okButton = TextButton(
+                    child: Text("OK"),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  );
 
-            await _connectingOrganizationController.getConnectionRequestByID(
-                post_id);
-            Widget okButton = TextButton(
-              child: Text("OK"),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            );
+                  // set up the AlertDialog
+                  AlertDialog alert = AlertDialog(
+                    title: Text("Обновление данных"),
+                    content: Text(
+                        "Статус организации ${organization.organization_full_name} обновлен"),
+                    actions: [
+                      okButton,
+                    ],
+                  );
 
-            // set up the AlertDialog
-            AlertDialog alert = AlertDialog(
-              title: Text("Обновление данных"),
-              content: Text("Статус организации ${organization
-                  .organization_full_name} обновлен"),
-              actions: [
-                okButton,
-              ],
-            );
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return alert;
+                    },
+                  );
+                }
 
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return alert;
-              },
-            );
-          }
-
-          if (listStatusValue.toString() == "Новый") {
+                if (listStatusValue.toString() == "Новый") {
 // написал изменение статуса
 
-            post_id =
-            await _connectingOrganizationController
-                .UpdateConnectionRequestNotDate(
-                connectionRequest.connection_request_id,
-                listStatusValue.toString());
+                  post_id = await _connectingOrganizationController
+                      .UpdateConnectionRequestNotDate(
+                          connectionRequest.connection_request_id,
+                          listStatusValue.toString());
 
+                  await _connectingOrganizationController
+                      .getConnectionRequestByID(post_id);
+                  Widget okButton = TextButton(
+                    child: Text("OK"),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  );
 
-            await _connectingOrganizationController.getConnectionRequestByID(
-                post_id);
-            Widget okButton = TextButton(
-              child: Text("OK"),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            );
+                  // set up the AlertDialog
+                  AlertDialog alert = AlertDialog(
+                    title: Text("Обновление данных"),
+                    content: Text(
+                        "Статус организации ${organization.organization_full_name} обновлен"),
+                    actions: [
+                      okButton,
+                    ],
+                  );
 
-            // set up the AlertDialog
-            AlertDialog alert = AlertDialog(
-              title: Text("Обновление данных"),
-              content: Text("Статус организации ${organization
-                  .organization_full_name} обновлен"),
-              actions: [
-                okButton,
-              ],
-            );
-
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return alert;
-              },
-            );
-          }
-        }
-
-
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return alert;
+                    },
+                  );
+                }
+              }
             : null,
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.black26, fixedSize: Size(320, 50)),
@@ -331,7 +318,6 @@ class _ConnectingOrganization extends State<UserAdministrator> {
             style: TextStyle(fontSize: 16, color: Colors.white),
             textAlign: TextAlign.center));
   }
-
 
   Row textField_addInformation() {
     return Row(
@@ -596,6 +582,4 @@ class _ConnectingOrganization extends State<UserAdministrator> {
       ],
     );
   }
-
-
 }

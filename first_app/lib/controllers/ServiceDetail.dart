@@ -1,7 +1,7 @@
 import 'package:first_app/models/ServiceDetail.dart';
 
-import '../data/PionerDBContext.dart';
-import '../repository/ServiceDetail.dart';
+import 'package:first_app/data/PionerDBContext.dart';
+import 'package:first_app/repository/ServiceDetail.dart';
 
 class ServiceDetailController {
 final ServiceDetailRepository _ServiceDetailRepository = ServiceDetailRepository(PionerDB());

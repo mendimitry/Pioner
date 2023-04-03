@@ -1,7 +1,9 @@
 // Выбор услуги
 import 'package:first_app/models/Customer.dart';
 import 'package:first_app/pages/form_chooising_organization/choosing_organization.dart';
+import 'package:first_app/pages/form_chooising_organization/choosing_orgznization_address.dart';
 import 'package:first_app/pages/form_login_page/login_page.dart';
+import 'package:first_app/pages/form_register_number_telephone/auto_user_register_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -50,7 +52,7 @@ class _ChoosingServices extends State<ChoosingServices> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => LoginPage()));
+                                      builder: (context) => ChoosingOrganizationAddress(serviceValue: "", resultAddress: {})));
                             },
                             icon: Icon(Icons.logout))),
 

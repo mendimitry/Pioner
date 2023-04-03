@@ -1,10 +1,11 @@
 import 'package:first_app/controllers/ChoosingOrganizationAddress.dart';
+import 'package:first_app/pages/form_chooising_organization/choosing_organization.dart';
 import 'package:flutter/material.dart';
 
-import '../form_chooising_service/choosing_service.dart';
+import 'package:first_app/pages/form_chooising_service/choosing_service.dart';
 
-import '../form_composition_services_car_wash/composition_services.dart';
-import '../form_login_page/login_page.dart';
+import 'package:first_app/pages/form_composition_services_car_wash/composition_services.dart';
+import 'package:first_app/pages/form_login_page/login_page.dart';
 import 'dart:math' as math;
 class ChoosingOrganizationAddress extends StatefulWidget {
   final String serviceValue;
@@ -72,7 +73,7 @@ class _ChoosingOrganizationAddress extends State<ChoosingOrganizationAddress> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => LoginPage()));
+                                      builder: (context) => ChoosingOrganization(serviceValue:"")));
                             },
                             icon: Icon(Icons.logout))),
 
