@@ -150,7 +150,7 @@ class _ChoosingTimeService extends State<ChoosingTimeService> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => ChoosingServices()));
+                                            builder: (context) => CompositionServices(resultAddress: _resultAddress, serviceValue:  widget.serviceValue,)));
                                   },
                                   icon: Icon(Icons.logout))),
 

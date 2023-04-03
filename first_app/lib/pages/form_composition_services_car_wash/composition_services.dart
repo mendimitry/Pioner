@@ -121,7 +121,7 @@ class _CompositionServices extends State<CompositionServices> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => ChoosingServices()));
+                                      builder: (context) => ChoosingOrganizationAddress(resultAddress: _resultAddress, serviceValue: _serviceValue)));
                             },
                             icon: Icon(Icons.logout))),
                   ]),
