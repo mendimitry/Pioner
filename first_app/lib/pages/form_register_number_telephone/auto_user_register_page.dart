@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:alt_sms_autofill/alt_sms_autofill.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_app/controllers/AutoUserRegisterPage.dart';
 import 'package:first_app/pages/form_chooising_service/choosing_service.dart';
@@ -13,7 +14,7 @@ import 'dart:math' as math;
 
 import 'package:get/get_core/src/get_main.dart';
 
-import '../form_organization/privacy_policy.dart';
+import 'package:first_app/pages/form_organization/privacy_policy.dart';
 import '../form_routing/main.dart';
 
 class AutoUserRegister extends StatefulWidget {
@@ -52,9 +53,36 @@ class _MyPhoneState extends State<AutoUserRegister> {
   TextEditingController textEditingController =
       new TextEditingController(text: "");
 
+
+  /*
+  late TextEditingController textEditingController1;
+  String? _commingSms = 'Unknown';
+  FocusNode focusNode = FocusNode();
+  Future<void> initSmsListener() async {
+    String? commingSms;
+    try {
+      commingSms = await AltSmsAutofill().listenForSms;
+    } on PlatformException {
+      commingSms = 'Failed to get Sms.';
+    }
+    if (!mounted) return;
+
+    setState(() {
+      _commingSms = commingSms;
+      String aStr = _commingSms!.replaceAll(new RegExp(r'[^0-9]'),'');
+      String otp = aStr.substring(0,6);
+      textEditingController1.text = otp;
+    });
+  }
+
+   */
+
+
   @override
   void initState() {
     super.initState();
+   // textEditingController1 = TextEditingController();
+
   }
 
   @override
@@ -99,6 +127,8 @@ class _MyPhoneState extends State<AutoUserRegister> {
                           onChanged: (value) {
                             phone = value;
                           },
+                          keyboardType: TextInputType.phone,
+                          maxLength: 12,
                           decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: '+7 (900) 000 00 00',
@@ -115,6 +145,9 @@ class _MyPhoneState extends State<AutoUserRegister> {
                         onChanged: (value) {
                           code = value;
                         },
+                       // controller: textEditingController1,
+                        keyboardType: TextInputType.number,
+                        maxLength: 6,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: '999999',
@@ -163,6 +196,7 @@ class _MyPhoneState extends State<AutoUserRegister> {
                       ElevatedButton(
                           onPressed: buttonCheck
                               ? () async {
+                            //initSmsListener();
                                   try {
                                     FirebaseAuth.instance.verifyPhoneNumber(
                                       phoneNumber: '${phone}',
@@ -220,6 +254,7 @@ class _MyPhoneState extends State<AutoUserRegister> {
                       ),
                       ElevatedButton(
                           onPressed: () async {
+
                             try {
                               FirebaseAuth auth = FirebaseAuth.instance;
                               statusMessage.value = "Verifying... " + code;

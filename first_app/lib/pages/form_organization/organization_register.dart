@@ -73,6 +73,8 @@ class _OrganizationRegister extends State<OrganizationRegister> {
                                     hintText: 'ИНН',
                                   ),
                                   controller: innController,
+                                  keyboardType: TextInputType.number,
+                                  maxLength: 10,
                                 ),
                                 SizedBox(
                                   height: 20,
@@ -82,6 +84,8 @@ class _OrganizationRegister extends State<OrganizationRegister> {
                                     border: OutlineInputBorder(),
                                     hintText: 'ОГРН',
                                   ),controller: ogrnController,
+                                  keyboardType: TextInputType.number,
+                                  maxLength: 13,
                                 ),
                                 SizedBox(
                                   height: 20,

@@ -41,6 +41,7 @@ dependencies:
   html: ^0.15.2
   flutter_exit_app: ^1.1.2
   intl: ^0.17.0
+  alt_sms_autofill: ^1.0.0
 
 
   # The following adds the Cupertino Icons font to your application.

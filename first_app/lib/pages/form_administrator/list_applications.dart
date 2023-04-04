@@ -26,22 +26,29 @@ ListApplicationController _listApplicationController = ListApplicationController
 
 Future<List<ConnectionRequest>> usersFuture = _listApplicationController.getAllConnectionRequest();
 
-var listStatus = [
-  "НОВАЯ",
-  "В РАБОТЕ",
-  "ИСПОЛНЕНА",
-  "ОТКЛОНЕНА",
-];
 
-String listStatusValue = listStatus.first;
+
 Future? _future;
 
 @override
 void initState() {}
 
 class _ListApplication extends State<ListApplication> {
+
+  static const List<String> listStatus = <String>[
+    "Новый",
+    "В работе",
+    "Отклонен",
+    "Завершен"
+  ];
+
+  String listStatusValue = listStatus.first;
+
+
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
         backgroundColor: Colors.grey,
         body: SingleChildScrollView(

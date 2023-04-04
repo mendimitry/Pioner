@@ -67,13 +67,17 @@ class _ConnectingOrganization extends State<UserAdministrator> {
                       padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
                       child: Column(children: [
                         Text("ПОЛЬЗОВАТЕЛЬ - АДМИНИСТРАТОР: ",
-                            style:
-                                TextStyle(fontSize: 17, color: Colors.black54)),
+                          style: TextStyle(
+                              height: 1.2 ,// the height between text, default is null
+                              letterSpacing: -0.9 // the white space between letter, default is 0.0/You can set your custom height here
+                          ),),
                         Row(
                           children: [
                             Text("Измененный статус: ",
-                                style: TextStyle(
-                                    fontSize: 16, color: Colors.black54)),
+                              style: TextStyle(
+                                  height: 1.2 ,// the height between text, default is null
+                                  letterSpacing: -0.9 // the white space between letter, default is 0.0/You can set your custom height here
+                              ),),
                             DropdownButton<String>(
                               value: listStatusValue,
                               underline: Container(
@@ -99,16 +103,20 @@ class _ConnectingOrganization extends State<UserAdministrator> {
                         Row(
                           children: [
                             Text("Текущий статус: ${connectionRequest.status}",
-                                style: const TextStyle(
-                                    fontSize: 16, color: Colors.black54)),
+                              style: TextStyle(
+                                  height: 1.2 ,// the height between text, default is null
+                                  letterSpacing: -0.9 // the white space between letter, default is 0.0/You can set your custom height here
+                              ),),
                           ],
                         ),
                         Row(
                           children: [
                             Text(
                                 "Дата создания: ${connectionRequest.date_begin}",
-                                style: TextStyle(
-                                    fontSize: 16, color: Colors.black54)),
+                                 style: TextStyle(
+                            height: 1.2 ,// the height between text, default is null
+                            letterSpacing: -0.9 // the white space between letter, default is 0.0/You can set your custom height here
+                        ),),
                             Text("", style: TextStyle(fontSize: 16)),
                           ],
                         ),
@@ -116,8 +124,10 @@ class _ConnectingOrganization extends State<UserAdministrator> {
                           children: [
                             Text(
                                 "Дата испольнения/отклонения: ${connectionRequest.date_end}",
-                                style: TextStyle(
-                                    fontSize: 12, color: Colors.black54)),
+                              style: TextStyle(
+                                  height: 1.2 ,// the height between text, default is null
+                                  letterSpacing: -0.9 // the white space between letter, default is 0.0/You can set your custom height here
+                              ),),
                             Text("", style: TextStyle(fontSize: 9)),
                           ],
                         ),

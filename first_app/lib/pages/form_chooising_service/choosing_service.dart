@@ -52,7 +52,7 @@ class _ChoosingServices extends State<ChoosingServices> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => ChoosingOrganizationAddress(serviceValue: "", resultAddress: {})));
+                                      builder: (context) => AutoUserRegister(value: 1,)));
                             },
                             icon: Icon(Icons.logout))),
 

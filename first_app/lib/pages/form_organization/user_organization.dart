@@ -67,20 +67,29 @@ class _UserOrganization extends State<UserOrganization>{
                       children: [
                         Row(
                           children: [
-                            Text("Текущий статус: ${connectionRequest.status}", style: const TextStyle(fontSize: 16, color: Colors.black54)),
+                            Text("Текущий статус: ${connectionRequest.status}",  style: TextStyle(
+                                height: 1.2 ,// the height between text, default is null
+                                letterSpacing: -0.9 // the white space between letter, default is 0.0/You can set your custom height here
+                            ),),
                           ],
 
                         ),
                         const SizedBox(height: 12),
                         Row(
                           children: [
-                            Text("Дата создания: ${connectionRequest.date_begin}", style: const TextStyle(fontSize: 16, color: Colors.black54)),
+                            Text("Дата создания: ${connectionRequest.date_begin}",  style: TextStyle(
+                                height: 1.2 ,// the height between text, default is null
+                                letterSpacing: -0.9 // the white space between letter, default is 0.0/You can set your custom height here
+                            ),),
                           ],
                         ),
                         const SizedBox(height: 12),
                         Row(
                           children: [
-                            Text("Дата исполнения/отклонения: ${connectionRequest.date_end}", style: const TextStyle(fontSize: 16, color: Colors.black54)),
+                            Text("Дата исполнения/отклонения: ${connectionRequest.date_end}",  style: TextStyle(
+                                height: 1.2 ,// the height between text, default is null
+                                letterSpacing: -0.9 // the white space between letter, default is 0.0/You can set your custom height here
+                            ),),
                           ],
                         ),
                         const SizedBox(height: 12),
