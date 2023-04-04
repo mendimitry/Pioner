@@ -9,26 +9,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="Build program version 1.0.4.1">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+    <list default="true" id="04ec280a-73bd-4cee-b7f2-e0a870ca3941" name="Changes" comment="Build program version 1.0.4.2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/list_applications.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/list_applications.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/user_administrator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_administrator/user_administrator.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_chooising_service/choosing_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_chooising_service/choosing_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_organization/connecting_organization.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_organization/connecting_organization.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_organization/organization_register.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_organization/organization_register.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_organization/user_organization.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_organization/user_organization.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_chooising_organization/choosing_organization.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_chooising_organization/choosing_organization.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_app/lib/pages/form_register_number_telephone/auto_user_register_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/lib/pages/form_register_number_telephone/auto_user_register_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/first_app/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/web/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/web/icons/Icon-192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/web/icons/Icon-512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/web/icons/Icon-maskable-192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/web/icons/Icon-maskable-512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/web/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app/web/manifest.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -473,7 +457,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680502779129</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Build program version 1.0.4.2">
+      <created>1680599321288</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1680599321288</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -488,7 +479,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add connection request (x1)" />
     <MESSAGE value="put connecting organization (x2)" />
     <MESSAGE value="Added navigation to the main page, removing old tails, adding parts of models from the database, and get/post queries for them" />
     <MESSAGE value="add redirect to choice services" />
@@ -513,6 +503,7 @@
     <MESSAGE value="Build program version 1.0.3(Изменен выбор услуг)" />
     <MESSAGE value="Build program version 1.0.4(Написан выход из приложения, написаны роуты выходов из текущих страниц, написаны правильные пути импортов)" />
     <MESSAGE value="Build program version 1.0.4.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Build program version 1.0.4.1" />
+    <MESSAGE value="Build program version 1.0.4.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Build program version 1.0.4.2" />
   </component>
 </project>

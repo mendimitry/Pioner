@@ -119,6 +119,9 @@ class _ChoosingOrganization extends State<ChoosingOrganization> {
                   });}));
   }
 
+
+
+
   Widget listInformation(List<Map<String, dynamic>> _list, int index) {
       return TextButton(
           onPressed: () {

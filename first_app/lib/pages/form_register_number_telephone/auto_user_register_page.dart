@@ -54,7 +54,7 @@ class _MyPhoneState extends State<AutoUserRegister> {
       new TextEditingController(text: "");
 
 
-  /*
+
   late TextEditingController textEditingController1;
   String? _commingSms = 'Unknown';
   FocusNode focusNode = FocusNode();
@@ -75,13 +75,13 @@ class _MyPhoneState extends State<AutoUserRegister> {
     });
   }
 
-   */
+
 
 
   @override
   void initState() {
     super.initState();
-   // textEditingController1 = TextEditingController();
+   textEditingController1 = TextEditingController();
 
   }
 
@@ -141,11 +141,13 @@ class _MyPhoneState extends State<AutoUserRegister> {
                           textAlign: TextAlign.start,
                           style: TextStyle(fontSize: 20)),
                       Padding(padding: EdgeInsets.only(top: 5)),
+
                       TextField(
                         onChanged: (value) {
                           code = value;
                         },
-                       // controller: textEditingController1,
+                        autofillHints: [AutofillHints.oneTimeCode],
+                        controller: textEditingController1,
                         keyboardType: TextInputType.number,
                         maxLength: 6,
                         decoration: InputDecoration(
@@ -196,7 +198,7 @@ class _MyPhoneState extends State<AutoUserRegister> {
                       ElevatedButton(
                           onPressed: buttonCheck
                               ? () async {
-                            //initSmsListener();
+                            initSmsListener();
                                   try {
                                     FirebaseAuth.instance.verifyPhoneNumber(
                                       phoneNumber: '${phone}',
@@ -262,7 +264,7 @@ class _MyPhoneState extends State<AutoUserRegister> {
                               PhoneAuthCredential credential =
                                   PhoneAuthProvider.credential(
                                       verificationId: firebaseVerificationId,
-                                      smsCode: code);
+                                      smsCode: textEditingController1.text);
                               // Sign the user in (or link) with the credential
                               await auth.signInWithCredential(credential);
                               Navigator.pushNamed(context, 'choosing_service',
