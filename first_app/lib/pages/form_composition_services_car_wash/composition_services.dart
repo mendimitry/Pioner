@@ -103,7 +103,7 @@ class _CompositionServices extends State<CompositionServices> {
 
   @override
   Widget build(BuildContext context) {
-    services = _service.getAllServiceDetail();
+    services = _service.getAllServiceDetail(_serviceValue);
     return Scaffold(
       backgroundColor: Colors.grey,
       body: SingleChildScrollView(

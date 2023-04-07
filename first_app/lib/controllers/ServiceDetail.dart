@@ -8,9 +8,16 @@ final ServiceDetailRepository _ServiceDetailRepository = ServiceDetailRepository
 
 PionerDB _pionerDB = PionerDB();
 
-Future<List<Map<String, dynamic>>> getAllServiceDetail() async{
+Future<List<Map<String, dynamic>>> getAllServiceDetail(String serviceValue) async{
   await _pionerDB.initDatabaseConnection();
-  List<Map<String, dynamic>> query = await _pionerDB.dbConnection.mappedResultsQuery('SELECT * from service_detail');
+  int Type;
+  if (serviceValue=='Мойка'){
+    Type = 1;
+  }
+  else {
+    Type = 2;
+  }
+  List<Map<String, dynamic>> query = await _pionerDB.dbConnection.mappedResultsQuery('SELECT * from service_detail where type_id = $Type');
   print(query);
   Map<String, dynamic> _address;
   List<Map<String, dynamic>> _addresses = [];

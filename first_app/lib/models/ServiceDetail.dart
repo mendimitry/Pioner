@@ -26,7 +26,7 @@ class ServiceDetail{
     print ("service_detail_id: ${this.service_detail_id}");
     print ("type_id: ${this.type_id}");
     print ("service_detail_code: ${this.service_detail_code}");
-    print ("servoce_detail_name: ${this.service_detail_name}");
+    print ("service_detail_name: ${this.service_detail_name}");
     print ("service_detail_cost: ${this.service_detail_cost}");
     print ("service_detail_duration: ${this.service_detail_duration}");
     print ("add_info: ${this.add_info}");
